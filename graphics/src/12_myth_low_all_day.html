@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width:1080px; height:1080px; font-family:'Poppins',Arial,sans-serif; background:#FFFFFF; position:relative; overflow:hidden; }
+  .top { position:absolute; top:0; left:0; right:0; height:270px; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:0 90px; }
+  .eyebrow { background:#1B3461; color:#EF7329; font-size:22px; font-weight:700; letter-spacing:2px; padding:8px 24px; border-radius:30px; margin-bottom:20px; }
+  .headline { color:#1B3461; font-size:44px; font-weight:800; line-height:1.2; text-align:center; }
+  .split { position:absolute; top:300px; left:70px; right:70px; height:430px; display:flex; gap:20px; }
+  .panel { flex:1; border-radius:22px; padding:36px 30px; display:flex; flex-direction:column; }
+  .panel-myth { background:#F1F1F3; }
+  .panel-fact { background:#1B3461; }
+  .panel-tag { display:flex; align-items:center; margin-bottom:22px; }
+  .panel-tag .icon { width:44px; height:44px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-right:14px; }
+  .myth .icon { background:#B0B4BC; }
+  .fact .icon { background:#EF7329; }
+  .panel-tag .label { font-size:26px; font-weight:800; letter-spacing:1px; }
+  .myth .label { color:#5B6270; }
+  .fact .label { color:#FFFFFF; }
+  .panel-text { font-size:25px; line-height:1.5; }
+  .myth .panel-text { color:#5B6270; }
+  .fact .panel-text { color:#FFFFFF; }
+  .myth .panel-text b { color:#3C424D; }
+  .fact .panel-text b { color:#EF7329; }
+  .vs-badge { position:absolute; top:600px; left:50%; transform:translateX(-50%); width:90px; height:90px; border-radius:50%; background:#EF7329; color:#fff; font-size:26px; font-weight:800; display:flex; align-items:center; justify-content:center; box-shadow:0 0 0 8px #FFFFFF; z-index:5; }
+  .callout { position:absolute; top:756px; left:70px; right:70px; background:#F2F8FC; border-left:8px solid #EF7329; border-radius:10px; padding:24px 32px; font-size:24px; color:#1B3461; line-height:1.5; }
+  .callout b { color:#1B3461; }
+  .footer { position:absolute; bottom:0; left:0; right:0; height:170px; background:#1B3461; display:flex; align-items:center; padding:0 70px; }
+  .footer-logo { height:120px; width:auto; margin-right:24px; filter:brightness(0) invert(1); }
+  .footer-right { margin-left:auto; text-align:right; color:#FFFFFF; font-size:20px; font-weight:500; line-height:1.5; }
+  .footer-web { color:#EF7329; font-size:23px; font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="eyebrow">MYTH VS FACT</div>
+    <div class="headline">&ldquo;It's Cheaper to Leave the Heating On Low All Day&rdquo;</div>
+  </div>
+  <div class="split">
+    <div class="panel panel-myth myth">
+      <div class="panel-tag"><div class="icon"><svg width="22" height="22" viewBox="0 0 22 22"><line x1="2" y1="2" x2="20" y2="20" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/><line x1="20" y1="2" x2="2" y2="20" stroke="#fff" stroke-width="3.5" stroke-linecap="round"/></svg></div><div class="label">MYTH</div></div>
+      <div class="panel-text">Keeping it <b>ticking over on low</b> all day and night costs less than turning it on and off.</div>
+    </div>
+    <div class="panel panel-fact fact">
+      <div class="panel-tag"><div class="icon"><svg width="22" height="22" viewBox="0 0 22 22"><path d="M3 11 L9 17 L19 5" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="label">FACT</div></div>
+      <div class="panel-text">A warm house <b>leaks heat all the time</b>. Fewer warm hours means less gas &mdash; for most homes, a timer set to real life wins.</div>
+    </div>
+  </div>
+  <div class="vs-badge">VS</div>
+  <div class="callout">The bigger saving is the <b>controls</b>: a thermostat that works, a timer set to how you actually live, and radiator valves turned down in rooms nobody sits in.</div>
+  <div class="footer">
+    <img class="footer-logo" src="assets/cmg-full-logo.png">
+    <div class="footer-right">
+      Gas Safe Reg 917962 &middot; CIPHE registered<br>
+      <span class="footer-web">cmghp.co.uk</span>
+    </div>
+  </div>
+</body>
+</html>

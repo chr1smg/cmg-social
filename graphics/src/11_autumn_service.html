@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width:1080px; height:1080px; font-family:'Poppins',Arial,sans-serif; background:#FFFFFF; position:relative; overflow:hidden; }
+  .hero { position:absolute; top:0; left:0; right:0; height:560px; background:#F2F8FC; display:flex; flex-direction:column; align-items:center; padding-top:70px; }
+  .badge { width:220px; height:220px; border-radius:50%; background:#FFFFFF; box-shadow:0 0 0 10px #E7F1FA; display:flex; align-items:center; justify-content:center; margin-bottom:34px; }
+  .eyebrow { background:#EF7329; color:#fff; font-size:22px; font-weight:700; letter-spacing:2px; padding:8px 24px; border-radius:30px; margin-bottom:26px; }
+  .headline { color:#1B3461; font-size:50px; font-weight:800; line-height:1.18; text-align:center; padding:0 90px; }
+  .rule { width:90px; height:6px; background:#EF7329; border-radius:3px; margin-top:26px; }
+  .cards { position:absolute; top:610px; left:70px; right:70px; display:flex; gap:24px; }
+  .card { flex:1; background:#F2F8FC; border-radius:18px; padding:26px 20px; display:flex; flex-direction:column; align-items:center; text-align:center; }
+  .card-icon { width:64px; height:64px; margin-bottom:16px; }
+  .card-text { font-size:21px; color:#22314f; line-height:1.4; }
+  .card-text b { color:#1B3461; }
+  .footer { position:absolute; bottom:0; left:0; right:0; height:220px; background:#1B3461; display:flex; align-items:center; padding:0 70px; }
+  .footer-logo { height:160px; width:auto; margin-right:28px; filter:brightness(0) invert(1); }
+  .footer-right { margin-left:auto; text-align:right; color:#FFFFFF; font-size:22px; font-weight:500; line-height:1.5; }
+  .footer-web { color:#EF7329; font-size:26px; font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="hero">
+    <div class="badge">
+      <svg width="120" height="120" viewBox="0 0 120 120">
+        <rect x="18" y="26" width="84" height="76" rx="8" fill="none" stroke="#EF7329" stroke-width="7"/>
+        <line x1="18" y1="50" x2="102" y2="50" stroke="#EF7329" stroke-width="7"/>
+        <line x1="38" y1="14" x2="38" y2="34" stroke="#1B3461" stroke-width="7" stroke-linecap="round"/>
+        <line x1="82" y1="14" x2="82" y2="34" stroke="#1B3461" stroke-width="7" stroke-linecap="round"/>
+        <text x="60" y="86" font-family="Poppins,Arial" font-size="28" fill="#1B3461" font-weight="700" text-anchor="middle">SEP</text>
+      </svg>
+    </div>
+    <div class="eyebrow">SEASONAL REMINDER</div>
+    <div class="headline">September Is the Best Month to Book a Boiler Service</div>
+    <div class="rule"></div>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 64 64"><circle cx="32" cy="32" r="24" fill="none" stroke="#EF7329" stroke-width="4"/><path d="M20 32 L29 41 L45 24" fill="none" stroke="#EF7329" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="card-text"><b>You pick the date</b> &mdash; not whatever's left after the first cold snap</div>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 64 64"><circle cx="28" cy="28" r="14" fill="none" stroke="#EF7329" stroke-width="4"/><line x1="38" y1="38" x2="52" y2="52" stroke="#EF7329" stroke-width="4" stroke-linecap="round"/></svg>
+      <div class="card-text">Anything found is a <b>planned job</b>, not an emergency in a cold house</div>
+    </div>
+    <div class="card">
+      <svg class="card-icon" viewBox="0 0 64 64"><rect x="16" y="10" width="32" height="44" rx="4" fill="none" stroke="#EF7329" stroke-width="4"/><line x1="23" y1="22" x2="41" y2="22" stroke="#EF7329" stroke-width="3.5"/><line x1="23" y1="31" x2="41" y2="31" stroke="#EF7329" stroke-width="3.5"/><path d="M24 44 L29 49 L40 38" fill="none" stroke="#1B3461" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="card-text">The <b>guarantee clock</b> runs from the install date &mdash; not the weather</div>
+    </div>
+  </div>
+  <div class="footer">
+    <img class="footer-logo" src="assets/cmg-full-logo.png">
+    <div class="footer-right">
+      Gas Safe Reg 917962 &middot; CIPHE registered<br>
+      <span class="footer-web">cmghp.co.uk</span>
+    </div>
+  </div>
+</body>
+</html>

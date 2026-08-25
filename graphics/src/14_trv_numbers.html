@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width:1080px; height:1080px; font-family:'Poppins',Arial,sans-serif; background:#FFFFFF; position:relative; overflow:hidden; }
+  .band-top { position:absolute; top:0; left:0; right:0; height:260px; background:#1C3462; display:flex; flex-direction:column; justify-content:center; padding:0 80px; }
+  .eyebrow { color:#F0822E; font-size:26px; font-weight:700; letter-spacing:3px; margin-bottom:10px; }
+  .headline { color:#FFFFFF; font-size:50px; font-weight:800; line-height:1.18; }
+  .body-area { position:absolute; top:300px; left:80px; right:80px; bottom:220px; }
+  .lead { font-size:28px; font-weight:500; color:#1B3461; line-height:1.5; margin-bottom:30px; }
+  .point { display:flex; align-items:flex-start; margin-bottom:24px; }
+  .tick { flex:0 0 40px; width:40px; height:40px; border-radius:50%; background:#F0822E; color:#fff; font-size:22px; font-weight:700; display:flex; align-items:center; justify-content:center; margin-right:22px; }
+  .point-text { font-size:27px; font-weight:400; color:#33425e; line-height:1.45; padding-top:3px; }
+  .point-text b { color:#1B3461; font-weight:700; }
+  .footer { position:absolute; bottom:0; left:0; right:0; height:220px; background:#1C3462; display:flex; align-items:center; padding:0 70px; }
+  .footer-logo { height:160px; width:auto; margin-right:28px; filter:brightness(0) invert(1); }
+  .footer-right { margin-left:auto; text-align:right; color:#FFFFFF; font-size:22px; font-weight:500; line-height:1.5; }
+  .footer-web { color:#F0822E; font-size:26px; font-weight:700; }
+</style>
+</head>
+<body>
+  <div class="band-top">
+    <div class="eyebrow">DID YOU KNOW?</div>
+    <div class="headline">What the Numbers on a Radiator Valve Mean</div>
+  </div>
+  <div class="body-area">
+    <div class="lead">Not a temperature, not a volume dial &mdash; the numbers set how warm the <b>room</b> gets before that radiator shuts itself off.</div>
+    <div class="point">
+      <div class="tick">1</div>
+      <div class="point-text"><b>Turning it to 5 doesn't heat the room faster.</b> It just lets the room get hotter before the radiator stops &mdash; a target, not an accelerator.</div>
+    </div>
+    <div class="point">
+      <div class="tick">2</div>
+      <div class="point-text"><b>Different rooms want different numbers.</b> Bedroom on 2&ndash;3, living room on 4 &mdash; heating an empty spare room to sitting-room warmth is money through the wall.</div>
+    </div>
+    <div class="point">
+      <div class="tick">3</div>
+      <div class="point-text"><b>One radiator often has no valve by design</b> &mdash; usually where the main thermostat lives. Head won't turn? Don't force it &mdash; engineer's job.</div>
+    </div>
+  </div>
+  <div class="footer">
+    <img class="footer-logo" src="assets/cmg-full-logo.png">
+    <div class="footer-right">
+      Gas Safe Reg 917962 &middot; CIPHE registered<br>
+      <span class="footer-web">cmghp.co.uk</span>
+    </div>
+  </div>
+</body>
+</html>
