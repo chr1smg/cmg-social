@@ -1,0 +1,14 @@
+name: watchdog
+
+on:
+  schedule:
+    - cron: '15 7,16 * * *'   # 08:15 and 17:15 UK summer time
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: The 36-hour silence rule
+        run: node scripts/watchdog.js

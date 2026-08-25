@@ -1,0 +1,97 @@
+name: publish
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Write .env from secrets
+        working-directory: publisher
+        env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+        run: |
+          : > .env
+          for k in FB_APP_ID FB_APP_SECRET FB_PAGE_ID FB_PAGE_TOKEN IG_TOKEN IG_USER_ID; do
+            v="${!k}"
+            if [ -n "$v" ]; then printf '%s=%s\n' "$k" "$v" >> .env; fi
+          done
+
+      - name: First-time Meta setup (runs once, then stores its own secrets)
+        working-directory: publisher
+        env:
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_PAT }}
+        run: |
+          if [ -n "$FB_PAGE_TOKEN" ] || [ -z "$META_USER_TOKEN" ]; then
+            echo "setup not needed on this run"; exit 0
+          fi
+          node cmg-publisher.js setup "$META_USER_TOKEN"
+          page_id=$(grep '^FB_PAGE_ID=' .env | cut -d= -f2-)
+          page_token=$(grep '^FB_PAGE_TOKEN=' .env | cut -d= -f2-)
+          if [ -z "$page_id" ] || [ -z "$page_token" ]; then
+            echo "setup did not produce page credentials"; exit 1
+          fi
+          gh secret set FB_PAGE_ID    --repo "$GITHUB_REPOSITORY" --body "$page_id"
+          gh secret set FB_PAGE_TOKEN --repo "$GITHUB_REPOSITORY" --body "$page_token"
+          gh secret set IG_TOKEN      --repo "$GITHUB_REPOSITORY" --body "$page_token"
+          gh secret delete META_USER_TOKEN --repo "$GITHUB_REPOSITORY" || true
+          echo "Meta credentials derived, verified and stored. Future runs use them."
+
+      - name: Quiet exit until Meta secrets exist
+        id: gate
+        working-directory: publisher
+        run: |
+          if grep -q '^FB_PAGE_TOKEN=' .env || grep -q '^IG_TOKEN=' .env; then
+            echo "ready=yes" >> "$GITHUB_OUTPUT"
+          else
+            echo "Meta token not configured yet — nothing to do. See README step 2."
+            echo "ready=no" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Schedule the week on Facebook (server-side)
+        if: steps.gate.outputs.ready == 'yes'
+        working-directory: publisher
+        run: |
+          approved=$(node -e "console.log(require('./week.json').approved===true?'yes':'no')")
+          if [ "$approved" != "yes" ]; then
+            echo "week.json not approved yet — scheduling skipped (this is a quiet, correct state)"; exit 0
+          fi
+          if ! grep -q '^FB_PAGE_TOKEN=' .env; then echo "no Facebook credentials yet"; exit 0; fi
+          node cmg-publisher.js schedule-week
+
+      - name: Publish anything due
+        if: steps.gate.outputs.ready == 'yes'
+        working-directory: publisher
+        run: node cmg-publisher.js publish-due
+
+      - name: Commit state back to the repo
+        if: always()
+        run: |
+          rm -f publisher/.env publisher/.publisher.lock
+          git config user.name  "cmg-publisher"
+          git config user.email "publisher@users.noreply.github.com"
+          git add publisher/week.json publisher/publish-log.jsonl 2>/dev/null || true
+          if git diff --cached --quiet; then echo "no state changes"; exit 0; fi
+          git commit -m "publisher state: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          git pull --rebase origin main
+          git push
