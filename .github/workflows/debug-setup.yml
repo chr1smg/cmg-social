@@ -1,0 +1,39 @@
+name: debug-setup
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  dbg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run setup and capture the error, redacted
+        working-directory: publisher
+        env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          META_USER_TOKEN: ${{ secrets.META_USER_TOKEN }}
+        run: |
+          : > .env
+          printf 'FB_APP_ID=%s\n' "$FB_APP_ID" >> .env
+          printf 'FB_APP_SECRET=%s\n' "$FB_APP_SECRET" >> .env
+          set +e
+          node cmg-publisher.js setup "$META_USER_TOKEN" > /tmp/raw.log 2>&1
+          echo "exit=$?" >> /tmp/raw.log
+          set -e
+          # redact anything long enough to be a token or secret before it touches a public repo
+          sed -E 's/[A-Za-z0-9_-]{32,}/[REDACTED]/g' /tmp/raw.log > ../setup-debug.log
+          rm -f .env /tmp/raw.log
+          cat ../setup-debug.log
+      - name: Commit the redacted log
+        if: always()
+        run: |
+          git config user.name "CMG publisher"
+          git config user.email "publisher@cmghp.co.uk"
+          git add setup-debug.log
+          git diff --staged --quiet || git commit -m "debug: redacted setup output"
+          git push
