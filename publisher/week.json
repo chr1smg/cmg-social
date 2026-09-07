@@ -1,21 +1,24 @@
 {
- "approved": true,
- "note": "Rebuilt 7 Sep 2026. FUTURE SLOTS ONLY so publish-due cannot fire a backlog of stale posts. Images are served from THIS REPO via raw.githubusercontent.com, NOT from cmghp.co.uk - the WordPress uploads path returns 403 to every user agent including facebookexternalhit, so Meta cannot fetch anything hosted there. Every imageUrl is HEAD-verified before it is written here.",
- "baseImageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/",
- "posts": [
-  {
-   "id": 1,
-   "slot": "2026-09-08 10:00",
-   "title": "Tue 8 Sep, 10:00 — Back boiler out, combi in",
-   "image": "cmg-back-boiler-to-combi-conversion-bolton-4x5.jpg",
-   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-back-boiler-to-combi-conversion-bolton-4x5.jpg",
-   "caption": "Back boiler out, combi in.\n\nIf your heating still runs off a back boiler sat behind the fireplace, this is what it looks like at the other end.\n\nIt isn't a like-for-like swap. A back boiler heats a cylinder; a combi heats water on demand — so the cylinder goes, the loft tanks go, and you get mains pressure at every tap.\n\nWhat people underestimate is everything around it: a new flue, the gas supply checked and upsized to carry the load, the fireplace opening made good, and the whole system flushed before the new boiler ever fires. Skip the flush and you push twenty years of sludge straight into a brand new heat exchanger. That black cylinder at the bottom is the filter that catches whatever's left.\n\nRemoving a back boiler is gas work. It needs a Gas Safe registered engineer, not a general builder.\n\nThe bit most people mention afterwards isn't the heating — it's getting the airing cupboard back.\n\nStill got a back boiler? Tell us what's putting you off — the disruption, the cost, or just not knowing what's involved. 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
-   "facebook": {
-    "status": ""
-   },
-   "instagram": {
-    "status": ""
-   }
-  }
- ]
+  "approved": true,
+  "note": "Rebuilt 7 Sep 2026. FUTURE SLOTS ONLY so publish-due cannot fire a backlog of stale posts. Images are served from THIS REPO via raw.githubusercontent.com, NOT from cmghp.co.uk - the WordPress uploads path returns 403 to every user agent including facebookexternalhit, so Meta cannot fetch anything hosted there. Every imageUrl is HEAD-verified before it is written here.",
+  "baseImageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/",
+  "posts": [
+    {
+      "id": 1,
+      "slot": "2026-09-08 10:00",
+      "title": "Tue 8 Sep, 10:00 — Back boiler out, combi in",
+      "image": "cmg-back-boiler-to-combi-conversion-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-back-boiler-to-combi-conversion-bolton-4x5.jpg",
+      "caption": "Back boiler out, combi in.\n\nIf your heating still runs off a back boiler sat behind the fireplace, this is what it looks like at the other end.\n\nIt isn't a like-for-like swap. A back boiler heats a cylinder; a combi heats water on demand — so the cylinder goes, the loft tanks go, and you get mains pressure at every tap.\n\nWhat people underestimate is everything around it: a new flue, the gas supply checked and upsized to carry the load, the fireplace opening made good, and the whole system flushed before the new boiler ever fires. Skip the flush and you push twenty years of sludge straight into a brand new heat exchanger. That black cylinder at the bottom is the filter that catches whatever's left.\n\nRemoving a back boiler is gas work. It needs a Gas Safe registered engineer, not a general builder.\n\nThe bit most people mention afterwards isn't the heating — it's getting the airing cupboard back.\n\nStill got a back boiler? Tell us what's putting you off — the disruption, the cost, or just not knowing what's involved. 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1077702538342522",
+        "scheduledFor": "2026-09-08 10:00",
+        "verified": "seen in scheduled_posts"
+      },
+      "instagram": {
+        "status": ""
+      }
+    }
+  ]
 }
