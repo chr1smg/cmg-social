@@ -45,7 +45,10 @@ jobs:
           if [ -n "$FB_PAGE_TOKEN" ] || [ -z "$META_USER_TOKEN" ]; then
             echo "setup not needed on this run"; exit 0
           fi
-          node cmg-publisher.js setup "$META_USER_TOKEN"
+          # Setup ends by checking BOTH platforms and exits non-zero if either is
+          # unset. Facebook succeeding must not be discarded because Instagram is
+          # not configured yet - so do not abort here; judge on the credentials.
+          node cmg-publisher.js setup "$META_USER_TOKEN" || echo "setup exit non-zero - checking for page credentials anyway"
           page_id=$(grep '^FB_PAGE_ID=' .env | cut -d= -f2-)
           page_token=$(grep '^FB_PAGE_TOKEN=' .env | cut -d= -f2-)
           if [ -z "$page_id" ] || [ -z "$page_token" ]; then
