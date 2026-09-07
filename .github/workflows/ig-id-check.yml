@@ -1,0 +1,22 @@
+name: ig-id-check
+on: { workflow_dispatch: }
+permissions: { contents: write }
+jobs:
+  chk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask Meta which of the two IDs is the real IG account
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+        run: |
+          for id in 17841453338052736 27905658759062621; do
+            out=$(curl -s "https://graph.facebook.com/v23.0/$id?fields=username,media_count&access_token=$IG_TOKEN")
+            echo "$id -> $(echo "$out" | sed -E 's/[A-Za-z0-9_-]{32,}/[REDACTED]/g')" >> ig-id-check.log
+          done
+          cat ig-id-check.log
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "CMG publisher"; git config user.email "publisher@cmghp.co.uk"
+          git add ig-id-check.log && git commit -m "ig id check" && git push
