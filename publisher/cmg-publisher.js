@@ -4,64 +4,46 @@
  * ------------------------------------------------
  * One file, no npm packages, Node 18+. Lives next to a `.env` and a `week.json`.
  *
- * WHY THIS EXISTS
- *   Browser automation of facebook.com failed seven times in one week, and
- *   twice reported success while publishing nothing. This replaces it with
- *   Meta's Graph API — the same way the Instagram connector already posts.
+ * Filename note: this is a .cjs file because it sits in the cmg-instagram-connector
+ * folder, whose package.json declares "type": "module". CommonJS in a .cjs file
+ * runs regardless of that setting.
  *
  * THE ONE DESIGN RULE
  *   Nothing is reported as done until it has been read back off Meta's
  *   servers: a scheduled post must appear in the Page's scheduled_posts list,
  *   a published post must return its permalink. No proof, no tick.
  *
- * WHAT EACH PLATFORM ALLOWS (checked against Meta docs, Aug 2026)
- *   Facebook  — CAN be scheduled server-side: POST /{page}/photos with
- *               published=false + scheduled_publish_time (10 min – 6 months
- *               ahead). After that Meta publishes it; no PC needs to be on.
- *   Instagram — CANNOT be scheduled via the API at all. Containers expire in
- *               24 h; 100 API posts per rolling 24 h. So Instagram is
- *               published AT slot time by `publish-due`, run every 15 min by
- *               Windows Task Scheduler while the PC is awake (07:00–22:00).
- *
  * COMMANDS
- *   node cmg-publisher.js setup <short-lived-user-token>
- *       Exchanges for a long-lived token, finds the Page, saves FB_PAGE_ID +
- *       FB_PAGE_TOKEN (page tokens from a long-lived user token do not
- *       expire), then runs `check`. Needs FB_APP_ID + FB_APP_SECRET in .env.
- *   node cmg-publisher.js check
- *       Posts nothing. Proves both tokens and names what is missing.
- *   node cmg-publisher.js upload
- *       Uploads the week's graphics (from ./graphics/ or this folder) to the
- *       WordPress media library over its REST API — no browser, no file
- *       picker. Records each returned URL into week.json only after fetching
- *       it back and getting HTTP 200. WordPress auto-renames duplicates, and
- *       because the RETURNED url is what gets recorded, the old
- *       won't-overwrite-a-filename trap is gone. Needs WP_URL, WP_USER,
- *       WP_APP_PASSWORD in .env (an Application Password from the WordPress
- *       profile page — one-time, two minutes).
- *   node cmg-publisher.js schedule-week
- *       Schedules every open Facebook row of week.json on Meta's servers,
- *       verifies each against /scheduled_posts, writes the proof into
- *       week.json.
- *   node cmg-publisher.js publish-due
- *       Publishes anything whose slot has passed and is still open:
- *       Instagram rows via container→publish→permalink, and any Facebook row
- *       that never got scheduled (late catch-up, published live). Idempotent —
- *       a row with proof recorded is never touched again. This is the command
- *       Task Scheduler runs every 15 minutes.
- *   node cmg-publisher.js list-scheduled
- *       Shows what Meta's servers currently hold for the Page. The Planner in
- *       Business Suite should agree with this list.
- *   node cmg-publisher.js install-task
- *       Prints the exact schtasks command to register the 15-minute job.
+ *   setup <token> | check | upload | schedule-week | publish-due |
+ *   list-scheduled | install-task | publish-reel <id>
  *
- * .env keys (same folder):
- *   FB_APP_ID, FB_APP_SECRET, FB_PAGE_ID, FB_PAGE_TOKEN
- *   IG_USER_ID (defaults to CMG's 17841453338052736)
- *   IG_TOKEN   (also accepts INSTAGRAM_ACCESS_TOKEN / INSTAGRAM_TOKEN /
- *               ACCESS_TOKEN so the existing connector .env can be reused)
- *   WP_URL, WP_USER, WP_APP_PASSWORD  (WordPress media uploads)
- *   GRAPH_VERSION (default v23.0)
+ * REELS — added 3 Sep 2026, UNTESTED against live Meta endpoints
+ *   Reels live in a SEPARATE `week.reels` array, never `week.posts` — a Reel
+ *   can't be scheduled ahead like a photo (Facebook's video_reels endpoint has
+ *   no scheduled_publish_time equivalent), so it needs its own command rather
+ *   than folding into schedule-week/publish-due and risking imageUrl() being
+ *   called on a video file.
+ *   Shape of one entry in week.reels:
+ *     { "id": 1, "slot": "2026-09-12 10:00", "title": "...",
+ *       "video": "w2_booking_reel.mp4", "videoUrl": null, "caption": "...",
+ *       "facebook": {"status": ""}, "instagram": {"status": ""} }
+ *   Flow:
+ *     1. `upload` (existing command, extended) uploads the .mp4 to the
+ *        WordPress media library exactly like a graphic, and records the
+ *        public URL as videoUrl. Needs the file in `video\` or next to the
+ *        script, and .mp4 added to the WP upload mime-type map — both done.
+ *     2. `publish-reel <id>` then: Facebook via the video_reels start/finish
+ *        flow (passing file_url so Meta fetches the WP-hosted copy directly —
+ *        no chunked upload needed for files this size); Instagram via a
+ *        media_type=REELS container against the same hosted URL, polled until
+ *        FINISHED, then media_publish. Both verified by permalink read-back,
+ *        same as every other publish path in this file.
+ *   NOT YET PROVEN: whether video_reels' `file_url` start param actually
+ *   fetches server-side on this API version, and how long Instagram Reels
+ *   processing actually takes for an 18s clip (the poll loop below is
+ *   generous — 40 tries at 5s apart, 200s — but this has never run against
+ *   real Meta servers). Treat the first real run as a test, not a rollout:
+ *   read the log, don't assume it worked.
  */
 'use strict';
 const fs = require('fs');
@@ -73,6 +55,7 @@ const WEEK_PATH = path.join(DIR, 'week.json');
 const LOG_PATH = path.join(DIR, 'publish-log.jsonl');
 const LOCK_PATH = path.join(DIR, '.publisher.lock');
 const DEFAULT_IG_USER = '17841453338052736'; // @cmg_hp
+const DEFAULT_PAGE_REF = '110510101534769'; // CMG Heating and Plumbing (facebook.com/CONTACTCMG)
 
 // ---------- tiny .env ----------
 function readEnv() {
@@ -106,7 +89,8 @@ function cfg() {
     pageId: e.FB_PAGE_ID || '',
     pageToken: e.FB_PAGE_TOKEN || '',
     igUser: e.IG_USER_ID || e.INSTAGRAM_USER_ID || e.IG_ACCOUNT_ID || DEFAULT_IG_USER,
-    igToken: e.IG_TOKEN || e.INSTAGRAM_ACCESS_TOKEN || e.INSTAGRAM_TOKEN || e.ACCESS_TOKEN || '',
+    igToken: (e.IG_TOKEN || e.INSTAGRAM_ACCESS_TOKEN || e.INSTAGRAM_TOKEN || e.ACCESS_TOKEN || '').trim(),
+    igVersion: e.INSTAGRAM_API_VERSION || e.GRAPH_VERSION || 'v23.0',
     wpUrl: (e.WP_URL || '').replace(/\/+$/, ''),
     wpUser: e.WP_USER || '',
     wpPass: e.WP_APP_PASSWORD || '',
@@ -115,8 +99,27 @@ function cfg() {
 
 // ---------- Graph API ----------
 const BASE = () => `https://graph.facebook.com/${cfg().v}`;
-async function graph(method, edge, params) {
-  const url = new URL(`${BASE()}/${edge}`);
+
+/**
+ * Which host an Instagram call must go to.
+ *
+ * There are two kinds of Instagram token and they are NOT interchangeable:
+ *   EAA... — a Facebook token. Works on graph.facebook.com.
+ *   IGAA.. — an "Instagram API with Instagram Login" token. Works ONLY on
+ *            graph.instagram.com; graph.facebook.com answers
+ *            "Cannot parse access token" (error 190).
+ * CMG's connector holds an IGAA token, which is why this exists. The endpoint
+ * paths are identical on both hosts — only the host differs.
+ */
+const IG_BASE = () => {
+  const c = cfg();
+  return /^IG/.test(c.igToken)
+    ? `https://graph.instagram.com/${c.igVersion}`
+    : `https://graph.facebook.com/${c.v}`;
+};
+
+async function graphOn(base, method, edge, params) {
+  const url = new URL(`${base}/${edge}`);
   const opts = { method };
   if (method === 'GET') {
     for (const [k, v] of Object.entries(params || {})) url.searchParams.set(k, v);
@@ -131,23 +134,29 @@ async function graph(method, edge, params) {
   if (data.error) {
     const e = data.error;
     let msg = `Graph API error ${e.code || res.status}: ${e.message}`;
-    if (e.code === 190) msg += '\n  → The access token has expired or been revoked. Re-run setup with a fresh token.';
+    if (e.code === 190) {
+      msg += '\n  -> The access token has expired, been revoked, or is the wrong kind for this host.';
+      if (/graph\.facebook\.com/.test(base) && /Cannot parse/i.test(e.message || '')) {
+        msg += '\n  -> An IGAA... Instagram token cannot be used on graph.facebook.com.';
+      }
+    }
     throw new Error(msg);
   }
   return data;
 }
+const graph = (method, edge, params) => graphOn(BASE(), method, edge, params);
+const graphIG = (method, edge, params) => graphOn(IG_BASE(), method, edge, params);
 
 // ---------- UK time ----------
 function ukOffsetMinutes(epochMs) {
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/London', timeZoneName: 'longOffset',
   }).formatToParts(epochMs);
-  const tz = parts.find((p) => p.type === 'timeZoneName').value; // "GMT+01:00" or "GMT"
+  const tz = parts.find((p) => p.type === 'timeZoneName').value;
   const m = tz.match(/GMT([+-])(\d{2}):(\d{2})/);
   if (!m) return 0;
   return (m[1] === '-' ? -1 : 1) * (Number(m[2]) * 60 + Number(m[3]));
 }
-/** "2026-08-22 10:00" (UK wall clock) → epoch seconds */
 function ukToEpoch(slot) {
   const m = slot.match(/^(\d{4})-(\d{2})-(\d{2})[T ](\d{2}):(\d{2})/);
   if (!m) throw new Error(`Bad slot "${slot}" — use "YYYY-MM-DD HH:mm" UK time`);
@@ -173,48 +182,79 @@ function saveWeek(week) {
   fs.renameSync(tmp, WEEK_PATH);
 }
 function imageUrl(week, post) {
-  if (post.imageUrl) return post.imageUrl; // recorded by `upload` — always wins
+  if (post.imageUrl) return post.imageUrl;
   if (/^https?:\/\//.test(post.image)) return post.image;
   return week.baseImageUrl.replace(/\/?$/, '/') + post.image;
+}
+// Mirrors imageUrl() for the separate week.reels array — see the file-header
+// note on why reels are not just posts with a video field.
+function videoUrl(reel) {
+  if (reel.videoUrl) return reel.videoUrl;
+  if (/^https?:\/\//.test(reel.video || '')) return reel.video;
+  return null; // no baseImageUrl fallback for video — it must be uploaded first
 }
 function logLine(obj) {
   fs.appendFileSync(LOG_PATH, JSON.stringify({ at: new Date().toISOString(), ...obj }) + '\n');
 }
 
 // ---------- commands ----------
-async function cmdSetup(shortToken) {
+async function cmdSetup(shortToken, pageRef) {
   const c = cfg();
   if (!c.appId || !c.appSecret) {
-    throw new Error('FB_APP_ID and FB_APP_SECRET must be in .env first.\n' +
-      '  App ID is 2311213529629434 (CMG Page Publisher). The secret is under\n' +
-      '  App settings → Basic on developers.facebook.com — never share it anywhere else.');
+    throw new Error('FB_APP_ID and FB_APP_SECRET must be in .env first.');
   }
-  if (!shortToken) throw new Error('Usage: node cmg-publisher.js setup <short-lived-user-token>');
-  console.log('1/3 Exchanging for a long-lived user token…');
+  if (!shortToken) throw new Error('Usage: node cmg-publisher.cjs setup <short-lived-user-token> [page-id-or-username]');
+  console.log('1/3 Exchanging for a long-lived user token...');
   const ll = await graph('GET', 'oauth/access_token', {
     grant_type: 'fb_exchange_token', client_id: c.appId,
     client_secret: c.appSecret, fb_exchange_token: shortToken,
   });
-  console.log('2/3 Finding the Page…');
+  console.log('2/3 Finding the Page...');
+  let page = null;
+
+  // Route A - the documented one: the Pages this user has a direct role on.
   const accounts = await graph('GET', 'me/accounts', {
     fields: 'id,name,access_token', access_token: ll.access_token,
   });
   const pages = accounts.data || [];
-  if (!pages.length) throw new Error('The token can see no Pages. The grant must include pages_show_list for the CMG Page.');
-  const page = pages.find((p) => /cmg/i.test(p.name)) || pages[0];
+  if (pages.length) {
+    page = pages.find((p) => /cmg/i.test(p.name)) || pages[0];
+    console.log(`   Found via me/accounts: "${page.name}"`);
+  } else {
+    // Route B - the fallback that this Page actually needs.
+    //
+    // me/accounts comes back EMPTY for the CMG Page even with pages_show_list
+    // granted and "opt in to all current and future Pages" accepted - verified
+    // by hand in the Graph API Explorer on 25 Aug 2026 after a completely fresh
+    // grant. Asking the Page node directly still returns a working page token,
+    // so that is what we do. Do not "simplify" this away.
+    const ref = pageRef || readEnv().FB_PAGE_REF || DEFAULT_PAGE_REF;
+    console.log(`   me/accounts returned nothing - asking the Page node directly (${ref})...`);
+    const p = await graph('GET', ref, {
+      fields: 'id,name,access_token', access_token: ll.access_token,
+    });
+    if (!p.access_token) {
+      throw new Error(
+        `The Page "${p.name || ref}" returned no access token.\n` +
+        '  The grant is missing pages_manage_posts for this Page, or the account\n' +
+        '  generating the token does not hold a publishing role on it.');
+    }
+    page = p;
+    console.log(`   Found via the Page node: "${page.name}"`);
+  }
+
   writeEnv({ FB_PAGE_ID: page.id, FB_PAGE_TOKEN: page.access_token });
   console.log(`   Saved Page "${page.name}" (${page.id}). Page tokens from a long-lived exchange do not expire.`);
-  console.log('3/3 Checking…');
+  console.log('3/3 Checking...');
   await cmdCheck();
 }
 
 async function cmdCheck() {
   const c = cfg();
   let ok = true;
-  // Facebook
   if (!c.pageId || !c.pageToken) {
     ok = false;
-    console.log('✗ Facebook: FB_PAGE_ID / FB_PAGE_TOKEN missing — run setup first.');
+    console.log('x Facebook: FB_PAGE_ID / FB_PAGE_TOKEN missing — run setup first.');
   } else {
     try {
       const page = await graph('GET', c.pageId, { fields: 'name', access_token: c.pageToken });
@@ -233,40 +273,36 @@ async function cmdCheck() {
             : `, expires ${new Date(dbg.data.expires_at * 1000).toISOString().slice(0, 10)}`;
         }
       }
-      console.log(`✓ Facebook: ready — will post to "${page.name}"${scopeNote}`);
-    } catch (e) { ok = false; console.log(`✗ Facebook: ${e.message}`); }
+      console.log(`OK Facebook: ready — will post to "${page.name}"${scopeNote}`);
+    } catch (e) { ok = false; console.log(`x Facebook: ${e.message}`); }
   }
-  // Instagram
   if (!c.igToken) {
     ok = false;
-    console.log('✗ Instagram: no token found (IG_TOKEN / INSTAGRAM_ACCESS_TOKEN in .env).');
+    console.log('x Instagram: no token found (IG_TOKEN / INSTAGRAM_ACCESS_TOKEN in .env).');
   } else {
     try {
-      const ig = await graph('GET', c.igUser, { fields: 'username', access_token: c.igToken });
-      console.log(`✓ Instagram: ready — will post to @${ig.username}`);
-    } catch (e) { ok = false; console.log(`✗ Instagram: ${e.message}`); }
+      const ig = await graphIG('GET', c.igUser, { fields: 'username', access_token: c.igToken });
+      console.log(`OK Instagram: ready — will post to @${ig.username} (via ${IG_BASE().replace(/^https:\/\//, '').split('/')[0]})`);
+    } catch (e) { ok = false; console.log(`x Instagram: ${e.message}`); }
   }
-  console.log(ok ? '\nREADY. Nothing was posted.' : '\nNOT READY — fix the ✗ lines above. Nothing was posted.');
+  console.log(ok ? '\nREADY. Nothing was posted.' : '\nNOT READY — fix the x lines above. Nothing was posted.');
   if (!ok) process.exitCode = 1;
   return ok;
 }
 
-/** Upload the week's graphics to WordPress over REST — no browser, no picker. */
 async function cmdUpload() {
   const c = cfg();
   if (!c.wpUrl || !c.wpUser || !c.wpPass) {
-    throw new Error('WP_URL, WP_USER and WP_APP_PASSWORD must be in .env.\n' +
-      '  Make an Application Password once: WordPress admin → Users → Profile →\n' +
-      '  Application Passwords → name it "cmg-publisher" → copy the generated password.');
+    throw new Error('WP_URL, WP_USER and WP_APP_PASSWORD must be in .env.');
   }
   const week = loadWeek();
   const auth = 'Basic ' + Buffer.from(`${c.wpUser}:${c.wpPass}`).toString('base64');
-  const types = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png' };
-  for (const post of week.posts) {
-    if (post.imageUrl) { console.log(`post ${post.id}: already uploaded — ${post.imageUrl}`); continue; }
-    const name = post.file || post.image;
-    const local = [path.join(DIR, 'graphics', name), path.join(DIR, name)].find((f) => fs.existsSync(f));
-    if (!local) { console.log(`post ${post.id}: no local file "${name}" (looked in graphics\\ and here) — skipped`); process.exitCode = 1; continue; }
+  const types = { '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.png': 'image/png', '.mp4': 'video/mp4' };
+
+  async function uploadOne(name, folders) {
+    const local = folders.map((f) => path.join(DIR, f, name)).find((f) => fs.existsSync(f))
+      || (fs.existsSync(path.join(DIR, name)) ? path.join(DIR, name) : null);
+    if (!local) return { ok: false, skipped: true };
     const ext = path.extname(name).toLowerCase();
     const res = await fetch(`${c.wpUrl}/wp-json/wp/v2/media`, {
       method: 'POST',
@@ -278,32 +314,69 @@ async function cmdUpload() {
       body: fs.readFileSync(local),
     });
     const data = await res.json().catch(() => ({}));
-    if (!res.ok || !data.source_url) {
-      console.log(`post ${post.id}: WordPress upload FAILED (HTTP ${res.status}) ${data.message || ''}`);
-      logLine({ cmd: 'upload', post: post.id, result: 'error', status: res.status });
-      process.exitCode = 1; continue;
-    }
-    // PROOF: the URL must actually serve the image before it is recorded.
+    if (!res.ok || !data.source_url) return { ok: false, status: res.status, message: data.message };
     const head = await fetch(data.source_url, { method: 'HEAD' });
-    if (!head.ok) {
-      console.log(`post ${post.id}: uploaded as ${data.source_url} but it does not serve (HTTP ${head.status}) — NOT recorded`);
-      logLine({ cmd: 'upload', post: post.id, result: 'unverified', url: data.source_url });
+    if (!head.ok) return { ok: false, unverified: true, url: data.source_url, status: head.status };
+    return { ok: true, url: data.source_url };
+  }
+
+  for (const post of week.posts) {
+    if (post.imageUrl) { console.log(`post ${post.id}: already uploaded — ${post.imageUrl}`); continue; }
+    const name = post.file || post.image;
+    if (!fs.existsSync(path.join(DIR, 'graphics', name)) && !fs.existsSync(path.join(DIR, name))) {
+      console.log(`post ${post.id}: no local file "${name}" (already hosted, or nothing to upload) — skipped`); continue;
+    }
+    const r = await uploadOne(name, ['graphics']);
+    if (!r.ok) {
+      if (r.unverified) {
+        console.log(`post ${post.id}: uploaded as ${r.url} but it does not serve (HTTP ${r.status}) — NOT recorded`);
+        logLine({ cmd: 'upload', post: post.id, result: 'unverified', url: r.url });
+      } else {
+        console.log(`post ${post.id}: WordPress upload FAILED (HTTP ${r.status}) ${r.message || ''}`);
+        logLine({ cmd: 'upload', post: post.id, result: 'error', status: r.status });
+      }
       process.exitCode = 1; continue;
     }
-    post.imageUrl = data.source_url;
+    post.imageUrl = r.url;
     saveWeek(week);
-    logLine({ cmd: 'upload', post: post.id, result: 'uploaded', url: data.source_url });
-    console.log(`post ${post.id}: uploaded and verified — ${data.source_url}`);
+    logLine({ cmd: 'upload', post: post.id, result: 'uploaded', url: r.url });
+    console.log(`post ${post.id}: uploaded and verified — ${r.url}`);
+  }
+
+  // Reels — same WordPress upload, into videoUrl instead of imageUrl. Added
+  // 3 Sep 2026, see the file-header note. week.reels may not exist on older
+  // week.json files, hence the guard.
+  for (const reel of week.reels || []) {
+    if (reel.videoUrl) { console.log(`reel ${reel.id}: already uploaded — ${reel.videoUrl}`); continue; }
+    const name = reel.video;
+    if (!fs.existsSync(path.join(DIR, 'video', name)) && !fs.existsSync(path.join(DIR, name))) {
+      console.log(`reel ${reel.id}: no local file "${name}" in video\\ — skipped`); continue;
+    }
+    console.log(`reel ${reel.id}: uploading ${name} (this can take a minute or two for video)...`);
+    const r = await uploadOne(name, ['video']);
+    if (!r.ok) {
+      if (r.unverified) {
+        console.log(`reel ${reel.id}: uploaded as ${r.url} but it does not serve (HTTP ${r.status}) — NOT recorded`);
+        logLine({ cmd: 'upload', reel: reel.id, result: 'unverified', url: r.url });
+      } else {
+        console.log(`reel ${reel.id}: WordPress upload FAILED (HTTP ${r.status}) ${r.message || ''}`);
+        logLine({ cmd: 'upload', reel: reel.id, result: 'error', status: r.status });
+      }
+      process.exitCode = 1; continue;
+    }
+    reel.videoUrl = r.url;
+    saveWeek(week);
+    logLine({ cmd: 'upload', reel: reel.id, result: 'uploaded', url: r.url });
+    console.log(`reel ${reel.id}: uploaded and verified — ${r.url}`);
   }
 }
 
-/** Schedule all open Facebook rows whose slot is far enough ahead. */
 async function cmdScheduleWeek() {
   const c = cfg();
   if (!c.pageId || !c.pageToken) throw new Error('Facebook not set up — run setup first.');
   const week = loadWeek();
   if (week.approved !== true) {
-    console.log('week.json is NOT approved ("approved": true missing) — nothing will be scheduled. Chris approves the batch first.');
+    console.log('week.json is NOT approved — nothing will be scheduled.');
     process.exitCode = 1; return;
   }
   const nowS = Math.floor(Date.now() / 1000);
@@ -313,18 +386,26 @@ async function cmdScheduleWeek() {
     if (fb.status === 'scheduled' || fb.status === 'published') {
       results.push([post.id, 'already ' + fb.status]); continue;
     }
+    if (post.blocked) { results.push([post.id, `blocked (${post.blocked}) — skipped`]); continue; }
     const slotS = ukToEpoch(post.slot);
     if (slotS < nowS + 15 * 60) {
       results.push([post.id, 'slot too soon/past — leave for publish-due']); continue;
     }
-    const resp = await graph('POST', `${c.pageId}/photos`, {
-      url: imageUrl(week, post),
-      caption: post.caption,
-      published: 'false',
-      scheduled_publish_time: String(slotS),
-      access_token: c.pageToken,
-    });
-    // PROOF: the post must appear in the Page's scheduled list.
+    let resp;
+    try {
+      resp = await graph('POST', `${c.pageId}/photos`, {
+        url: imageUrl(week, post),
+        caption: post.caption,
+        published: 'false',
+        scheduled_publish_time: String(slotS),
+        access_token: c.pageToken,
+      });
+    } catch (e) {
+      results.push([post.id, `FAILED — ${e.message}`]);
+      logLine({ cmd: 'schedule-week', post: post.id, result: 'error', error: e.message });
+      process.exitCode = 1;
+      continue;
+    }
     const sched = await graph('GET', `${c.pageId}/scheduled_posts`, {
       fields: 'id,message,scheduled_publish_time', limit: '100', access_token: c.pageToken,
     });
@@ -335,7 +416,7 @@ async function cmdScheduleWeek() {
       return Math.abs(t - slotS) < 120 && (p.message || '').startsWith(marker);
     });
     if (!found) {
-      results.push([post.id, `⚠ UNVERIFIED — API returned id ${resp.id} but the post is NOT in scheduled_posts. Check the Planner by eye. Row left open.`]);
+      results.push([post.id, `UNVERIFIED — API returned id ${resp.id} but the post is NOT in scheduled_posts. Check the Planner by eye. Row left open.`]);
       logLine({ cmd: 'schedule-week', post: post.id, result: 'unverified', apiId: resp.id });
       process.exitCode = 1;
       continue;
@@ -354,23 +435,21 @@ async function cmdScheduleWeek() {
 }
 
 async function igPublish(c, url, caption) {
-  const container = await graph('POST', `${c.igUser}/media`, {
+  const container = await graphIG('POST', `${c.igUser}/media`, {
     image_url: url, caption, access_token: c.igToken,
   });
-  // Wait for Meta to fetch and process the image.
   for (let i = 0; i < 12; i++) {
-    const st = await graph('GET', container.id, { fields: 'status_code', access_token: c.igToken });
+    const st = await graphIG('GET', container.id, { fields: 'status_code', access_token: c.igToken });
     if (st.status_code === 'FINISHED') break;
     if (st.status_code === 'ERROR' || st.status_code === 'EXPIRED') {
       throw new Error(`Instagram container ${container.id} status ${st.status_code} — image URL may be unreachable: ${url}`);
     }
     await new Promise((r) => setTimeout(r, 5000));
   }
-  const pub = await graph('POST', `${c.igUser}/media_publish`, {
+  const pub = await graphIG('POST', `${c.igUser}/media_publish`, {
     creation_id: container.id, access_token: c.igToken,
   });
-  // PROOF: read the permalink back.
-  const media = await graph('GET', pub.id, { fields: 'permalink', access_token: c.igToken });
+  const media = await graphIG('GET', pub.id, { fields: 'permalink', access_token: c.igToken });
   if (!media.permalink) throw new Error(`Published id ${pub.id} returned no permalink — treat as NOT proven.`);
   return media.permalink;
 }
@@ -380,17 +459,144 @@ async function fbPublishLive(c, url, caption) {
     url, caption, published: 'true', access_token: c.pageToken,
   });
   const postId = resp.post_id || resp.id;
-  const read = await graph('GET', postId, {
-    fields: 'permalink_url,link', access_token: c.pageToken,
+  if (!postId) throw new Error('Facebook returned no post id — nothing was published.');
+
+  // The post EXISTS from here on. Everything below is decoration.
+  //
+  // Do NOT throw past this point. On 26 Aug 2026 the read-back asked for the
+  // `link` field, which Meta deprecated at v3.3; it answered error 12, the run
+  // recorded FAILED, and both posts were sitting live on the Page all along.
+  // A row left open is republished by the 15-minute task, so a failed read-back
+  // used to mean a DUPLICATE post. Losing the permalink is survivable; posting
+  // twice is not.
+  let permalink = null;
+  try {
+    const read = await graph('GET', postId, {
+      fields: 'permalink_url', access_token: c.pageToken,
+    });
+    permalink = read.permalink_url || null;
+  } catch (e) {
+    console.log(`  (post ${postId} published; could not read its permalink back: ${e.message})`);
+  }
+  return permalink || `https://www.facebook.com/${c.pageId}/posts/${String(postId).split('_').pop()}`;
+}
+
+// ---------- REELS — new 3 Sep 2026, UNTESTED against live Meta endpoints ----------
+//
+// Facebook: the video_reels edge. `upload_phase=start` with `file_url` set
+// asks Meta to fetch the hosted file itself (documented behaviour for hosted
+// video, mirroring how /{page-id}/photos takes a `url` instead of raw bytes) —
+// this avoids implementing chunked resumable upload for an 18-20s clip well
+// under any size limit. `upload_phase=finish` then publishes it. Never
+// verified live — if `file_url` on `start` is refused by this API version,
+// the fallback is the full start/transfer/finish chunked flow instead.
+async function fbPublishReel(c, url, caption) {
+  const start = await graph('POST', `${c.pageId}/video_reels`, {
+    upload_phase: 'start', access_token: c.pageToken,
   });
-  const permalink = read.permalink_url || read.link;
-  if (!permalink) throw new Error(`Published id ${postId} returned no permalink — treat as NOT proven.`);
+  const videoId = start.video_id;
+  if (!videoId) throw new Error('Facebook video_reels start returned no video_id.');
+
+  const upload = await graph('POST', `${c.pageId}/video_reels`, {
+    upload_phase: 'transfer', video_id: videoId, file_url: url, access_token: c.pageToken,
+  });
+  if (upload.success === false) throw new Error(`Facebook video_reels transfer (by file_url) failed for video_id ${videoId}.`);
+
+  const finish = await graph('POST', `${c.pageId}/video_reels`, {
+    upload_phase: 'finish', video_id: videoId, video_state: 'PUBLISHED',
+    description: caption, access_token: c.pageToken,
+  });
+  if (finish.success === false) throw new Error(`Facebook video_reels finish failed for video_id ${videoId}.`);
+
+  // Reels process after "finish" returns — poll for a permalink before
+  // declaring this done, same rule as everything else in this file.
+  let permalink = null;
+  for (let i = 0; i < 24; i++) {
+    await new Promise((r) => setTimeout(r, 5000));
+    try {
+      const read = await graph('GET', videoId, {
+        fields: 'permalink_url,status', access_token: c.pageToken,
+      });
+      if (read.permalink_url) { permalink = read.permalink_url; break; }
+      const phase = read.status && read.status.video_status;
+      if (phase === 'error') throw new Error(`Facebook reports video_status error for ${videoId}.`);
+    } catch (e) { /* keep polling — a transient read failure isn't a publish failure */ }
+  }
+  if (!permalink) throw new Error(`video_id ${videoId} finished upload but no permalink after 2 minutes of polling — check the Page by eye before assuming it worked.`);
   return permalink;
 }
 
-/** Publish everything past its slot and still open. Runs from Task Scheduler. */
+// Instagram: identical container/poll/publish shape to igPublish(), but
+// media_type=REELS and a much more patient poll — video processing takes
+// meaningfully longer than a photo container. share_to_feed keeps it visible
+// on the main grid as well as the Reels tab, matching how Chris's photos post.
+async function igPublishReel(c, url, caption) {
+  const container = await graphIG('POST', `${c.igUser}/media`, {
+    media_type: 'REELS', video_url: url, caption, share_to_feed: 'true', access_token: c.igToken,
+  });
+  let finished = false;
+  for (let i = 0; i < 40; i++) {
+    const st = await graphIG('GET', container.id, { fields: 'status_code', access_token: c.igToken });
+    if (st.status_code === 'FINISHED') { finished = true; break; }
+    if (st.status_code === 'ERROR' || st.status_code === 'EXPIRED') {
+      throw new Error(`Instagram Reels container ${container.id} status ${st.status_code} — video URL may be unreachable or still processing: ${url}`);
+    }
+    await new Promise((r) => setTimeout(r, 5000));
+  }
+  if (!finished) throw new Error(`Instagram Reels container ${container.id} never reached FINISHED after 200s — check it by hand before retrying (retrying can double-post once it does finish).`);
+  const pub = await graphIG('POST', `${c.igUser}/media_publish`, {
+    creation_id: container.id, access_token: c.igToken,
+  });
+  const media = await graphIG('GET', pub.id, { fields: 'permalink', access_token: c.igToken });
+  if (!media.permalink) throw new Error(`Published id ${pub.id} returned no permalink — treat as NOT proven.`);
+  return media.permalink;
+}
+
+async function cmdPublishReel(idArg) {
+  const c = cfg();
+  const week = loadWeek();
+  const id = Number(idArg);
+  const reel = (week.reels || []).find((r) => r.id === id);
+  if (!reel) throw new Error(`No reel with id ${idArg} in week.reels. Usage: node cmg-publisher.cjs publish-reel <id>`);
+  const url = videoUrl(reel);
+  if (!url) throw new Error(`Reel ${id} has no videoUrl yet — run "upload" first so it's hosted on WordPress.`);
+
+  const fb = (reel.facebook = reel.facebook || {});
+  if (fb.status === 'published') {
+    console.log(`reel ${id} -> Facebook: already published ${fb.permalink}`);
+  } else {
+    try {
+      const permalink = await fbPublishReel(c, url, reel.caption);
+      fb.status = 'published'; fb.permalink = permalink; fb.publishedAt = ukNowString();
+      saveWeek(week);
+      logLine({ cmd: 'publish-reel', reel: id, platform: 'facebook', result: 'published', permalink });
+      console.log(`reel ${id} -> Facebook: PUBLISHED ${permalink}`);
+    } catch (e) {
+      logLine({ cmd: 'publish-reel', reel: id, platform: 'facebook', result: 'error', error: e.message });
+      console.log(`reel ${id} -> Facebook: FAILED — ${e.message}`);
+      process.exitCode = 1;
+    }
+  }
+
+  const ig = (reel.instagram = reel.instagram || {});
+  if (ig.status === 'published') {
+    console.log(`reel ${id} -> Instagram: already published ${ig.permalink}`);
+  } else {
+    try {
+      const permalink = await igPublishReel(c, url, reel.caption);
+      ig.status = 'published'; ig.permalink = permalink; ig.publishedAt = ukNowString();
+      saveWeek(week);
+      logLine({ cmd: 'publish-reel', reel: id, platform: 'instagram', result: 'published', permalink });
+      console.log(`reel ${id} -> Instagram: PUBLISHED ${permalink}`);
+    } catch (e) {
+      logLine({ cmd: 'publish-reel', reel: id, platform: 'instagram', result: 'error', error: e.message });
+      console.log(`reel ${id} -> Instagram: FAILED — ${e.message}`);
+      process.exitCode = 1;
+    }
+  }
+}
+
 async function cmdPublishDue() {
-  // lock: skip if another run is live (stale after 10 min)
   try {
     const st = fs.existsSync(LOCK_PATH) && fs.statSync(LOCK_PATH);
     if (st && Date.now() - st.mtimeMs < 10 * 60 * 1000) { console.log('another run is in progress — skipping'); return; }
@@ -400,32 +606,29 @@ async function cmdPublishDue() {
     const c = cfg();
     const week = loadWeek();
     if (week.approved !== true) {
-      console.log('week.json is NOT approved ("approved": true missing) — nothing published. A quiet run.');
+      console.log('week.json is NOT approved — nothing published. A quiet run.');
       return;
     }
     const nowS = Math.floor(Date.now() / 1000);
     let did = 0;
     for (const post of week.posts) {
       const slotS = ukToEpoch(post.slot);
-      if (slotS > nowS) continue; // not due yet
-      if (post.blocked) { console.log(`post ${post.id}: 🔴 blocked (${post.blocked}) — skipped`); continue; }
+      if (slotS > nowS) continue;
+      if (post.blocked) { console.log(`post ${post.id}: blocked (${post.blocked}) — skipped`); continue; }
       const url = imageUrl(week, post);
-      // Instagram
       const ig = (post.instagram = post.instagram || {});
-      // status 'skipped' = deliberately not for Instagram (e.g. portrait photo the IG API rejects)
       if (ig.status !== 'published' && ig.status !== 'skipped' && c.igToken) {
         try {
           const permalink = await igPublish(c, url, post.caption);
           ig.status = 'published'; ig.permalink = permalink; ig.publishedAt = ukNowString();
           saveWeek(week);
           logLine({ cmd: 'publish-due', post: post.id, platform: 'instagram', result: 'published', permalink });
-          console.log(`post ${post.id} → Instagram: PUBLISHED ${permalink}`); did++;
+          console.log(`post ${post.id} -> Instagram: PUBLISHED ${permalink}`); did++;
         } catch (e) {
           logLine({ cmd: 'publish-due', post: post.id, platform: 'instagram', result: 'error', error: e.message });
-          console.log(`post ${post.id} → Instagram: FAILED — ${e.message}`); process.exitCode = 1;
+          console.log(`post ${post.id} -> Instagram: FAILED — ${e.message}`); process.exitCode = 1;
         }
       }
-      // Facebook — only rows that never got scheduled server-side
       const fb = (post.facebook = post.facebook || {});
       if (fb.status !== 'published' && fb.status !== 'scheduled' && c.pageId && c.pageToken) {
         try {
@@ -433,11 +636,21 @@ async function cmdPublishDue() {
           fb.status = 'published'; fb.permalink = permalink; fb.publishedAt = ukNowString();
           saveWeek(week);
           logLine({ cmd: 'publish-due', post: post.id, platform: 'facebook', result: 'published', permalink });
-          console.log(`post ${post.id} → Facebook: PUBLISHED (late catch-up) ${permalink}`); did++;
+          console.log(`post ${post.id} -> Facebook: PUBLISHED (late catch-up) ${permalink}`); did++;
         } catch (e) {
           logLine({ cmd: 'publish-due', post: post.id, platform: 'facebook', result: 'error', error: e.message });
-          console.log(`post ${post.id} → Facebook: FAILED — ${e.message}`); process.exitCode = 1;
+          console.log(`post ${post.id} -> Facebook: FAILED — ${e.message}`); process.exitCode = 1;
         }
+      }
+    }
+    // Reels are NOT auto-published here on purpose — see file header. This
+    // loop only prints a reminder so a due Reel is never silently missed.
+    for (const reel of week.reels || []) {
+      const slotS = ukToEpoch(reel.slot);
+      const fbDone = reel.facebook && reel.facebook.status === 'published';
+      const igDone = reel.instagram && reel.instagram.status === 'published';
+      if (slotS <= nowS && !(fbDone && igDone)) {
+        console.log(`reel ${reel.id} ("${reel.title}") is due (${reel.slot}) and not fully published — run: node cmg-publisher.cjs publish-reel ${reel.id}`);
       }
     }
     if (!did && process.exitCode !== 1) console.log(`nothing due at ${ukNowString()} (UK) — a quiet run is a good run`);
@@ -457,13 +670,13 @@ async function cmdListScheduled() {
     const t = typeof p.scheduled_publish_time === 'number'
       ? new Date(p.scheduled_publish_time * 1000) : new Date(p.scheduled_publish_time);
     const uk = new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/London', dateStyle: 'medium', timeStyle: 'short' }).format(t);
-    console.log(`  ${uk} (UK) — ${(p.message || '').split('\n')[0].slice(0, 60)}…  [${p.id}]`);
+    console.log(`  ${uk} (UK) — ${(p.message || '').split('\n')[0].slice(0, 60)}...  [${p.id}]`);
   }
 }
 
 function cmdInstallTask() {
   const node = process.execPath;
-  const self = path.join(DIR, 'cmg-publisher.js');
+  const self = __filename;
   console.log('Run this once in an Administrator PowerShell to register the 15-minute publisher:\n');
   console.log(`schtasks /Create /TN "CMG social publisher" /SC MINUTE /MO 15 ` +
     `/TR "\\"${node}\\" \\"${self}\\" publish-due" /F\n`);
@@ -475,21 +688,22 @@ function cmdInstallTask() {
 
 // ---------- main ----------
 async function main() {
-  const [, , cmd, arg] = process.argv;
+  const [, , cmd, arg, arg2] = process.argv;
   switch (cmd) {
-    case 'setup': return cmdSetup(arg);
+    case 'setup': return cmdSetup(arg, arg2);
     case 'check': return cmdCheck();
     case 'upload': return cmdUpload();
     case 'schedule-week': return cmdScheduleWeek();
     case 'publish-due': return cmdPublishDue();
+    case 'publish-reel': return cmdPublishReel(arg);
     case 'list-scheduled': return cmdListScheduled();
     case 'install-task': return cmdInstallTask();
     default:
-      console.log('Usage: node cmg-publisher.js <setup|check|upload|schedule-week|publish-due|list-scheduled|install-task>');
+      console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|publish-due|publish-reel <id>|list-scheduled|install-task>');
       process.exitCode = 2;
   }
 }
 if (require.main === module) {
   main().catch((e) => { console.error('FAILED: ' + e.message); process.exit(1); });
 }
-module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
+module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
