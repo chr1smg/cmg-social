@@ -34,6 +34,21 @@ jobs:
             v="${!k}"
             if [ -n "$v" ]; then printf '%s=%s\n' "$k" "$v" >> .env; fi
           done
+          # INSTAGRAM GUARD (8 Sep 2026). The IG_TOKEN secret on this repo was
+          # written by the one-off setup step out of the Facebook PAGE grant - it
+          # is NOT an Instagram Graph token, and Meta refuses it with
+          # "(#10) Application does not have permission for this action".
+          # With a token present the publisher attempts Instagram on every due
+          # post, fails, exits 1, and emails a red run every 15 minutes forever
+          # (post 1 did exactly that from 10:00 on 8 Sep). Facebook is unaffected.
+          # So: only hand the publisher an Instagram token when a REAL IG_USER_ID
+          # is set alongside it. To re-enable Instagram, add both IG_TOKEN and
+          # IG_USER_ID from Documents\cmg-instagram-connector\.env and this guard
+          # lets them straight through.
+          if [ -z "$IG_USER_ID" ]; then
+            sed -i '/^IG_TOKEN=/d' .env
+            echo "Instagram not configured (no IG_USER_ID) - Instagram skipped this run; Facebook unaffected."
+          fi
 
       - name: First-time Meta setup (runs once, then stores its own secrets)
         working-directory: publisher
@@ -56,7 +71,8 @@ jobs:
           fi
           gh secret set FB_PAGE_ID    --repo "$GITHUB_REPOSITORY" --body "$page_id"
           gh secret set FB_PAGE_TOKEN --repo "$GITHUB_REPOSITORY" --body "$page_token"
-          gh secret set IG_TOKEN      --repo "$GITHUB_REPOSITORY" --body "$page_token"
+          # Deliberately NOT setting IG_TOKEN from the page token - that is what
+          # created the broken Instagram credential in the first place.
           gh secret delete META_USER_TOKEN --repo "$GITHUB_REPOSITORY" || true
           echo "Meta credentials derived, verified and stored. Future runs use them."
 
