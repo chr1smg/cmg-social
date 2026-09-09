@@ -17,33 +17,43 @@
  *   setup <token> | check | upload | schedule-week | publish-due |
  *   list-scheduled | install-task | publish-reel <id>
  *
- * REELS — added 3 Sep 2026, UNTESTED against live Meta endpoints
- *   Reels live in a SEPARATE `week.reels` array, never `week.posts` — a Reel
- *   can't be scheduled ahead like a photo (Facebook's video_reels endpoint has
- *   no scheduled_publish_time equivalent), so it needs its own command rather
- *   than folding into schedule-week/publish-due and risking imageUrl() being
- *   called on a video file.
+ * REELS — added 3 Sep 2026, rewritten 9 Sep 2026 against the live endpoints.
+ *   Reels live in a SEPARATE `week.reels` array, never `week.posts`, so
+ *   imageUrl() is never called on a video file.
+ *
+ *   CORRECTION to the original note here: a Facebook reel CAN be scheduled.
+ *   The video_reels `finish` phase takes video_state=SCHEDULED with a
+ *   scheduled_publish_time (more than 10 minutes ahead, within 29 days), so
+ *   `schedule-reels` hands a reel to Meta exactly like schedule-week hands
+ *   over a photo. Instagram has NO scheduling of any kind — an IG reel is
+ *   fired by publish-due at its own slot, which is fine because the workflow
+ *   wakes every 15 minutes on GitHub's servers.
+ *
  *   Shape of one entry in week.reels:
  *     { "id": 1, "slot": "2026-09-12 10:00", "title": "...",
  *       "video": "w2_booking_reel.mp4", "videoUrl": null, "caption": "...",
  *       "facebook": {"status": ""}, "instagram": {"status": ""} }
+ *
+ *   WHERE THE VIDEO LIVES — this is the part that decides whether it works.
+ *   `week.baseVideoUrl` points at this repo's GitHub Pages site, and the .mp4
+ *   sits in publisher/video/. Pages serves it as content-type video/mp4 with
+ *   byte ranges, which is what Meta's ingester needs. Checked 9 Sep 2026:
+ *     GitHub Pages     -> 206, video/mp4, accept-ranges: bytes   GOOD
+ *     raw.githubuser…  -> 200, application/octet-stream, nosniff  NO GOOD
+ *   So do not point baseVideoUrl at raw.githubusercontent.com, even though
+ *   that host is fine for the JPEGs. WordPress would also work but its
+ *   application-password upload has been returning HTTP 401 since 3 Sep.
+ *
+ *   Meta's reel spec, checked against the file before uploading: 3-90s,
+ *   9:16, at least 540x960 (1080x1920 preferred), 24-60fps, .mp4.
+ *
  *   Flow:
- *     1. `upload` (existing command, extended) uploads the .mp4 to the
- *        WordPress media library exactly like a graphic, and records the
- *        public URL as videoUrl. Needs the file in `video\` or next to the
- *        script, and .mp4 added to the WP upload mime-type map — both done.
- *     2. `publish-reel <id>` then: Facebook via the video_reels start/finish
- *        flow (passing file_url so Meta fetches the WP-hosted copy directly —
- *        no chunked upload needed for files this size); Instagram via a
- *        media_type=REELS container against the same hosted URL, polled until
- *        FINISHED, then media_publish. Both verified by permalink read-back,
- *        same as every other publish path in this file.
- *   NOT YET PROVEN: whether video_reels' `file_url` start param actually
- *   fetches server-side on this API version, and how long Instagram Reels
- *   processing actually takes for an 18s clip (the poll loop below is
- *   generous — 40 tries at 5s apart, 200s — but this has never run against
- *   real Meta servers). Treat the first real run as a test, not a rollout:
- *   read the log, don't assume it worked.
+ *     1. Put the .mp4 in publisher/video/ in this repo.
+ *     2. Add the entry to week.reels with its slot and caption.
+ *     3. `schedule-reels` hands the Facebook copy to Meta and records the
+ *        video id, read back off Meta after finish.
+ *     4. `publish-due` fires the Instagram copy at the slot, and will also
+ *        catch up a Facebook reel that never got scheduled.
  */
 'use strict';
 const fs = require('fs');
@@ -188,10 +198,17 @@ function imageUrl(week, post) {
 }
 // Mirrors imageUrl() for the separate week.reels array — see the file-header
 // note on why reels are not just posts with a video field.
-function videoUrl(reel) {
+function videoUrl(week, reel) {
   if (reel.videoUrl) return reel.videoUrl;
   if (/^https?:\/\//.test(reel.video || '')) return reel.video;
-  return null; // no baseImageUrl fallback for video — it must be uploaded first
+  // baseVideoUrl is the GitHub Pages site for this repo, which serves .mp4 with
+  // a real video/mp4 header and honours byte ranges. raw.githubusercontent.com
+  // does NOT — it sends application/octet-stream with nosniff, which Meta's
+  // video ingester will not accept. Do not "simplify" this back to raw.
+  if (week && week.baseVideoUrl && reel.video) {
+    return week.baseVideoUrl.replace(/\/?$/, '/') + reel.video;
+  }
+  return null;
 }
 function logLine(obj) {
   fs.appendFileSync(LOG_PATH, JSON.stringify({ at: new Date().toISOString(), ...obj }) + '\n');
@@ -490,7 +507,7 @@ async function fbPublishLive(c, url, caption) {
 // under any size limit. `upload_phase=finish` then publishes it. Never
 // verified live — if `file_url` on `start` is refused by this API version,
 // the fallback is the full start/transfer/finish chunked flow instead.
-async function fbPublishReel(c, url, caption) {
+async function fbPublishReel(c, url, caption, whenEpoch) {
   const start = await graph('POST', `${c.pageId}/video_reels`, {
     upload_phase: 'start', access_token: c.pageToken,
   });
@@ -502,11 +519,32 @@ async function fbPublishReel(c, url, caption) {
   });
   if (upload.success === false) throw new Error(`Facebook video_reels transfer (by file_url) failed for video_id ${videoId}.`);
 
-  const finish = await graph('POST', `${c.pageId}/video_reels`, {
-    upload_phase: 'finish', video_id: videoId, video_state: 'PUBLISHED',
+  const finishParams = {
+    upload_phase: 'finish', video_id: videoId,
     description: caption, access_token: c.pageToken,
-  });
+  };
+  if (whenEpoch) {
+    // Meta holds a SCHEDULED reel itself: more than 10 minutes ahead and
+    // within 29 days. Same deal as a scheduled photo post, so a reel can sit
+    // in the week alongside everything else instead of being posted by hand.
+    finishParams.video_state = 'SCHEDULED';
+    finishParams.scheduled_publish_time = String(whenEpoch);
+  } else {
+    finishParams.video_state = 'PUBLISHED';
+  }
+  const finish = await graph('POST', `${c.pageId}/video_reels`, finishParams);
   if (finish.success === false) throw new Error(`Facebook video_reels finish failed for video_id ${videoId}.`);
+
+  // A scheduled reel has no permalink yet — nothing is public until its slot.
+  // Read it back off Meta so "scheduled" means Meta confirmed it, not that the
+  // call returned 200.
+  if (whenEpoch) {
+    const back = await graph('GET', videoId, {
+      fields: 'id,scheduled_publish_time', access_token: c.pageToken,
+    });
+    if (!back.id) throw new Error(`video_id ${videoId} did not read back from Meta after finish — treat as NOT scheduled.`);
+    return { videoId, scheduledFor: back.scheduled_publish_time || whenEpoch };
+  }
 
   // Reels process after "finish" returns — poll for a permalink before
   // declaring this done, same rule as everything else in this file.
@@ -552,13 +590,51 @@ async function igPublishReel(c, url, caption) {
   return media.permalink;
 }
 
+// Schedule every future reel on Meta's servers, the same way cmdScheduleWeek
+// does for photos. Instagram has no scheduling at all, so IG reels are left
+// for publish-due to fire at their slot.
+async function cmdScheduleReels() {
+  const c = cfg();
+  const week = loadWeek();
+  if (week.approved !== true) { console.log('week.json is NOT approved — no reels scheduled.'); return; }
+  const reels = week.reels || [];
+  if (!reels.length) { console.log('no reels in week.json'); return; }
+  const nowS = Math.floor(Date.now() / 1000);
+  for (const reel of reels) {
+    const fb = (reel.facebook = reel.facebook || {});
+    if (fb.status === 'scheduled' || fb.status === 'published') {
+      console.log(`  reel ${reel.id}: already ${fb.status}`); continue;
+    }
+    if (!reel.slot) { console.log(`  reel ${reel.id}: no slot — skipped`); continue; }
+    const slotS = ukToEpoch(reel.slot);
+    if (slotS <= nowS + 660) { console.log(`  reel ${reel.id}: slot ${reel.slot} is not more than 10 minutes away — left for publish-due`); continue; }
+    if (slotS > nowS + 29 * 86400) { console.log(`  reel ${reel.id}: slot ${reel.slot} is more than 29 days out — Meta will not hold it yet`); continue; }
+    const url = videoUrl(week, reel);
+    if (!url) { console.log(`  reel ${reel.id}: no video URL — skipped`); continue; }
+    try {
+      const r = await fbPublishReel(c, url, reel.caption, slotS);
+      fb.status = 'scheduled';
+      fb.scheduledPostId = r.videoId;
+      fb.scheduledFor = reel.slot;
+      fb.verified = 'read back from Meta after finish';
+      saveWeek(week);
+      logLine({ cmd: 'schedule-reels', reel: reel.id, result: 'scheduled', videoId: r.videoId, slot: reel.slot });
+      console.log(`  reel ${reel.id}: scheduled for ${reel.slot} — verified on Meta's servers (${r.videoId})`);
+    } catch (e) {
+      logLine({ cmd: 'schedule-reels', reel: reel.id, result: 'error', error: e.message });
+      console.log(`  reel ${reel.id}: FAILED — ${e.message}`);
+      process.exitCode = 1;
+    }
+  }
+}
+
 async function cmdPublishReel(idArg) {
   const c = cfg();
   const week = loadWeek();
   const id = Number(idArg);
   const reel = (week.reels || []).find((r) => r.id === id);
   if (!reel) throw new Error(`No reel with id ${idArg} in week.reels. Usage: node cmg-publisher.cjs publish-reel <id>`);
-  const url = videoUrl(reel);
+  const url = videoUrl(week, reel);
   if (!url) throw new Error(`Reel ${id} has no videoUrl yet — run "upload" first so it's hosted on WordPress.`);
 
   const fb = (reel.facebook = reel.facebook || {});
@@ -643,14 +719,44 @@ async function cmdPublishDue() {
         }
       }
     }
-    // Reels are NOT auto-published here on purpose — see file header. This
-    // loop only prints a reminder so a due Reel is never silently missed.
+    // Reels. Facebook ones are normally already held by Meta (schedule-reels),
+    // so this loop is mostly Instagram, which has no scheduling at all and has
+    // to be fired at the slot itself. Same guards as the photo loop: a reel
+    // marked published or scheduled is never touched again.
     for (const reel of week.reels || []) {
+      if (!reel.slot) continue;
       const slotS = ukToEpoch(reel.slot);
-      const fbDone = reel.facebook && reel.facebook.status === 'published';
-      const igDone = reel.instagram && reel.instagram.status === 'published';
-      if (slotS <= nowS && !(fbDone && igDone)) {
-        console.log(`reel ${reel.id} ("${reel.title}") is due (${reel.slot}) and not fully published — run: node cmg-publisher.cjs publish-reel ${reel.id}`);
+      if (slotS > nowS) continue;
+      if (reel.blocked) { console.log(`reel ${reel.id}: blocked (${reel.blocked}) — skipped`); continue; }
+      const vurl = videoUrl(week, reel);
+      if (!vurl) { console.log(`reel ${reel.id}: no video URL — skipped`); continue; }
+
+      const rig = (reel.instagram = reel.instagram || {});
+      if (rig.status !== 'published' && rig.status !== 'skipped' && c.igToken) {
+        try {
+          const permalink = await igPublishReel(c, vurl, reel.caption);
+          rig.status = 'published'; rig.permalink = permalink; rig.publishedAt = ukNowString();
+          saveWeek(week);
+          logLine({ cmd: 'publish-due', reel: reel.id, platform: 'instagram', result: 'published', permalink });
+          console.log(`reel ${reel.id} -> Instagram: PUBLISHED ${permalink}`); did++;
+        } catch (e) {
+          logLine({ cmd: 'publish-due', reel: reel.id, platform: 'instagram', result: 'error', error: e.message });
+          console.log(`reel ${reel.id} -> Instagram: FAILED — ${e.message}`); process.exitCode = 1;
+        }
+      }
+
+      const rfb = (reel.facebook = reel.facebook || {});
+      if (rfb.status !== 'published' && rfb.status !== 'scheduled' && rfb.status !== 'skipped' && c.pageId && c.pageToken) {
+        try {
+          const permalink = await fbPublishReel(c, vurl, reel.caption);
+          rfb.status = 'published'; rfb.permalink = permalink; rfb.publishedAt = ukNowString();
+          saveWeek(week);
+          logLine({ cmd: 'publish-due', reel: reel.id, platform: 'facebook', result: 'published', permalink });
+          console.log(`reel ${reel.id} -> Facebook: PUBLISHED (late catch-up) ${permalink}`); did++;
+        } catch (e) {
+          logLine({ cmd: 'publish-due', reel: reel.id, platform: 'facebook', result: 'error', error: e.message });
+          console.log(`reel ${reel.id} -> Facebook: FAILED — ${e.message}`); process.exitCode = 1;
+        }
       }
     }
     if (!did && process.exitCode !== 1) console.log(`nothing due at ${ukNowString()} (UK) — a quiet run is a good run`);
@@ -695,15 +801,16 @@ async function main() {
     case 'upload': return cmdUpload();
     case 'schedule-week': return cmdScheduleWeek();
     case 'publish-due': return cmdPublishDue();
+    case 'schedule-reels': return cmdScheduleReels();
     case 'publish-reel': return cmdPublishReel(arg);
     case 'list-scheduled': return cmdListScheduled();
     case 'install-task': return cmdInstallTask();
     default:
-      console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|publish-due|publish-reel <id>|list-scheduled|install-task>');
+      console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|schedule-reels|publish-due|publish-reel <id>|list-scheduled|install-task>');
       process.exitCode = 2;
   }
 }
 if (require.main === module) {
   main().catch((e) => { console.error('FAILED: ' + e.message); process.exit(1); });
 }
-module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
+module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, cmdScheduleReels, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };

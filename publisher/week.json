@@ -1,7 +1,8 @@
 {
   "approved": true,
-  "note": "Week 2 loaded 9 Sep 2026. FUTURE SLOTS ONLY so publish-due cannot fire a backlog. Images now come from cmghp.co.uk: the WordPress uploads path NO LONGER returns 403 - the bot block was removed 7 Sep 2026, and every imageUrl below was checked live in Meta's Sharing Debugger on 9 Sep 2026, each returning 206 with a working preview. Post 1 published 8 Sep. Posts 21-28 carry no scheduledPostId: the ids the local PC publisher wrote were false - Business Suite showed 'No scheduled posts' on 9 Sep 2026. 9 Sep 09:00: posts 22 and 24 had already-used images (28 and 31 Aug), so their queued Meta copies were cancelled via publisher/cancel.json and both were rewritten around unused photos.",
+  "note": "Week 2 loaded 9 Sep 2026. FUTURE SLOTS ONLY so publish-due cannot fire a backlog. Images now come from cmghp.co.uk: the WordPress uploads path NO LONGER returns 403 - the bot block was removed 7 Sep 2026, and every imageUrl below was checked live in Meta's Sharing Debugger on 9 Sep 2026, each returning 206 with a working preview. Post 1 published 8 Sep. Posts 21-28 carry no scheduledPostId: the ids the local PC publisher wrote were false - Business Suite showed 'No scheduled posts' on 9 Sep 2026. 9 Sep 09:00: posts 22 and 24 had already-used images (28 and 31 Aug), so their queued Meta copies were cancelled via publisher/cancel.json and both were rewritten around unused photos. 9 Sep 2026: reels added. The .mp4 lives in publisher/video/ and is served by this repo GitHub Pages site (baseVideoUrl) because that sends content-type video/mp4 - raw.githubusercontent.com sends application/octet-stream with nosniff and Meta will not ingest it.",
   "baseImageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/",
+  "baseVideoUrl": "https://chr1smg.github.io/cmg-social/publisher/video/",
   "posts": [
     {
       "id": 1,
@@ -151,6 +152,22 @@
         "scheduledPostId": "110510101534769_1078864548226321",
         "scheduledFor": "2026-09-15 10:00",
         "verified": "seen in scheduled_posts"
+      },
+      "instagram": {
+        "status": ""
+      }
+    }
+  ],
+  "reels": [
+    {
+      "id": 1,
+      "slot": "2026-09-12 10:00",
+      "title": "Booked at ten o'clock at night",
+      "video": "w2_booking_reel.mp4",
+      "videoUrl": null,
+      "caption": "Nobody wants to ring a plumber at ten at night. So now you don't have to.\n\nThis is the actual booking on my website, start to finish, filmed off the screen. Pick what you need, answer a few questions about the boiler, pick a time that suits you, done — and it lands straight in my diary.\n\nWhat you get before you commit to anything:\n\n💷 The price, on screen, before you book. Not \"from\", not \"we'll see when we get there\". The figure.\n\n🗓️ Real times. You choose the slot rather than waiting for somebody to ring you back and offer one.\n\n📝 The questions are the ones I would ask you on the phone anyway — make and model, combi or cylinder, whether anything is playing up. That's what lets me turn up with the right bits.\n\n📞 And if you would rather talk to a person, the number is on every page and it is me who answers it. The booking form is there to save you a phone call, not to hide behind one.\n\nHave a go and see how long it takes you: https://cmghp.co.uk\n\nWould you rather book online or ring? Genuinely useful for me to know 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "status": ""
       },
       "instagram": {
         "status": ""
