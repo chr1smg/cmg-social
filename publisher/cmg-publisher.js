@@ -706,6 +706,67 @@ async function cmdPublishReel(idArg) {
   }
 }
 
+// ---------- confirm-published — added 9 Sep 2026 ----------
+//
+// THE BLIND SPOT THIS CLOSES. When schedule-week hands a post to Meta, nothing
+// ever tells the repo whether Meta actually published it at the slot. The row
+// reads "scheduled" for ever, whether it fired or not, and the Business Suite
+// Planner cannot show API-scheduled posts either. That left "did it go out?"
+// answerable only by a human opening the Page — which on 9 Sep 2026 cost Chris
+// a scheduled check that could not do its job.
+//
+// So after the slot has passed, ask Meta directly. is_published on the stored
+// post id is the answer.
+//
+// DELIBERATELY DOES NOT SELF-HEAL. If a post did not publish, this FLAGS it and
+// leaves it alone. Blanking the status automatically would hand the row back to
+// publish-due, and publish-due has no lower time bound — that is exactly what
+// dumped six posts in one minute on 7 Sep. A human decides whether to re-post.
+async function cmdConfirmPublished() {
+  const c = cfg();
+  const week = loadWeek();
+  if (!c.pageToken) { console.log('no Facebook credentials — nothing to confirm'); return; }
+  const nowS = Math.floor(Date.now() / 1000);
+  let checked = 0;
+  for (const post of week.posts) {
+    const fb = post.facebook || {};
+    if (fb.status !== 'scheduled' || !fb.scheduledPostId) continue;
+    // Give Meta five minutes past the slot before asking.
+    if (ukToEpoch(post.slot) + 300 > nowS) continue;
+    checked++;
+    try {
+      const read = await graph('GET', fb.scheduledPostId, {
+        fields: 'id,is_published,permalink_url', access_token: c.pageToken,
+      });
+      if (read.is_published) {
+        fb.status = 'published';
+        fb.permalink = read.permalink_url || fb.permalink;
+        fb.publishedAt = ukNowString();
+        fb.verified = 'is_published read back off Meta after the slot';
+        delete fb.confirmFailed;
+        saveWeek(week);
+        logLine({ cmd: 'confirm-published', post: post.id, result: 'published', permalink: fb.permalink });
+        console.log(`  post ${post.id}: CONFIRMED published — ${fb.permalink || '(no permalink returned)'}`);
+      } else {
+        fb.confirmFailed = `Meta says not published at ${ukNowString()} although the slot ${post.slot} has passed`;
+        saveWeek(week);
+        logLine({ cmd: 'confirm-published', post: post.id, result: 'not-published' });
+        console.log(`  post ${post.id}: DID NOT PUBLISH — slot ${post.slot} has passed and Meta still reports it unpublished. Left alone on purpose; decide by hand.`);
+      }
+    } catch (e) {
+      fb.confirmFailed = `could not be read back at ${ukNowString()}: ${e.message}`;
+      saveWeek(week);
+      logLine({ cmd: 'confirm-published', post: post.id, result: 'error', error: e.message });
+      console.log(`  post ${post.id}: COULD NOT CONFIRM — ${e.message}`);
+    }
+  }
+  if (!checked) console.log('nothing past its slot still marked scheduled — nothing to confirm');
+}
+
+// Reels are not confirmed here yet. A scheduled reel is a video object, not a
+// page post, and it is not yet known what it reports before its slot — the
+// 12 Sep 2026 reel is the first one, so read that run before writing a guess.
+
 async function cmdPublishDue() {
   try {
     const st = fs.existsSync(LOCK_PATH) && fs.statSync(LOCK_PATH);
@@ -835,16 +896,17 @@ async function main() {
     case 'upload': return cmdUpload();
     case 'schedule-week': return cmdScheduleWeek();
     case 'publish-due': return cmdPublishDue();
+    case 'confirm-published': return cmdConfirmPublished();
     case 'schedule-reels': return cmdScheduleReels();
     case 'publish-reel': return cmdPublishReel(arg);
     case 'list-scheduled': return cmdListScheduled();
     case 'install-task': return cmdInstallTask();
     default:
-      console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|schedule-reels|publish-due|publish-reel <id>|list-scheduled|install-task>');
+      console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|schedule-reels|publish-due|confirm-published|publish-reel <id>|list-scheduled|install-task>');
       process.exitCode = 2;
   }
 }
 if (require.main === module) {
   main().catch((e) => { console.error('FAILED: ' + e.message); process.exit(1); });
 }
-module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, cmdScheduleReels, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
+module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, cmdScheduleReels, cmdConfirmPublished, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
