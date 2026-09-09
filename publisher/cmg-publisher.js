@@ -514,10 +514,22 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
   const videoId = start.video_id;
   if (!videoId) throw new Error('Facebook video_reels start returned no video_id.');
 
-  const upload = await graph('POST', `${c.pageId}/video_reels`, {
-    upload_phase: 'transfer', video_id: videoId, file_url: url, access_token: c.pageToken,
+  // THE TRANSFER DOES NOT GO THROUGH graph.facebook.com. Proved on run #1051,
+  // 9 Sep 2026: graph answers
+  //   (#100) Param upload_phase must be one of {START, FINISH} - got "transfer"
+  // The bytes — or here, a file_url for Meta to go and fetch itself — go to the
+  // rupload host that START hands back, with the token in an Authorization
+  // header rather than a query parameter.
+  const uploadUrl = start.upload_url || `https://rupload.facebook.com/video-upload/${c.v}/${videoId}`;
+  const up = await fetch(uploadUrl, {
+    method: 'POST',
+    headers: { Authorization: `OAuth ${c.pageToken}`, file_url: url },
   });
-  if (upload.success === false) throw new Error(`Facebook video_reels transfer (by file_url) failed for video_id ${videoId}.`);
+  let upBody;
+  try { upBody = await up.json(); } catch { upBody = { success: false, note: `non-JSON response, HTTP ${up.status}` }; }
+  if (upBody.success !== true) {
+    throw new Error(`rupload refused the hosted file for video_id ${videoId} (HTTP ${up.status}): ${JSON.stringify(upBody)}\n  -> is ${url} publicly reachable AND served as content-type video/mp4? application/octet-stream is refused.`);
+  }
 
   const finishParams = {
     upload_phase: 'finish', video_id: videoId,
