@@ -112,6 +112,14 @@ jobs:
           if ! grep -q '^FB_PAGE_TOKEN=' .env; then echo "no Facebook credentials yet"; exit 0; fi
           node cmg-publisher.js schedule-week
 
+      - name: Schedule any reels on Facebook
+        if: steps.gate.outputs.ready == 'yes'
+        working-directory: publisher
+        run: |
+          node -e "process.exit((require('./week.json').reels||[]).length?0:1)" || { echo "no reels this week"; exit 0; }
+          if ! grep -q '^FB_PAGE_TOKEN=' .env; then echo "no Facebook credentials yet"; exit 0; fi
+          node cmg-publisher.js schedule-reels
+
       - name: Publish anything due
         if: steps.gate.outputs.ready == 'yes'
         working-directory: publisher
@@ -123,13 +131,17 @@ jobs:
         run: |
           node -e '
             const w=require("./week.json");
-            const rows=w.posts.slice().sort((a,b)=>a.slot<b.slot?-1:1).map(p=>{
+            const items=w.posts.map(p=>({p,reel:false})).concat((w.reels||[]).map(p=>({p,reel:true})));
+            const rows=items.slice().sort((a,b)=>a.p.slot<b.p.slot?-1:1).map(({p,reel})=>{
               const st=(p.facebook||{}).status||"";
+              const igst=(p.instagram||{}).status||"";
               const mark=st==="published"?"DONE":st==="scheduled"?"QUEUED ON META":"WAITING";
-              const ig=(p.instagram||{}).status==="skipped"?"Facebook only":"Facebook + Instagram";
+              const ig=igst==="skipped"?"Facebook only":"Facebook + Instagram";
               const d=new Date(p.slot.replace(" ","T")+":00");
               const day=d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
-              return "| "+day+" | "+p.slot.slice(11)+" | "+p.title+" | "+mark+" | "+ig+" |";
+              const title=reel?("REEL - "+p.title):p.title;
+              const where=reel&&st==="scheduled"&&igst!=="published"?ig+" (Instagram fires at the slot)":ig;
+              return "| "+day+" | "+p.slot.slice(11)+" | "+title+" | "+mark+" | "+where+" |";
             }).join("\n");
             const head="# What is queued\n\nWritten automatically every 15 minutes by the publisher.\n\nQUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.\n\nLast updated: "+new Date().toISOString().slice(0,16).replace("T"," ")+" UTC\n\n| Day | Time | Post | State | Where |\n|---|---|---|---|---|\n";
             require("fs").writeFileSync("../SCHEDULE.md",head+rows+"\n");
