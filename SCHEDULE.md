@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 **Instagram is NOT connected to this publisher** (no IG_USER_ID in the repository secrets), so every row below goes to Facebook only. Add IG_USER_ID and IG_ACCESS_TOKEN in Settings - Secrets and variables - Actions to turn Instagram on.
 
-Last updated: 2026-09-09 10:08 UTC
+Last updated: 2026-09-09 10:09 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
