@@ -129,21 +129,25 @@ jobs:
         if: always()
         working-directory: publisher
         run: |
+          IG_ON=$(grep -q '^IG_USER_ID=' .env 2>/dev/null && echo yes || echo no)
+          export IG_ON
           node -e '
+            const igOn=process.env.IG_ON==="yes";
             const w=require("./week.json");
             const items=w.posts.map(p=>({p,reel:false})).concat((w.reels||[]).map(p=>({p,reel:true})));
             const rows=items.slice().sort((a,b)=>a.p.slot<b.p.slot?-1:1).map(({p,reel})=>{
               const st=(p.facebook||{}).status||"";
               const igst=(p.instagram||{}).status||"";
               const mark=st==="published"?"DONE":st==="scheduled"?"QUEUED ON META":"WAITING";
-              const ig=igst==="skipped"?"Facebook only":"Facebook + Instagram";
+              const ig=(igst==="skipped"||!igOn)?"Facebook only":"Facebook + Instagram";
               const d=new Date(p.slot.replace(" ","T")+":00");
               const day=d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
               const title=reel?("REEL - "+p.title):p.title;
               const where=reel&&st==="scheduled"&&igst!=="published"?ig+" (Instagram fires at the slot)":ig;
               return "| "+day+" | "+p.slot.slice(11)+" | "+title+" | "+mark+" | "+where+" |";
             }).join("\n");
-            const head="# What is queued\n\nWritten automatically every 15 minutes by the publisher.\n\nQUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.\n\nLast updated: "+new Date().toISOString().slice(0,16).replace("T"," ")+" UTC\n\n| Day | Time | Post | State | Where |\n|---|---|---|---|---|\n";
+            const igNote=igOn?"":"\n**Instagram is NOT connected to this publisher** (no IG_USER_ID in the repository secrets), so every row below goes to Facebook only. Add IG_USER_ID and IG_ACCESS_TOKEN in Settings - Secrets and variables - Actions to turn Instagram on.\n";
+            const head="# What is queued\n\nWritten automatically every 15 minutes by the publisher.\n\nQUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.\n"+igNote+"\nLast updated: "+new Date().toISOString().slice(0,16).replace("T"," ")+" UTC\n\n| Day | Time | Post | State | Where |\n|---|---|---|---|---|\n";
             require("fs").writeFileSync("../SCHEDULE.md",head+rows+"\n");
           ' || echo "schedule write failed - not fatal"
 
