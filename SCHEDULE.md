@@ -4,7 +4,7 @@ Written automatically every 15 minutes by the publisher.
 
 QUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.
 
-Last updated: 2026-09-09 10:44 UTC
+Last updated: 2026-09-09 10:55 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
