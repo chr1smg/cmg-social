@@ -16,3 +16,4 @@
 {"at":"2026-09-09T10:38:38.601Z","cmd":"publish-due","post":21,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdEEK7SlW-1/"}
 {"at":"2026-09-09T11:01:42.416Z","cmd":"confirm-published","post":21,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1078864134893029&set=a.448112374634878&type=3"}
 {"at":"2026-09-09T11:08:55.222Z","cmd":"confirm-published","post":999,"result":"not-published"}
+{"at":"2026-09-09T11:10:41.653Z","cmd":"confirm-published","post":999,"result":"not-published"}
