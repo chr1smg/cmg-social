@@ -14,3 +14,4 @@
 {"at":"2026-09-09T10:01:39.863Z","cmd":"schedule-reels","reel":1,"result":"scheduled","videoId":"1045602918470968","slot":"2026-09-12 10:00"}
 {"at":"2026-09-09T10:32:37.680Z","cmd":"publish-due","post":21,"platform":"instagram","result":"error","error":"Graph API error 9007: Media ID is not available"}
 {"at":"2026-09-09T10:38:38.601Z","cmd":"publish-due","post":21,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdEEK7SlW-1/"}
+{"at":"2026-09-09T11:01:42.416Z","cmd":"confirm-published","post":21,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1078864134893029&set=a.448112374634878&type=3"}
