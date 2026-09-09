@@ -161,23 +161,6 @@
       "instagram": {
         "status": ""
       }
-    },
-    {
-      "id": 999,
-      "slot": "2026-09-09 08:00",
-      "title": "TEST ROW - alarm check, delete me",
-      "image": "cmg-boiler-concealed-low-cupboard-bolton.jpg",
-      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-boiler-concealed-low-cupboard-bolton.jpg",
-      "caption": "Test row. Not for publishing.",
-      "facebook": {
-        "status": "scheduled",
-        "scheduledPostId": "110510101534769_1078967704882672",
-        "scheduledFor": "2026-09-09 08:00",
-        "confirmFailed": "Meta says not published at 9 Sept 2026, 12:10 although the slot 2026-09-09 08:00 has passed"
-      },
-      "instagram": {
-        "status": "skipped"
-      }
     }
   ],
   "reels": [
