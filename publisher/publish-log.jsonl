@@ -10,3 +10,4 @@
 {"at":"2026-09-09T05:09:54.852Z","cmd":"schedule-week","post":28,"result":"scheduled","fbPostId":"110510101534769_1078864548226321","slot":"2026-09-15 10:00"}
 {"at":"2026-09-09T08:19:26.497Z","cmd":"schedule-week","post":22,"result":"scheduled","fbPostId":"110510101534769_1078967704882672","slot":"2026-09-09 19:00"}
 {"at":"2026-09-09T08:19:35.651Z","cmd":"schedule-week","post":24,"result":"scheduled","fbPostId":"110510101534769_1078967784882664","slot":"2026-09-10 12:30"}
+{"at":"2026-09-09T09:55:39.855Z","cmd":"schedule-reels","reel":1,"result":"error","error":"Graph API error 100: (#100) Param upload_phase must be one of {START, FINISH} - got \"transfer\"."}
