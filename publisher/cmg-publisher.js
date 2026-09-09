@@ -451,21 +451,45 @@ async function cmdScheduleWeek() {
   if (!results.length) console.log('  nothing to do');
 }
 
+// Instagram's media_publish answers 9007 "Media ID is not available" for a
+// few seconds after the container has already reported FINISHED. It is a race
+// inside Meta, not a bad container, and it is what killed post 21 on run #1056
+// (9 Sep 2026). 9007 means the publish did NOT happen, so retrying cannot
+// double-post. Any other error is thrown straight away.
+async function igMediaPublish(c, containerId) {
+  let last;
+  for (let i = 0; i < 8; i++) {
+    try {
+      return await graphIG('POST', `${c.igUser}/media_publish`, {
+        creation_id: containerId, access_token: c.igToken,
+      });
+    } catch (e) {
+      last = e;
+      if (!/9007|Media ID is not available/i.test(e.message || '')) throw e;
+      console.log(`  Instagram not ready for container ${containerId} yet (9007) - waiting 8s, try ${i + 1} of 8`);
+      await new Promise((r) => setTimeout(r, 8000));
+    }
+  }
+  throw new Error(`Instagram kept answering "Media ID is not available" for container ${containerId} over about a minute. ${last && last.message}`);
+}
+
 async function igPublish(c, url, caption) {
   const container = await graphIG('POST', `${c.igUser}/media`, {
     image_url: url, caption, access_token: c.igToken,
   });
+  let ready = false;
   for (let i = 0; i < 12; i++) {
     const st = await graphIG('GET', container.id, { fields: 'status_code', access_token: c.igToken });
-    if (st.status_code === 'FINISHED') break;
+    if (st.status_code === 'FINISHED') { ready = true; break; }
     if (st.status_code === 'ERROR' || st.status_code === 'EXPIRED') {
       throw new Error(`Instagram container ${container.id} status ${st.status_code} — image URL may be unreachable: ${url}`);
     }
     await new Promise((r) => setTimeout(r, 5000));
   }
-  const pub = await graphIG('POST', `${c.igUser}/media_publish`, {
-    creation_id: container.id, access_token: c.igToken,
-  });
+  // Never publish a container that never said FINISHED — the old code fell
+  // through and published anyway, which is how a half-processed image gets out.
+  if (!ready) throw new Error(`Instagram container ${container.id} never reached FINISHED after 60s — check by hand before retrying.`);
+  const pub = await igMediaPublish(c, container.id);
   const media = await graphIG('GET', pub.id, { fields: 'permalink', access_token: c.igToken });
   if (!media.permalink) throw new Error(`Published id ${pub.id} returned no permalink — treat as NOT proven.`);
   return media.permalink;
@@ -594,9 +618,7 @@ async function igPublishReel(c, url, caption) {
     await new Promise((r) => setTimeout(r, 5000));
   }
   if (!finished) throw new Error(`Instagram Reels container ${container.id} never reached FINISHED after 200s — check it by hand before retrying (retrying can double-post once it does finish).`);
-  const pub = await graphIG('POST', `${c.igUser}/media_publish`, {
-    creation_id: container.id, access_token: c.igToken,
-  });
+  const pub = await igMediaPublish(c, container.id);
   const media = await graphIG('GET', pub.id, { fields: 'permalink', access_token: c.igToken });
   if (!media.permalink) throw new Error(`Published id ${pub.id} returned no permalink — treat as NOT proven.`);
   return media.permalink;
