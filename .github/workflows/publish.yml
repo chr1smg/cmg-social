@@ -103,13 +103,31 @@ jobs:
         working-directory: publisher
         run: node cmg-publisher.js publish-due
 
+      - name: Write the readable schedule (SCHEDULE.md)
+        if: always()
+        working-directory: publisher
+        run: |
+          node -e '
+            const w=require("./week.json");
+            const rows=w.posts.slice().sort((a,b)=>a.slot<b.slot?-1:1).map(p=>{
+              const st=(p.facebook||{}).status||"";
+              const mark=st==="published"?"DONE":st==="scheduled"?"QUEUED ON META":"WAITING";
+              const ig=(p.instagram||{}).status==="skipped"?"Facebook only":"Facebook + Instagram";
+              const d=new Date(p.slot.replace(" ","T")+":00");
+              const day=d.toLocaleDateString("en-GB",{weekday:"short",day:"numeric",month:"short"});
+              return "| "+day+" | "+p.slot.slice(11)+" | "+p.title+" | "+mark+" | "+ig+" |";
+            }).join("\n");
+            const head="# What is queued\n\nWritten automatically every 15 minutes by the publisher.\n\nQUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.\n\nLast updated: "+new Date().toISOString().slice(0,16).replace("T"," ")+" UTC\n\n| Day | Time | Post | State | Where |\n|---|---|---|---|---|\n";
+            require("fs").writeFileSync("../SCHEDULE.md",head+rows+"\n");
+          ' || echo "schedule write failed - not fatal"
+
       - name: Commit state back to the repo
         if: always()
         run: |
           rm -f publisher/.env publisher/.publisher.lock
           git config user.name  "cmg-publisher"
           git config user.email "publisher@users.noreply.github.com"
-          git add publisher/week.json publisher/publish-log.jsonl 2>/dev/null || true
+          git add publisher/week.json publisher/publish-log.jsonl SCHEDULE.md 2>/dev/null || true
           if git diff --cached --quiet; then echo "no state changes"; exit 0; fi
           git commit -m "publisher state: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git pull --rebase origin main
