@@ -6,13 +6,13 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-09-09 17:52 UTC
+Last updated: 2026-09-09 18:12 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
 | Tue 8 Sept | 10:00 | Tue 8 Sep, 10:00 — Back boiler out, combi in | DONE | Facebook only |
 | Wed 9 Sept | 09:30 | The prices are on the website | DONE | Facebook + Instagram |
-| Wed 9 Sept | 19:00 | Where the boiler goes changes the job | QUEUED ON META | Facebook only |
+| Wed 9 Sept | 19:00 | Where the boiler goes changes the job | DONE | Facebook only |
 | Thu 10 Sept | 10:00 | Check me before you let me in | QUEUED ON META | Facebook + Instagram |
 | Thu 10 Sept | 12:30 | The bit of a service you never see | QUEUED ON META | Facebook only |
 | Fri 11 Sept | 11:30 | When a flush is worth it, and when it isn't | QUEUED ON META | Facebook + Instagram |
