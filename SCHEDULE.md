@@ -4,9 +4,9 @@ Written automatically every 15 minutes by the publisher.
 
 QUEUED ON META means Facebook is holding the post and will put it out at that time. Those do NOT show in the Business Suite Planner - it only lists posts made in Meta own composer - so this file is the place to look.
 
-**Instagram is NOT connected to this publisher** (no IG_USER_ID in the repository secrets), so every row below goes to Facebook only. Add IG_USER_ID and IG_ACCESS_TOKEN in Settings - Secrets and variables - Actions to turn Instagram on.
+**Instagram is NOT connected to this publisher** (no IG_USER_ID in the repository secrets), so every row below goes to Facebook only. To turn Instagram on: add IG_USER_ID (from INSTAGRAM_USER_ID in the PC .env) and replace IG_TOKEN (from INSTAGRAM_ACCESS_TOKEN - the one stored now is a Facebook Page token and Meta refuses it) in Settings - Secrets and variables - Actions.
 
-Last updated: 2026-09-09 10:09 UTC
+Last updated: 2026-09-09 10:28 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
