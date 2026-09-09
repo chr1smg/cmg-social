@@ -87,6 +87,20 @@ jobs:
             echo "ready=no" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: Cancel any queued posts listed in cancel.json
+        if: steps.gate.outputs.ready == 'yes'
+        working-directory: publisher
+        run: |
+          [ -s cancel.json ] || { echo "nothing to cancel"; exit 0; }
+          ids=$(node -e 'const a=require("./cancel.json");console.log((a.ids||[]).join(" "))')
+          [ -n "$ids" ] || { echo "cancel list is empty"; exit 0; }
+          tok=$(grep "^FB_PAGE_TOKEN=" .env | cut -d= -f2-)
+          for id in $ids; do
+            code=$(curl -s -o /tmp/out -w "%{http_code}" -X DELETE "https://graph.facebook.com/v23.0/$id?access_token=$tok")
+            echo "cancel $id -> HTTP $code $(cat /tmp/out)"
+          done
+          echo '{"ids": []}' > cancel.json
+
       - name: Schedule the week on Facebook (server-side)
         if: steps.gate.outputs.ready == 'yes'
         working-directory: publisher
@@ -127,7 +141,7 @@ jobs:
           rm -f publisher/.env publisher/.publisher.lock
           git config user.name  "cmg-publisher"
           git config user.email "publisher@users.noreply.github.com"
-          git add publisher/week.json publisher/publish-log.jsonl SCHEDULE.md 2>/dev/null || true
+          git add publisher/week.json publisher/publish-log.jsonl publisher/cancel.json SCHEDULE.md 2>/dev/null || true
           if git diff --cached --quiet; then echo "no state changes"; exit 0; fi
           git commit -m "publisher state: $(date -u '+%Y-%m-%d %H:%M') UTC"
           git pull --rebase origin main
