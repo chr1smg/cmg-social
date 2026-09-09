@@ -1,2 +1,10 @@
 {"at":"2026-09-07T18:33:24.806Z","cmd":"schedule-week","post":1,"result":"scheduled","fbPostId":"110510101534769_1077702538342522","slot":"2026-09-08 10:00"}
 {"at":"2026-09-08T09:10:07.119Z","cmd":"publish-due","post":1,"platform":"instagram","result":"error","error":"Graph API error 10: (#10) Application does not have permission for this action"}
+{"at":"2026-09-09T05:09:32.800Z","cmd":"schedule-week","post":21,"result":"scheduled","fbPostId":"110510101534769_1078864134893029","slot":"2026-09-09 09:30"}
+{"at":"2026-09-09T05:09:35.622Z","cmd":"schedule-week","post":22,"result":"scheduled","fbPostId":"110510101534769_1078864178226358","slot":"2026-09-09 19:00"}
+{"at":"2026-09-09T05:09:38.598Z","cmd":"schedule-week","post":23,"result":"scheduled","fbPostId":"110510101534769_1078864221559687","slot":"2026-09-10 10:00"}
+{"at":"2026-09-09T05:09:42.157Z","cmd":"schedule-week","post":24,"result":"scheduled","fbPostId":"110510101534769_1078864264893016","slot":"2026-09-10 12:30"}
+{"at":"2026-09-09T05:09:45.300Z","cmd":"schedule-week","post":25,"result":"scheduled","fbPostId":"110510101534769_1078864371559672","slot":"2026-09-11 11:30"}
+{"at":"2026-09-09T05:09:48.913Z","cmd":"schedule-week","post":26,"result":"scheduled","fbPostId":"110510101534769_1078864431559666","slot":"2026-09-14 09:45"}
+{"at":"2026-09-09T05:09:51.569Z","cmd":"schedule-week","post":27,"result":"scheduled","fbPostId":"110510101534769_1078864481559661","slot":"2026-09-14 19:00"}
+{"at":"2026-09-09T05:09:54.852Z","cmd":"schedule-week","post":28,"result":"scheduled","fbPostId":"110510101534769_1078864548226321","slot":"2026-09-15 10:00"}
