@@ -1,121 +1,153 @@
-/* CMG draft layer - header dropdowns - 10 Sep 2026 - proposal only */
-@media (min-width:1100px){
+/* ------------------------------------------------------------------
+   CMG DRAFT LAYER - HEADER SERVICES PANEL - v2
+   11 September 2026. Loads ONLY on ?cmgcss=draft via the mu-plugin
+   wp-content/mu-plugins/cmg-draft-menu.php. Nothing here is live.
+   Record: claude project "Website", doc claude/CMG-Header-Menu-Rework-Sep-2026.md
 
-/* --- Services mega panel: pull the content in, stop the full-bleed sprawl --- */
-html body .cmg-services-parent > ul{
-  max-width:1060px !important;
-  margin-left:auto !important;
-  margin-right:auto !important;
-  padding:26px 24px 28px !important;
-  gap:36px !important;
-  align-items:start !important;
+   WHAT THIS CHANGES AND WHY
+   Chris, 10 Sep: "its the dropdown boxes in blue with loads of space",
+   then "I dont want them hidden in an also column, look at how rj
+   martindales do it."
+
+   v1 pushed the three childless services (Heat pumps, Bathrooms,
+   Landlords) into an "Also" column. That is the opposite of what
+   RJ Martindale do. Measured on rjmartindale.co.uk 10 Sep: full-bleed
+   navy panel 1905x330, inner 1600 centred, 32px/700 white headings,
+   every column full, and the services they most want clicked are
+   PROMOTED - two picture cards on the right, plus their own items in
+   the top bar.
+
+   v2 does the same with CMG's services. Nothing is demoted. The three
+   childless services become cards on the right of the panel, each
+   carrying a line of real detail taken off its own live page:
+     Heat pumps  - /heat-pumps/  meta description, 11 Sep
+     Bathrooms   - /bathrooms/   meta description, 11 Sep
+     Landlords   - /landlords/   meta description, 11 Sep
+   Headings go UP to 24px. The 1841px-wide row of five collapses to a
+   1100px centred three-column grid, so the empty space goes.
+
+   WHY EVERY SELECTOR CARRIES "html body header.site-header.site-header":
+   cmg.css sets  html body header.site-header.site-header .cmg-services-parent
+   > .sub-menu { display:flex !important }  on the panel. A plain
+   .cmg-services-parent > ul rule loses to it even with !important, because
+   that selector is more specific. Checked in the live DOM 11 Sep 2026 - the
+   first attempt at this file rendered as a flex row and had to be redone.
+   The cards need MORE than that prefix again, because cmg.css also sets
+     ... .cmg-services-parent > .sub-menu > li > a { background:transparent
+         !important; padding:0 0 10px !important; font-size:20px !important }
+   and a card IS such an a. So the card selector carries the full path down
+   to li.cmg-v2-cards > a.cmg-v2-card. Second thing checked in the live DOM.
+   ------------------------------------------------------------------ */
+
+/* ---- 1. The panel: full-bleed navy, centred 1100px of content ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2{
+  display:grid !important;
+  /* Fixed column widths + justify-content:center rather than a max-width
+     inner, because the theme sets `padding` on this ul with !important and
+     a padding-inline of my own loses the cascade. Centring the tracks gets
+     the same 1100px-of-content-in-a-full-bleed-navy-band that Martindale
+     have, without touching padding at all. */
+  grid-template-columns:minmax(0,330px) minmax(0,300px) minmax(0,420px);
+  justify-content:center !important;
+  gap:40px !important;
+  align-items:start;
+  padding-block:30px 34px !important;
 }
 
-/* headings become quiet labels so the LINKS lead */
-html body .cmg-services-parent > ul > li > a,
-html body .cmg-services-parent > ul > li > .cmg-also-h{
+/* ---- 2. Column headings: bigger, not smaller ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > a{
+  font-size:24px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  letter-spacing:-.01em;
+  margin-bottom:12px !important;
+  display:block;
+}
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul{
   display:block !important;
-  font-size:13px !important;
-  font-weight:600 !important;
-  letter-spacing:.10em !important;
-  text-transform:uppercase !important;
-  color:rgba(255,255,255,.55) !important;
-  padding:0 0 8px !important;
-  margin:0 !important;
-}
-
-/* the links themselves */
-html body .cmg-services-parent > ul > li > ul{
-  list-style:none !important;
   margin:0 !important;
   padding:0 !important;
 }
-html body .cmg-services-parent > ul > li > ul > li > a{
-  display:block !important;
-  font-size:15px !important;
-  font-weight:500 !important;
-  color:#fff !important;
-  padding:7px 0 !important;
-  border-bottom:1px solid rgba(255,255,255,.08) !important;
-  text-decoration:none !important;
-}
-html body .cmg-services-parent > ul > li > ul > li:last-child > a{
-  border-bottom:0 !important;
-}
-html body .cmg-services-parent > ul > li > ul > li > a:hover,
-html body .cmg-services-parent > ul > li > ul > li > a:focus-visible{
-  color:#EF7329 !important;
-}
-
-/* the grouped column built by the draft JS */
-html body li.cmg-also{
-  flex:1 1 0 !important;
-  min-width:0 !important;
-  list-style:none !important;
-}
-
-/* the block that fills what used to be empty navy */
-html body li.cmg-help{
-  flex:1.1 1 0 !important;
-  min-width:0 !important;
-  list-style:none !important;
-  background:rgba(255,255,255,.07) !important;
-  border-radius:10px !important;
-  padding:16px 18px !important;
-  align-self:start !important;
-}
-html body li.cmg-help p{
-  margin:0 0 10px !important;
-  font-size:14px !important;
-  line-height:1.5 !important;
-  color:rgba(255,255,255,.82) !important;
-}
-html body li.cmg-help a.cmg-help-tel{
-  display:block !important;
-  font-size:19px !important;
-  font-weight:700 !important;
-  color:#fff !important;
-  text-decoration:none !important;
-}
-html body li.cmg-help p.cmg-help-s{
-  margin:6px 0 0 !important;
-  font-size:12px !important;
-  color:rgba(255,255,255,.55) !important;
-}
-
-/* --- About: towns hide until "Areas covered" is hovered --- */
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu li{
-  position:relative !important;
-}
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu ul.sub-menu{
-  display:none !important;
-  position:absolute !important;
-  left:100% !important;
-  top:-12px !important;
-  width:250px !important;
-  background:#152A4F !important;
-  padding:12px 0 !important;
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li{
   margin:0 !important;
-  list-style:none !important;
-  border-left:1px solid rgba(255,255,255,.12) !important;
-  box-shadow:0 18px 40px rgba(10,22,45,.28) !important;
-  z-index:60 !important;
+  list-style:none;
 }
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu li:hover > ul.sub-menu,
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu li:focus-within > ul.sub-menu{
-  display:block !important;
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a{
+  display:block;
+  font-size:15.5px !important;
+  line-height:1.5 !important;
+  padding:6px 0 !important;
+  color:rgba(255,255,255,.92) !important;
 }
-/* a chevron so it is obvious there is more behind it */
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu li.menu-item-has-children > a::after{
-  content:"\203A" !important;
-  float:right !important;
-  opacity:.6 !important;
-  font-size:16px !important;
-  line-height:1 !important;
-}
-html body .site-header nav ul.menu > li:not(.cmg-services-parent) ul.sub-menu li.menu-item-has-children:hover > a::after{
-  opacity:1 !important;
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a:hover,
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a:focus-visible{
   color:#EF7329 !important;
 }
 
+/* ---- 3. The promoted cards ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-v2-cards{
+  display:grid;
+  gap:12px;
+  list-style:none;
+  margin:0;
+  padding:0;
 }
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card{
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  background:rgba(255,255,255,.08) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:10px !important;
+  padding:13px 16px !important;
+  text-decoration:none !important;
+  transition:background .15s ease, border-color .15s ease;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card:hover,
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card:focus-visible{
+  background:rgba(255,255,255,.14) !important;
+  border-color:rgba(239,115,41,.55) !important;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-t{
+  display:block;
+  color:#fff !important;
+  font-weight:600 !important;
+  font-size:15.5px !important;
+  line-height:1.3;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-s{
+  display:block;
+  color:rgba(255,255,255,.62) !important;
+  font-size:12.5px !important;
+  line-height:1.4;
+  margin-top:3px;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-go{
+  color:#EF7329 !important;
+  font-size:18px !important;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+/* ---- 4. The two promoted top-bar items ---- */
+html body header.site-header.site-header ul.menu > li.cmg-v2-top > a{
+  font-weight:600;
+}
+
+/* ---- 5. Below 1100px the grid stacks; the mobile drawer is untouched ---- */
+@media (max-width:1099px){
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2{
+    display:block !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > a{
+    font-size:inherit !important;
+    margin-bottom:0 !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-v2-cards{ gap:8px; }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card{ padding:11px 14px !important; }
+}
+
+/* ---- 6. Marker so a fetch can prove which version is on the server ---- */
+.cmg-v2-version::after{ content:"draft-menu v2 11-Sep-2026"; }
