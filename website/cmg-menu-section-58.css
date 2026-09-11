@@ -1,0 +1,355 @@
+/* ==================================================================
+   SECTION 58 - HEADER SERVICES PANEL + PHONE DRAWER DRILL-DOWN
+   11 September 2026. APPROVED AND LIVE.
+   Claude project "Website" - doc claude/CMG-Header-Menu-Rework-Sep-2026.md
+   Companion JS: wp-content/cmg-css/cmg-menu.js, loaded by the mu-plugin
+   wp-content/mu-plugins/cmg-menu.php.
+
+   HOW THIS GOT HERE
+   Chris, 10 Sep, on the desktop dropdown: "its the dropdown boxes in blue
+   with loads of space." v1 (an "Also" column) was rejected - "I dont want
+   them hidden in an also column, look at how rj martindales do it." v2
+   fixed the desktop but looked wrong on his phone: "Doesnt look right.
+   Also instead of the boxes dropping down, could we have them moving in
+   from the left? Like the martindales". v3 is what he approved on
+   11 Sep: "Yes looks good".
+
+   MEASURED ON rjmartindale.co.uk, 10 Sep, because he named them:
+   full-bleed navy panel 1905x330, inner 1600 centred, 32px/700 white
+   headings, every column full, and the services they most want clicked
+   PROMOTED - picture cards on the right plus their own top-bar items.
+   Nothing demoted anywhere. That is the shape this copies.
+
+   WHAT IT DOES
+   DESKTOP - the Services panel becomes a centred three-column grid
+   (330/300/420, gap 40). Headings go UP to 24px/700 white. Heat pumps,
+   Bathrooms and Landlords become cards down the right, each carrying one
+   line of real detail read off its own page. Heat pumps and Bathrooms are
+   also added to the top bar (>=1100px only).
+   PHONE - tapping Services or About slides a full panel in from the LEFT
+   over the drawer, with a Back row at the top. The three promoted
+   services render as ordinary drawer rows, not desktop cards.
+
+   THE FIGURES IN THE MENU are read off the live pages - see cmg-menu.js.
+   If a price changes on its page it must change there too, or come out.
+
+   WHY EVERY SELECTOR CARRIES "html body header.site-header.site-header":
+   section 57 sets  ... .cmg-services-parent > .sub-menu { display:flex
+   !important }  on the panel, and a plain .cmg-services-parent > ul rule
+   LOSES to it even with !important, because that selector is more
+   specific. !important only breaks ties at equal specificity. The cards
+   need the full path again, down to li.cmg-v2-cards > a.cmg-v2-card,
+   because section 57 also sets background:transparent !important on
+   .cmg-services-parent > .sub-menu > li > a and a card IS such an a.
+   ================================================================== */
+
+/* ---- 1. The panel: full-bleed navy, centred 1100px of content ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2{
+  display:grid !important;
+  /* Fixed column widths + justify-content:center rather than a max-width
+     inner, because the theme sets `padding` on this ul with !important and
+     a padding-inline of my own loses the cascade. Centring the tracks gets
+     the same 1100px-of-content-in-a-full-bleed-navy-band that Martindale
+     have, without touching padding at all. */
+  grid-template-columns:minmax(0,330px) minmax(0,300px) minmax(0,420px);
+  justify-content:center !important;
+  gap:40px !important;
+  align-items:start;
+  padding-block:30px 34px !important;
+}
+
+/* ---- 2. Column headings: bigger, not smaller ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > a{
+  font-size:24px !important;
+  line-height:1.2 !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  letter-spacing:-.01em;
+  margin-bottom:12px !important;
+  display:block;
+}
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul{
+  display:block !important;
+  margin:0 !important;
+  padding:0 !important;
+}
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li{
+  margin:0 !important;
+  list-style:none;
+}
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a{
+  display:block;
+  font-size:15.5px !important;
+  line-height:1.5 !important;
+  padding:6px 0 !important;
+  color:rgba(255,255,255,.92) !important;
+}
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a:hover,
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > ul > li > a:focus-visible{
+  color:#EF7329 !important;
+}
+
+/* ---- 3. The promoted cards ---- */
+html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-v2-cards{
+  display:grid;
+  gap:12px;
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card{
+  display:flex !important;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  background:rgba(255,255,255,.08) !important;
+  border:1px solid rgba(255,255,255,.10) !important;
+  border-radius:10px !important;
+  padding:13px 16px !important;
+  text-decoration:none !important;
+  transition:background .15s ease, border-color .15s ease;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card:hover,
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card:focus-visible{
+  background:rgba(255,255,255,.14) !important;
+  border-color:rgba(239,115,41,.55) !important;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-t{
+  display:block;
+  color:#fff !important;
+  font-weight:600 !important;
+  font-size:15.5px !important;
+  line-height:1.3;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-s{
+  display:block;
+  color:rgba(255,255,255,.62) !important;
+  font-size:12.5px !important;
+  line-height:1.4;
+  margin-top:3px;
+}
+html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-go{
+  color:#EF7329 !important;
+  font-size:18px !important;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+/* ---- 4. The two promoted top-bar items ---- */
+html body header.site-header.site-header ul.menu > li.cmg-v2-top > a{
+  font-weight:600;
+}
+
+/* ---- 5. Below 1100px the grid stacks; the mobile drawer is untouched ---- */
+@media (max-width:1099px){
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2{
+    display:block !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-has-kids > a{
+    font-size:inherit !important;
+    margin-bottom:0 !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > ul.cmg-v2 > li.cmg-v2-cards{ gap:8px; }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card{ padding:11px 14px !important; }
+}
+
+/* ---- 6. Marker. A future session can prove which build is live with one
+   line of JavaScript instead of trusting a note. Bump the date on change. ---- */
+.cmg-menu-version::after{ content:"cmg menu v3 11-Sep-2026 live"; }
+
+/* ==================================================================
+   7. THE PHONE DRAWER — drill-down, not drop-down
+   ------------------------------------------------------------------
+   Two faults v2 had on a real phone, both from Chris's screenshot:
+     - The three promoted services kept their DESKTOP card styling
+       inside the drawer — translucent boxes with borders sitting
+       against plain rows, one of them overlapping the divider under
+       Plumbing, then a dead gap before About.
+     - Sub-items dropped down in place, so the drawer grew downward and
+       pushed the top-level items off the bottom.
+
+   So: a DRILL-DOWN. Tapping Services slides a full panel in from the
+   LEFT over the drawer, with a Back row at the top. Tapping Back
+   slides it out again. Nothing is lost and nothing scrolls away.
+
+   HOW THE EXISTING DRAWER WORKS (cmg.css section 57 + WPCode snippet
+   1766), so this layers on rather than fighting it:
+     - snippet 1766 puts `.cmg-nav-open` on the header, tags parents
+       `.cmg-has-kids`, and toggles `.cmg-open` on one branch at a time
+     - `.cmg-nav-open .site-navigation` is position:absolute, navy
+       #1B3461, padding 8px 20px 20px, full screen height
+     - drawer rows are 17px/500 rgba(255,255,255,.88), padding
+       13px 34px 13px 14px, 1px rgba(255,255,255,.10) bottom border
+     - second-level rows are 15.5px rgba(255,255,255,.72), indented 30px
+   v3 keeps every one of those numbers so the new panel is the same
+   drawer, not a second design.
+   ================================================================== */
+
+/* ---- 7a. Nothing between the drawer and the panel may be positioned,
+   or the panel anchors to the top-level LIST (335x334) instead of to the
+   drawer. Measured in a 390px iframe, 11 Sep: with ul.menu positioned the
+   panel came out 335x334 at 20,169 instead of filling the drawer. ---- */
+html body header.site-header.site-header.cmg-nav-open .site-navigation > ul.menu{
+  position:static !important;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids{
+  position:static !important;
+}
+
+/* ---- 7b. The panel itself: parked off to the left, slides in ---- */
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids > .sub-menu{
+  display:block !important;
+  position:absolute !important;
+  top:0 !important; right:0 !important; bottom:0 !important; left:0 !important;
+  z-index:6 !important;
+  width:auto !important;
+  min-width:0 !important;
+  max-width:none !important;
+  margin:0 !important;
+  padding:6px 20px 28px !important;
+  background:#1B3461 !important;
+  box-shadow:none !important;
+  overflow-y:auto !important;
+  -webkit-overflow-scrolling:touch;
+  /* !important on all three: cmg.css section 57 sets transform:none and
+     visibility:visible with !important on .sub-menu, and !important beats a
+     more specific selector that lacks it. Without these the panel simply
+     sat in the list. */
+  transform:translateX(-100%) !important;
+  visibility:hidden !important;
+  transition:transform .28s cubic-bezier(.22,.61,.36,1), visibility 0s linear .28s !important;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids.cmg-open > .sub-menu{
+  transform:translateX(0) !important;
+  visibility:visible !important;
+  transition:transform .28s cubic-bezier(.22,.61,.36,1), visibility 0s !important;
+}
+
+/* ---- 7b-ii. While a panel is open, everything else in the drawer is
+   hidden. Measured in the 390px iframe, 11 Sep: without this the
+   top-level About and Contact pills painted THROUGH the panel even
+   though the panel is z-index:6 and they are z-index:auto — the pills
+   are position:relative, and relying on paint order to cover them is
+   fragile. Hiding them outright is what a drill-down does anyway.
+   visibility (not display) so the panel can re-show itself with the
+   rule above, and so the drawer does not reflow underneath. ---- */
+html body header.site-header.site-header.cmg-nav-open .site-navigation.cmg-v2-drilled > *{
+  visibility:hidden !important;
+}
+
+/* ---- 7c. Second-level groups stay open inside the SERVICES panel ----
+   Boilers and Plumbing are headings with their links under them, the way
+   the desktop panel reads. No second tap, no third level.
+
+   SCOPED TO SERVICES ON PURPOSE. Doing this to every panel expanded
+   About's "Areas covered" into all sixteen towns — which is the exact
+   thing Chris objected to on 10 Sep ("i dont want all the areas listed
+   unless someone hovers over areas"). Under About, that row keeps the
+   drawer's normal tap-to-open behaviour. Seen in the 390px iframe before
+   and after, 11 Sep. */
+html body header.site-header.site-header.cmg-nav-open .site-navigation .cmg-services-parent > .sub-menu > li.cmg-has-kids > .sub-menu{
+  display:block !important;
+  position:static !important;
+  transform:none !important;
+  visibility:visible !important;
+  padding:0 0 6px !important;
+  margin:0 !important;
+  background:none !important;
+  overflow:visible !important;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .cmg-services-parent > .sub-menu > li.cmg-has-kids > a{
+  font-size:20px !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  padding:16px 14px 8px !important;
+  border-bottom:0 !important;
+}
+/* the drawer's own chevron belongs on a row that opens something — these
+   no longer open anything, so it goes */
+html body header.site-header.site-header.cmg-nav-open .site-navigation .cmg-services-parent > .sub-menu > li.cmg-has-kids > a::after{
+  display:none !important;
+}
+
+/* ---- 7d. The three promoted services become drawer rows, not cards ---- */
+@media (max-width:1099px){
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards{
+    display:block !important;
+    gap:0 !important;
+    /* Boilers and Plumbing get separation from their headings; these three
+       have none, so they need a hairline or they read as more Plumbing. */
+    margin-top:12px !important;
+    padding-top:4px !important;
+    border-top:1px solid rgba(255,255,255,.16) !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card{
+    display:block !important;
+    background:none !important;
+    border:0 !important;
+    border-bottom:1px solid rgba(255,255,255,.10) !important;
+    border-radius:0 !important;
+    padding:13px 34px 13px 14px !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-t{
+    font-size:17px !important;
+    font-weight:500 !important;
+    color:rgba(255,255,255,.88) !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-s{
+    font-size:13px !important;
+    color:rgba(255,255,255,.55) !important;
+    margin-top:3px !important;
+  }
+  html body header.site-header.site-header .cmg-services-parent > .sub-menu > li.cmg-v2-cards > a.cmg-v2-card .cmg-v2-go{
+    display:none !important;
+  }
+}
+
+/* ==================================================================
+   8. THE BACK ROW AND PANEL TITLE
+   Built by cmg-menu.js at every width, so — per the section 57c
+   regression of 9 Sep, where a JS-built element was only STYLED
+   inside a media query and rendered raw on desktop — they are hidden
+   UNCONDITIONALLY here and shown only inside an open mobile drawer.
+   ================================================================== */
+.cmg-v2-back,
+.cmg-v2-ptitle{ display:none !important; }
+
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids > .sub-menu > li.cmg-v2-back{
+  display:block !important;
+  border-bottom:0 !important;
+  margin:0 0 2px !important;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids > .sub-menu > li.cmg-v2-back > button{
+  display:flex !important;
+  align-items:center;
+  gap:10px;
+  width:100%;
+  background:none;
+  border:0;
+  padding:12px 14px 12px 0;
+  margin:0;
+  cursor:pointer;
+  font-family:inherit;
+  font-size:16px;
+  font-weight:600;
+  color:rgba(255,255,255,.80);
+  text-align:left;
+  -webkit-appearance:none;
+  appearance:none;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids > .sub-menu > li.cmg-v2-back .cmg-v2-arrow{
+  font-size:24px;
+  line-height:1;
+  color:#EF7329;
+}
+html body header.site-header.site-header.cmg-nav-open .site-navigation .menu > li.cmg-has-kids > .sub-menu > li.cmg-v2-ptitle{
+  display:block !important;
+  font-size:26px !important;
+  font-weight:700 !important;
+  color:#fff !important;
+  padding:2px 14px 12px;
+  margin:0 0 4px;
+  border-bottom:1px solid rgba(255,255,255,.16);
+}
+
+/* ---- end of section 58 ---- */
