@@ -1,1 +1,8 @@
-{"ids": []}
+{
+  "ids": [
+    "110510101534769_1077751051671004",
+    "110510101534769_1077751101670999",
+    "110510101534769_1077751155004327"
+  ],
+  "note": "11 Sep 2026. Duplicate copies of posts 26, 27 and 28 queued on Meta by the OLD LOCAL PC publisher on 7 Sep at 19:55, before the repo publisher queued its own copies on 9 Sep at 05:09. Both copies fire at the same slot - that is what double-posted 21, 23 and 25 on 9, 10 and 11 Sep. Cancelling these three leaves exactly one copy of each. Post 29 (15 Sep 18:30, id ...1077667961679313) is deliberately NOT in this list: the repo has no post 29, so that Meta copy is the only one and cancelling it would mean nothing goes out."
+}
