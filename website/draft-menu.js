@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   CMG DRAFT LAYER - HEADER SERVICES PANEL - v2  (draft-menu v2 11-Sep-2026)
+   CMG DRAFT LAYER - HEADER SERVICES PANEL - v3  (draft-menu v3 11-Sep-2026)
    Loads ONLY on ?cmgcss=draft. Companion to draft-menu.css.
    Record: claude project "Website", doc claude/CMG-Header-Menu-Rework-Sep-2026.md
 
@@ -104,6 +104,73 @@
     });
   }
 
+  /* ------------------------------------------------------------------
+     v3, 11 Sep 2026. Chris on the phone view: "Doesnt look right. Also
+     instead of the boxes dropping down, could we have them moving in
+     from the left? Like the martindales"
+
+     The slide itself is CSS (section 7 of draft-menu.css). All this does
+     is put a Back row and a title at the top of each panel so there is a
+     way out of it. The existing drawer (WPCode snippet 1766) still owns
+     the .cmg-open toggle — Back just removes that class, so the two
+     never disagree about what is open.
+     ------------------------------------------------------------------ */
+  function addPanelChrome(topLi) {
+    var sub = topLi.querySelector(':scope > ul');
+    if (!sub || sub.querySelector(':scope > .cmg-v2-back')) { return; }
+
+    var label = '';
+    var a = topLi.querySelector(':scope > a');
+    if (a) { label = a.textContent.trim(); }
+
+    var back = document.createElement('li');
+    back.className = 'cmg-v2-back';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    var arrow = document.createElement('span');
+    arrow.className = 'cmg-v2-arrow';
+    arrow.setAttribute('aria-hidden', 'true');
+    arrow.textContent = '\u2039';
+    btn.appendChild(arrow);
+    btn.appendChild(document.createTextNode('Back'));
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      topLi.classList.remove('cmg-open');
+    });
+    back.appendChild(btn);
+
+    var title = document.createElement('li');
+    title.className = 'cmg-v2-ptitle';
+    title.textContent = label;
+
+    sub.insertBefore(title, sub.firstChild);
+    sub.insertBefore(back, sub.firstChild);
+  }
+
+  /* The drawer (snippet 1766) owns .cmg-open. Rather than duplicate its
+     logic, watch for it and mirror it onto the nav as .cmg-v2-drilled, so
+     the CSS can hide the rest of the drawer while a panel is over it.
+     A MutationObserver rather than a click handler, so it stays correct
+     whoever opens or closes the branch. */
+  function watchDrill() {
+    var nav = document.querySelector('.site-navigation');
+    var menu = nav && nav.querySelector(':scope > ul.menu');
+    if (!nav || !menu) { return; }
+
+    var sync = function () {
+      var open = menu.querySelector(':scope > li.cmg-open');
+      nav.classList.toggle('cmg-v2-drilled', !!open);
+    };
+
+    new MutationObserver(sync).observe(menu, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    sync();
+  }
+
   function run() {
     var servicesLi = document.querySelector('.cmg-services-parent');
     if (!servicesLi) { return; }
@@ -113,6 +180,17 @@
     panel.classList.add('cmg-v2');
     buildCards(panel);
     promoteToTopBar(servicesLi);
+
+    watchDrill();
+
+    /* Every top-level item that opens a panel gets a way back out.
+       .cmg-has-kids is added by snippet 1766 at every width, but it is
+       added on DOMContentLoaded too, so fall back to "has a child ul"
+       rather than depending on which script ran first. */
+    var tops = document.querySelectorAll('.site-navigation > ul.menu > li');
+    Array.prototype.forEach.call(tops, function (li) {
+      if (li.querySelector(':scope > ul')) { addPanelChrome(li); }
+    });
   }
 
   if (document.readyState === 'loading') {
