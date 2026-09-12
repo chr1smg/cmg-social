@@ -190,7 +190,9 @@
         "verified": "read back from Meta after finish"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/reel/DdLoWqgCX-f/",
+        "publishedAt": "12 Sept 2026, 10:09"
       }
     }
   ]
