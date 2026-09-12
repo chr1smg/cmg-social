@@ -127,6 +127,12 @@ jobs:
         working-directory: publisher
         run: node cmg-publisher.js publish-due
 
+      - name: TEMP list what is queued on Bolton Warm & Dry
+        if: steps.gate.outputs.ready == 'yes'
+        working-directory: publisher
+        continue-on-error: true
+        run: node cmg-publisher.js list-scheduled bwd
+
       - name: Confirm what actually published on Facebook
         if: steps.gate.outputs.ready == 'yes'
         working-directory: publisher
