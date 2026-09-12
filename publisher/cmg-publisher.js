@@ -104,6 +104,9 @@ function cfg() {
     wpUrl: (e.WP_URL || '').replace(/\/+$/, ''),
     wpUser: e.WP_USER || '',
     wpPass: e.WP_APP_PASSWORD || '',
+    // Bolton Warm & Dry - the second Page, added 12 Sep 2026.
+    bwdPageId: e.BWD_PAGE_ID || '',
+    bwdPageToken: (e.BWD_PAGE_TOKEN || '').trim(),
   };
 }
 
@@ -388,6 +391,21 @@ async function cmdUpload() {
   }
 }
 
+// Which Facebook Page a row belongs to. No `page` field means CMG, so every
+// row written before 12 Sep 2026 behaves exactly as it always did.
+// "page": "bwd" sends it to Bolton Warm & Dry instead.
+//
+// THE GUARD THAT MATTERS: an unknown page, or one whose credentials are
+// missing, returns ok:false and the caller SKIPS the row with a visible
+// message. It must never fall back to CMG - a Bolton Warm & Dry post landing
+// on the CMG Page is worse than not posting at all.
+function targetPage(c, row) {
+  const key = String(row.page || 'cmg').toLowerCase();
+  if (key === 'cmg') return { key, name: 'CMG', id: c.pageId, tkn: c.pageToken, ok: !!(c.pageId && c.pageToken), instagram: true };
+  if (key === 'bwd') return { key, name: 'Bolton Warm & Dry', id: c.bwdPageId, tkn: c.bwdPageToken, ok: !!(c.bwdPageId && c.bwdPageToken), instagram: false };
+  return { key, name: key, id: '', tkn: '', ok: false, instagram: false, unknown: true };
+}
+
 async function cmdScheduleWeek() {
   const c = cfg();
   if (!c.pageId || !c.pageToken) throw new Error('Facebook not set up — run setup first.');
@@ -408,14 +426,21 @@ async function cmdScheduleWeek() {
     if (slotS < nowS + 15 * 60) {
       results.push([post.id, 'slot too soon/past — leave for publish-due']); continue;
     }
+    const pg = targetPage(c, post);
+    if (!pg.ok) {
+      results.push([post.id, `SKIPPED - page "${pg.key}" ${pg.unknown ? 'is not a known page' : 'has no credentials set'}. Row left open; nothing posted anywhere.`]);
+      logLine({ cmd: 'schedule-week', post: post.id, result: 'no-page', page: pg.key });
+      process.exitCode = 1;
+      continue;
+    }
     let resp;
     try {
-      resp = await graph('POST', `${c.pageId}/photos`, {
+      resp = await graph('POST', `${pg.id}/photos`, {
         url: imageUrl(week, post),
         caption: post.caption,
         published: 'false',
         scheduled_publish_time: String(slotS),
-        access_token: c.pageToken,
+        access_token: pg.tkn,
       });
     } catch (e) {
       results.push([post.id, `FAILED — ${e.message}`]);
@@ -423,8 +448,8 @@ async function cmdScheduleWeek() {
       process.exitCode = 1;
       continue;
     }
-    const sched = await graph('GET', `${c.pageId}/scheduled_posts`, {
-      fields: 'id,message,scheduled_publish_time', limit: '100', access_token: c.pageToken,
+    const sched = await graph('GET', `${pg.id}/scheduled_posts`, {
+      fields: 'id,message,scheduled_publish_time', limit: '100', access_token: pg.tkn,
     });
     const marker = post.caption.slice(0, 40);
     const found = (sched.data || []).find((p) => {
@@ -441,10 +466,11 @@ async function cmdScheduleWeek() {
     fb.status = 'scheduled';
     fb.scheduledPostId = found.id;
     fb.scheduledFor = post.slot;
+    fb.page = pg.key;
     fb.verified = 'seen in scheduled_posts';
     saveWeek(week);
     logLine({ cmd: 'schedule-week', post: post.id, result: 'scheduled', fbPostId: found.id, slot: post.slot });
-    results.push([post.id, `scheduled for ${post.slot} — verified on Meta's servers (${found.id})`]);
+    results.push([post.id, `${pg.name}: scheduled for ${post.slot} — verified on Meta's servers (${found.id})`]);
   }
   console.log(`schedule-week at ${ukNowString()} (UK):`);
   for (const [id, msg] of results) console.log(`  post ${id}: ${msg}`);
@@ -495,9 +521,10 @@ async function igPublish(c, url, caption) {
   return media.permalink;
 }
 
-async function fbPublishLive(c, url, caption) {
-  const resp = await graph('POST', `${c.pageId}/photos`, {
-    url, caption, published: 'true', access_token: c.pageToken,
+async function fbPublishLive(c, url, caption, pg) {
+  pg = pg || targetPage(c, {});
+  const resp = await graph('POST', `${pg.id}/photos`, {
+    url, caption, published: 'true', access_token: pg.tkn,
   });
   const postId = resp.post_id || resp.id;
   if (!postId) throw new Error('Facebook returned no post id — nothing was published.');
@@ -513,13 +540,13 @@ async function fbPublishLive(c, url, caption) {
   let permalink = null;
   try {
     const read = await graph('GET', postId, {
-      fields: 'permalink_url', access_token: c.pageToken,
+      fields: 'permalink_url', access_token: pg.tkn,
     });
     permalink = read.permalink_url || null;
   } catch (e) {
     console.log(`  (post ${postId} published; could not read its permalink back: ${e.message})`);
   }
-  return permalink || `https://www.facebook.com/${c.pageId}/posts/${String(postId).split('_').pop()}`;
+  return permalink || `https://www.facebook.com/${pg.id}/posts/${String(postId).split('_').pop()}`;
 }
 
 // ---------- REELS — new 3 Sep 2026, UNTESTED against live Meta endpoints ----------
@@ -531,9 +558,10 @@ async function fbPublishLive(c, url, caption) {
 // under any size limit. `upload_phase=finish` then publishes it. Never
 // verified live — if `file_url` on `start` is refused by this API version,
 // the fallback is the full start/transfer/finish chunked flow instead.
-async function fbPublishReel(c, url, caption, whenEpoch) {
-  const start = await graph('POST', `${c.pageId}/video_reels`, {
-    upload_phase: 'start', access_token: c.pageToken,
+async function fbPublishReel(c, url, caption, whenEpoch, pg) {
+  pg = pg || targetPage(c, {});
+  const start = await graph('POST', `${pg.id}/video_reels`, {
+    upload_phase: 'start', access_token: pg.tkn,
   });
   const videoId = start.video_id;
   if (!videoId) throw new Error('Facebook video_reels start returned no video_id.');
@@ -547,7 +575,7 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
   const uploadUrl = start.upload_url || `https://rupload.facebook.com/video-upload/${c.v}/${videoId}`;
   const up = await fetch(uploadUrl, {
     method: 'POST',
-    headers: { Authorization: `OAuth ${c.pageToken}`, file_url: url },
+    headers: { Authorization: `OAuth ${pg.tkn}`, file_url: url },
   });
   let upBody;
   try { upBody = await up.json(); } catch { upBody = { success: false, note: `non-JSON response, HTTP ${up.status}` }; }
@@ -557,7 +585,7 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
 
   const finishParams = {
     upload_phase: 'finish', video_id: videoId,
-    description: caption, access_token: c.pageToken,
+    description: caption, access_token: pg.tkn,
   };
   if (whenEpoch) {
     // Meta holds a SCHEDULED reel itself: more than 10 minutes ahead and
@@ -568,7 +596,7 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
   } else {
     finishParams.video_state = 'PUBLISHED';
   }
-  const finish = await graph('POST', `${c.pageId}/video_reels`, finishParams);
+  const finish = await graph('POST', `${pg.id}/video_reels`, finishParams);
   if (finish.success === false) throw new Error(`Facebook video_reels finish failed for video_id ${videoId}.`);
 
   // A scheduled reel has no permalink yet — nothing is public until its slot.
@@ -576,7 +604,7 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
   // call returned 200.
   if (whenEpoch) {
     const back = await graph('GET', videoId, {
-      fields: 'id,scheduled_publish_time', access_token: c.pageToken,
+      fields: 'id,scheduled_publish_time', access_token: pg.tkn,
     });
     if (!back.id) throw new Error(`video_id ${videoId} did not read back from Meta after finish — treat as NOT scheduled.`);
     return { videoId, scheduledFor: back.scheduled_publish_time || whenEpoch };
@@ -589,7 +617,7 @@ async function fbPublishReel(c, url, caption, whenEpoch) {
     await new Promise((r) => setTimeout(r, 5000));
     try {
       const read = await graph('GET', videoId, {
-        fields: 'permalink_url,status', access_token: c.pageToken,
+        fields: 'permalink_url,status', access_token: pg.tkn,
       });
       if (read.permalink_url) { permalink = read.permalink_url; break; }
       const phase = read.status && read.status.video_status;
@@ -787,8 +815,11 @@ async function cmdPublishDue() {
       if (slotS > nowS) continue;
       if (post.blocked) { console.log(`post ${post.id}: blocked (${post.blocked}) — skipped`); continue; }
       const url = imageUrl(week, post);
+      const pg = targetPage(c, post);
+      // Instagram is the CMG account only. A Bolton Warm & Dry row never touches
+      // it, whatever its instagram status says.
       const ig = (post.instagram = post.instagram || {});
-      if (ig.status !== 'published' && ig.status !== 'skipped' && c.igToken) {
+      if (pg.instagram && ig.status !== 'published' && ig.status !== 'skipped' && c.igToken) {
         try {
           const permalink = await igPublish(c, url, post.caption);
           ig.status = 'published'; ig.permalink = permalink; ig.publishedAt = ukNowString();
@@ -801,13 +832,18 @@ async function cmdPublishDue() {
         }
       }
       const fb = (post.facebook = post.facebook || {});
-      if (fb.status !== 'published' && fb.status !== 'scheduled' && c.pageId && c.pageToken) {
+      const fbOpen = fb.status !== 'published' && fb.status !== 'scheduled';
+      if (fbOpen && !pg.ok) {
+        console.log(`post ${post.id} -> ${pg.name}: SKIPPED, no credentials for page "${pg.key}" - not posted anywhere`);
+        process.exitCode = 1;
+      } else if (fbOpen) {
         try {
-          const permalink = await fbPublishLive(c, url, post.caption);
+          const permalink = await fbPublishLive(c, url, post.caption, pg);
           fb.status = 'published'; fb.permalink = permalink; fb.publishedAt = ukNowString();
           saveWeek(week);
-          logLine({ cmd: 'publish-due', post: post.id, platform: 'facebook', result: 'published', permalink });
-          console.log(`post ${post.id} -> Facebook: PUBLISHED (late catch-up) ${permalink}`); did++;
+          fb.page = pg.key;
+          logLine({ cmd: 'publish-due', post: post.id, page: pg.key, platform: 'facebook', result: 'published', permalink });
+          console.log(`post ${post.id} -> ${pg.name}: PUBLISHED (late catch-up) ${permalink}`); did++;
         } catch (e) {
           logLine({ cmd: 'publish-due', post: post.id, platform: 'facebook', result: 'error', error: e.message });
           console.log(`post ${post.id} -> Facebook: FAILED — ${e.message}`); process.exitCode = 1;
