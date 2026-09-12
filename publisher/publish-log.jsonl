@@ -33,3 +33,4 @@
 {"at":"2026-09-12T17:49:52.339Z","cmd":"schedule-week","post":900,"result":"error","error":"Graph API error 100: (#100) The specified scheduled publish time is invalid."}
 {"at":"2026-09-12T18:35:28.219Z","cmd":"schedule-week","post":901,"page":"bwd","result":"unverified","apiId":"122096501247478623","why":"could not read id 122096501247478623 back - Graph API error 100: (#100) Tried accessing nonexisting field (scheduled_publish_time)"}
 {"at":"2026-09-12T18:40:25.138Z","cmd":"schedule-week","post":901,"page":"bwd","result":"unverified","apiId":"122096502753478623","why":"could not read id 122096502753478623 back - Graph API error 100: (#100) Tried accessing nonexisting field (scheduled_publish_time)"}
+{"at":"2026-09-12T19:04:30.891Z","cmd":"publish-due","post":902,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
