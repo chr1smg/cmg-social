@@ -6,6 +6,7 @@
   "posts": [
     {
       "id": 902,
+      "blocked": "paused - run 1366 gave Graph error 283, the BWD token needs pages_manage_metadata",
       "slot": "2026-09-12 19:00",
       "page": "bwd",
       "title": "BWD live slot test - autumn service",
