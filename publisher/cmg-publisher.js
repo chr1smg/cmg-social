@@ -406,6 +406,54 @@ function targetPage(c, row) {
   return { key, name: key, id: '', tkn: '', ok: false, instagram: false, unknown: true };
 }
 
+// List what Meta is holding for a Page, scheduled but not yet published.
+// Classic Pages answer {page-id}/scheduled_posts. NEW PAGES EXPERIENCE profiles
+// (Bolton Warm & Dry, created 2026) do NOT have that edge and answer
+//   (#100) Tried accessing nonexisting field (scheduled_posts)
+// For those, promotable_posts with is_published=false is the equivalent.
+// Returns { rows, how }. Throws only if BOTH routes fail.
+async function listScheduledOn(pg) {
+  const fields = 'id,message,scheduled_publish_time';
+  try {
+    const r = await graph('GET', `${pg.id}/scheduled_posts`, { fields, limit: '100', access_token: pg.tkn });
+    return { rows: r.data || [], how: 'scheduled_posts' };
+  } catch (e) {
+    if (!/nonexisting field|scheduled_posts/i.test(e.message || '')) throw e;
+    const r = await graph('GET', `${pg.id}/promotable_posts`, { fields, is_published: 'false', limit: '100', access_token: pg.tkn });
+    return { rows: r.data || [], how: 'promotable_posts' };
+  }
+}
+
+// Prove a post really is on Meta's servers for the right moment. Tried in
+// order, and NEVER throws - a verification problem must not take the whole run
+// down, which is exactly what happened on 12 Sep 2026 when one Bolton Warm &
+// Dry row aborted schedule-week for every other row.
+//   1. read the Page's own list and match caption + time;
+//   2. failing that, read back the id the POST returned and check its time.
+// Returns { id, how } or { error }.
+async function verifyScheduled(pg, apiId, slotS, caption) {
+  const marker = (caption || '').slice(0, 40);
+  try {
+    const { rows, how } = await listScheduledOn(pg);
+    const found = rows.find((p) => {
+      const t = typeof p.scheduled_publish_time === 'number'
+        ? p.scheduled_publish_time : Math.floor(new Date(p.scheduled_publish_time).getTime() / 1000);
+      return Math.abs(t - slotS) < 120 && (p.message || '').startsWith(marker);
+    });
+    if (found) return { id: found.id, how: `seen in ${how}` };
+  } catch (e) { /* fall through to the by-id read */ }
+  if (!apiId) return { error: 'the API returned no id to check' };
+  try {
+    const one = await graph('GET', String(apiId), { fields: 'id,scheduled_publish_time', access_token: pg.tkn });
+    const t = typeof one.scheduled_publish_time === 'number'
+      ? one.scheduled_publish_time : Math.floor(new Date(one.scheduled_publish_time).getTime() / 1000);
+    if (one.id && Math.abs(t - slotS) < 120) return { id: one.id, how: 'read back by id' };
+    return { error: `id ${apiId} came back with a different time (${one.scheduled_publish_time})` };
+  } catch (e) {
+    return { error: `could not read id ${apiId} back - ${e.message}` };
+  }
+}
+
 async function cmdScheduleWeek() {
   const c = cfg();
   if (!c.pageId || !c.pageToken) throw new Error('Facebook not set up — run setup first.');
@@ -448,29 +496,21 @@ async function cmdScheduleWeek() {
       process.exitCode = 1;
       continue;
     }
-    const sched = await graph('GET', `${pg.id}/scheduled_posts`, {
-      fields: 'id,message,scheduled_publish_time', limit: '100', access_token: pg.tkn,
-    });
-    const marker = post.caption.slice(0, 40);
-    const found = (sched.data || []).find((p) => {
-      const t = typeof p.scheduled_publish_time === 'number'
-        ? p.scheduled_publish_time : Math.floor(new Date(p.scheduled_publish_time).getTime() / 1000);
-      return Math.abs(t - slotS) < 120 && (p.message || '').startsWith(marker);
-    });
-    if (!found) {
-      results.push([post.id, `UNVERIFIED — API returned id ${resp.id} but the post is NOT in scheduled_posts. Check the Planner by eye. Row left open.`]);
-      logLine({ cmd: 'schedule-week', post: post.id, result: 'unverified', apiId: resp.id });
+    const check = await verifyScheduled(pg, resp && resp.id, slotS, post.caption);
+    if (check.error) {
+      results.push([post.id, `UNVERIFIED — the API returned id ${resp && resp.id} but it could not be confirmed: ${check.error}. Row left open — CHECK THE PAGE BY EYE BEFORE RE-RUNNING, the post may already be queued.`]);
+      logLine({ cmd: 'schedule-week', post: post.id, page: pg.key, result: 'unverified', apiId: resp && resp.id, why: check.error });
       process.exitCode = 1;
       continue;
     }
     fb.status = 'scheduled';
-    fb.scheduledPostId = found.id;
+    fb.scheduledPostId = check.id;
     fb.scheduledFor = post.slot;
     fb.page = pg.key;
-    fb.verified = 'seen in scheduled_posts';
+    fb.verified = check.how;
     saveWeek(week);
-    logLine({ cmd: 'schedule-week', post: post.id, result: 'scheduled', fbPostId: found.id, slot: post.slot });
-    results.push([post.id, `${pg.name}: scheduled for ${post.slot} — verified on Meta's servers (${found.id})`]);
+    logLine({ cmd: 'schedule-week', post: post.id, page: pg.key, result: 'scheduled', fbPostId: check.id, slot: post.slot, verified: check.how });
+    results.push([post.id, `${pg.name}: scheduled for ${post.slot} — verified on Meta's servers, ${check.how} (${check.id})`]);
   }
   console.log(`schedule-week at ${ukNowString()} (UK):`);
   for (const [id, msg] of results) console.log(`  post ${id}: ${msg}`);
@@ -896,13 +936,12 @@ async function cmdPublishDue() {
   }
 }
 
-async function cmdListScheduled() {
+async function cmdListScheduled(pageArg) {
   const c = cfg();
-  const sched = await graph('GET', `${c.pageId}/scheduled_posts`, {
-    fields: 'id,message,scheduled_publish_time', limit: '100', access_token: c.pageToken,
-  });
-  const rows = sched.data || [];
-  console.log(`Meta's servers hold ${rows.length} scheduled post(s) for the Page:`);
+  const pg = targetPage(c, { page: pageArg || 'cmg' });
+  if (!pg.ok) { console.log(`no credentials for page "${pg.key}"`); process.exitCode = 1; return; }
+  const { rows, how } = await listScheduledOn(pg);
+  console.log(`Meta's servers hold ${rows.length} scheduled post(s) for ${pg.name} (via ${how}):`);
   for (const p of rows) {
     const t = typeof p.scheduled_publish_time === 'number'
       ? new Date(p.scheduled_publish_time * 1000) : new Date(p.scheduled_publish_time);
@@ -935,7 +974,7 @@ async function main() {
     case 'confirm-published': return cmdConfirmPublished();
     case 'schedule-reels': return cmdScheduleReels();
     case 'publish-reel': return cmdPublishReel(arg);
-    case 'list-scheduled': return cmdListScheduled();
+    case 'list-scheduled': return cmdListScheduled(arg);
     case 'install-task': return cmdInstallTask();
     default:
       console.log('Usage: node cmg-publisher.cjs <setup|check|upload|schedule-week|schedule-reels|publish-due|confirm-published|publish-reel <id>|list-scheduled|install-task>');
