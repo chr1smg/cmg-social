@@ -28,9 +28,11 @@ jobs:
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
           IG_TOKEN: ${{ secrets.IG_TOKEN }}
           IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          BWD_PAGE_ID: ${{ secrets.BWD_PAGE_ID }}
+          BWD_PAGE_TOKEN: ${{ secrets.BWD_PAGE_TOKEN }}
         run: |
           : > .env
-          for k in FB_APP_ID FB_APP_SECRET FB_PAGE_ID FB_PAGE_TOKEN IG_TOKEN IG_USER_ID; do
+          for k in FB_APP_ID FB_APP_SECRET FB_PAGE_ID FB_PAGE_TOKEN IG_TOKEN IG_USER_ID BWD_PAGE_ID BWD_PAGE_TOKEN; do
             v="${!k}"
             if [ -n "$v" ]; then printf '%s=%s\n' "$k" "$v" >> .env; fi
           done
