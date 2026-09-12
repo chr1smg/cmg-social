@@ -1,28 +1,37 @@
 name: page-read
-on: { workflow_dispatch: }
-permissions: { contents: write }
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
 jobs:
   r:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - env:
+      - name: Read published posts
+        env:
           FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
           FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
         run: |
-          curl -s "https://graph.facebook.com/v23.0/$FB_PAGE_ID/published_posts?fields=id,created_time,message&limit=25&access_token=$FB_PAGE_TOKEN" \
-            | python3 -c "
-import json,sys,re
-d=json.load(sys.stdin)
-out=[]
+          curl -s "https://graph.facebook.com/v23.0/${FB_PAGE_ID}/published_posts?fields=id,created_time,message&limit=25&access_token=${FB_PAGE_TOKEN}" -o raw.json
+          python3 - <<'EOF'
+import json
+d=json.load(open('raw.json'))
+lines=[]
 for p in d.get('data',[]):
-    m=(p.get('message') or '').replace(chr(10),' ')
-    out.append(p['id']+'  '+p.get('created_time','')+'  '+m[:150])
-open('page-read.log','w').write(chr(10).join(out))
-print(chr(10).join(out))
-" || echo "read failed" > page-read.log
-          sed -i -E 's/[A-Za-z0-9_-]{32,}/[REDACTED]/g' page-read.log
-      - if: always()
+    m=(p.get('message') or '').replace('\n',' ')
+    lines.append(f"{p['id']}  {p.get('created_time','')}  {m[:160]}")
+if not lines: lines=[json.dumps(d)[:400]]
+open('page-read.log','w').write('\n'.join(lines))
+EOF
+          sed -i -E 's/[A-Za-z0-9_-]{40,}/[REDACTED]/g' page-read.log
+          rm -f raw.json
+          cat page-read.log
+      - name: Commit
+        if: always()
         run: |
-          git config user.name CMG; git config user.email p@cmghp.co.uk
-          git add page-read.log && git commit -m "page read" && git push
+          git config user.name "CMG publisher"
+          git config user.email "publisher@cmghp.co.uk"
+          git add page-read.log
+          git diff --staged --quiet || git commit -m "page read"
+          git push
