@@ -281,7 +281,7 @@
       "id": 900,
       "page": "bwd",
       "title": "CONNECTION TEST - Bolton Warm & Dry - delete after verifying",
-      "slot": "2026-12-01 11:00",
+      "slot": "2026-10-10 11:00",
       "image": "w3_landlord_cp12.jpg",
       "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w3_landlord_cp12.jpg",
       "caption": "Connection test for the Bolton Warm & Dry scheduling system. This post is queued automatically as a check and is removed before it would ever publish.",
