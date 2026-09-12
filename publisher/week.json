@@ -5,6 +5,17 @@
   "baseVideoUrl": "https://chr1smg.github.io/cmg-social/publisher/video/",
   "posts": [
     {
+      "id": 902,
+      "slot": "2026-09-12 19:00",
+      "page": "bwd",
+      "title": "BWD live slot test - autumn service",
+      "image": "11_autumn_service.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/11_autumn_service.jpg",
+      "caption": "Posted by CMG Heating & Plumbing, Bolton\n\nHeating goes back on across Bolton this month after five months off, and that is when faults show up.\n\nTwo things worth doing before yours runs properly, and neither costs anything:\n\nFind the service sticker on the boiler and read the date. If there is not one at all, that tells you something on its own.\n\nPress the test button on your carbon monoxide alarm. If it does not sound, it is not protecting anybody.\n\nBoth take a minute.",
+      "facebook": { "status": "" },
+      "instagram": { "status": "skipped" }
+    },
+    {
       "id": 1,
       "slot": "2026-09-08 10:00",
       "title": "Tue 8 Sep, 10:00 — Back boiler out, combi in",
