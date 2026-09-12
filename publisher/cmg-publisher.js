@@ -401,9 +401,14 @@ async function cmdUpload() {
 // on the CMG Page is worse than not posting at all.
 function targetPage(c, row) {
   const key = String(row.page || 'cmg').toLowerCase();
-  if (key === 'cmg') return { key, name: 'CMG', id: c.pageId, tkn: c.pageToken, ok: !!(c.pageId && c.pageToken), instagram: true };
-  if (key === 'bwd') return { key, name: 'Bolton Warm & Dry', id: c.bwdPageId, tkn: c.bwdPageToken, ok: !!(c.bwdPageId && c.bwdPageToken), instagram: false };
-  return { key, name: key, id: '', tkn: '', ok: false, instagram: false, unknown: true };
+  if (key === 'cmg') return { key, name: 'CMG', id: c.pageId, tkn: c.pageToken, ok: !!(c.pageId && c.pageToken), instagram: true, schedules: true };
+  // schedules:false - PROVED 12 Sep 2026. A New Pages Experience profile IGNORES
+  // published=false + scheduled_publish_time on /photos and posts IMMEDIATELY.
+  // A test row dated 11 Oct went live within seconds and had to be deleted by
+  // hand. So this page is never given to schedule-week; publish-due fires its
+  // rows at their slot instead (within one run, about 15 minutes).
+  if (key === 'bwd') return { key, name: 'Bolton Warm & Dry', id: c.bwdPageId, tkn: c.bwdPageToken, ok: !!(c.bwdPageId && c.bwdPageToken), instagram: false, schedules: false };
+  return { key, name: key, id: '', tkn: '', ok: false, instagram: false, schedules: false, unknown: true };
 }
 
 // List what Meta is holding for a Page, scheduled but not yet published.
@@ -479,6 +484,10 @@ async function cmdScheduleWeek() {
       results.push([post.id, `SKIPPED - page "${pg.key}" ${pg.unknown ? 'is not a known page' : 'has no credentials set'}. Row left open; nothing posted anywhere.`]);
       logLine({ cmd: 'schedule-week', post: post.id, result: 'no-page', page: pg.key });
       process.exitCode = 1;
+      continue;
+    }
+    if (pg.schedules === false) {
+      results.push([post.id, `${pg.name} cannot hold scheduled posts - left for publish-due to fire at its slot`]);
       continue;
     }
     let resp;
