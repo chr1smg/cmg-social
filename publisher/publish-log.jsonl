@@ -31,3 +31,4 @@
 {"at":"2026-09-12T16:38:25.224Z","cmd":"schedule-week","post":33,"result":"scheduled","fbPostId":"110510101534769_1081846851261424","slot":"2026-09-18 11:30"}
 {"at":"2026-09-12T16:38:27.853Z","cmd":"schedule-week","post":34,"result":"scheduled","fbPostId":"110510101534769_1081846911261418","slot":"2026-09-21 09:45"}
 {"at":"2026-09-12T17:49:52.339Z","cmd":"schedule-week","post":900,"result":"error","error":"Graph API error 100: (#100) The specified scheduled publish time is invalid."}
+{"at":"2026-09-12T18:35:28.219Z","cmd":"schedule-week","post":901,"page":"bwd","result":"unverified","apiId":"122096501247478623","why":"could not read id 122096501247478623 back - Graph API error 100: (#100) Tried accessing nonexisting field (scheduled_publish_time)"}
