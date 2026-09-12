@@ -277,22 +277,7 @@
       }
     }
 
-,
-    {
-      "id": 901,
-      "page": "bwd",
-      "title": "ROUTING TEST 2 - Bolton Warm & Dry - delete after verifying",
-      "slot": "2026-10-11 11:00",
-      "image": "w3_landlord_cp12.jpg",
-      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w3_landlord_cp12.jpg",
-      "caption": "Routing test two for the Bolton Warm and Dry publisher. Queued automatically as a check and removed before it would ever publish.",
-      "facebook": {
-        "status": ""
-      },
-      "instagram": {
-        "status": "skipped"
-      }
-    }
+
   ],
   "reels": [
     {
