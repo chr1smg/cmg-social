@@ -37,3 +37,5 @@
 {"at":"2026-09-12T19:07:38.239Z","cmd":"publish-due","post":902,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
 {"at":"2026-09-14T09:14:17.145Z","cmd":"publish-due","post":26,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdQyezSln5K/"}
 {"at":"2026-09-14T09:14:18.121Z","cmd":"confirm-published","post":26,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1078864431559666&set=a.448112374634878&type=3"}
+{"at":"2026-09-14T20:44:19.542Z","cmd":"publish-due","post":27,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdSBc8HlEup/"}
+{"at":"2026-09-14T20:44:20.167Z","cmd":"confirm-published","post":27,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1078864481559661&set=a.448112374634878&type=3"}
