@@ -35,3 +35,5 @@
 {"at":"2026-09-12T18:40:25.138Z","cmd":"schedule-week","post":901,"page":"bwd","result":"unverified","apiId":"122096502753478623","why":"could not read id 122096502753478623 back - Graph API error 100: (#100) Tried accessing nonexisting field (scheduled_publish_time)"}
 {"at":"2026-09-12T19:04:30.891Z","cmd":"publish-due","post":902,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
 {"at":"2026-09-12T19:07:38.239Z","cmd":"publish-due","post":902,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
+{"at":"2026-09-14T09:14:17.145Z","cmd":"publish-due","post":26,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdQyezSln5K/"}
+{"at":"2026-09-14T09:14:18.121Z","cmd":"confirm-published","post":26,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1078864431559666&set=a.448112374634878&type=3"}

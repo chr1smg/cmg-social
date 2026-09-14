@@ -13,8 +13,12 @@
       "image": "11_autumn_service.jpg",
       "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/11_autumn_service.jpg",
       "caption": "Posted by CMG Heating & Plumbing, Bolton\n\nHeating goes back on across Bolton this month after five months off, and that is when faults show up.\n\nTwo things worth doing before yours runs properly, and neither costs anything:\n\nFind the service sticker on the boiler and read the date. If there is not one at all, that tells you something on its own.\n\nPress the test button on your carbon monoxide alarm. If it does not sound, it is not protecting anybody.\n\nBoth take a minute.",
-      "facebook": { "status": "" },
-      "instagram": { "status": "skipped" }
+      "facebook": {
+        "status": ""
+      },
+      "instagram": {
+        "status": "skipped"
+      }
     },
     {
       "id": 1,
@@ -143,13 +147,17 @@
       "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/w2_never_see.jpg",
       "caption": "When people compare quotes, they compare the bits they can see. The boiler brand, the tiles, the finish. Fair enough — it's what's in front of you.\n\nBut the difference between a job that lasts and a job that gets ripped out in six years is nearly all behind the wall, and it is decided in the first two days.\n\nFour things nobody ever photographs:\n\n🪵 What the fixings go into. A grab rail, a radiator, a wall-hung basin — they either go into timber put in while the wall was open, or into plasterboard and optimism. You cannot tell which by looking, and you will find out eventually.\n\n📐 The fall on the waste and the condensate. Water moves because of a gradient, and the gradient is set before anything is boarded over. Get it wrong and you get smells, gurgling, or a pipe that freezes.\n\n🔧 Whether anything can be got at again. Isolating valves in reachable places, a filter you can open, an inspection point where one is needed. A service in three years is either simple or awkward, and that is decided on fitting day.\n\n🧯 Pipe support and protection. Clipped properly, sleeved where it goes through, not resting its weight on the joints.\n\nNone of it costs much extra while the wall is open. All of it costs a fortune later.\n\nSo when you're comparing quotes, ask what happens behind the plaster. The answer tells you more than the appliance does: https://cmghp.co.uk\n\nWhat's the worst thing you've found behind a wall in your house? 👇\n\nCIPHE Reg 129130 · WaterSafe registered · 01204 961827",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1078864431559666",
         "scheduledFor": "2026-09-14 09:45",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1078864431559666&set=a.448112374634878&type=3",
+        "publishedAt": "14 Sept 2026, 10:14"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DdQyezSln5K/",
+        "publishedAt": "14 Sept 2026, 10:14"
       }
     },
     {
@@ -288,8 +296,6 @@
         "status": ""
       }
     }
-
-
   ],
   "reels": [
     {
