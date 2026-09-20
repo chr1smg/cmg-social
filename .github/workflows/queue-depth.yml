@@ -1,0 +1,21 @@
+name: queue-depth
+# Runs every morning. Fails loudly (red run + GitHub email) when the post
+# queue drops below a week's cover, so the batch gets built BEFORE a day
+# goes silent rather than after Chris notices.
+on:
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: How many posts are left in the queue
+        env:
+          MIN_POSTS: '8'
+          MIN_DAYS: '5'
+        run: node tools/check-queue.js publisher/week.json
