@@ -64,3 +64,6 @@
 {"at":"2026-09-20T18:16:52.214Z","cmd":"schedule-week","post":45,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088663873913055","slot":"2026-10-01 10:00","verified":"seen in scheduled_posts"}
 {"at":"2026-09-20T18:16:55.010Z","cmd":"schedule-week","post":46,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088663913913051","slot":"2026-10-02 11:30","verified":"seen in scheduled_posts"}
 {"at":"2026-09-20T18:16:58.036Z","cmd":"schedule-week","post":47,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088663967246379","slot":"2026-10-05 09:45","verified":"seen in scheduled_posts"}
+{"at":"2026-09-20T20:58:28.964Z","cmd":"schedule-week","post":48,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088752447237531","slot":"2026-09-27 11:00","verified":"seen in scheduled_posts"}
+{"at":"2026-09-20T20:58:30.851Z","cmd":"schedule-week","post":49,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088752540570855","slot":"2026-10-03 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-09-20T20:58:32.511Z","cmd":"schedule-week","post":50,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1088752580570851","slot":"2026-10-04 11:00","verified":"seen in scheduled_posts"}
