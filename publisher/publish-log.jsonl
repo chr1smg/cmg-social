@@ -70,3 +70,4 @@
 {"at":"2026-09-21T13:08:45.113Z","cmd":"publish-due","post":34,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdjO4OkGyuP/"}
 {"at":"2026-09-21T13:08:45.566Z","cmd":"confirm-published","post":34,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1081846911261418&set=a.448112374634878&type=3"}
 {"at":"2026-09-21T18:41:44.625Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
+{"at":"2026-09-21T22:15:42.415Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
