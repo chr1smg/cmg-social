@@ -343,7 +343,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DdlpO0ImxUU/",
+        "publishedAt": "22 Sept 2026, 12:37"
       }
     },
     {

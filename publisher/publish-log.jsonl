@@ -73,3 +73,5 @@
 {"at":"2026-09-21T22:15:42.415Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
 {"at":"2026-09-22T00:59:57.449Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
 {"at":"2026-09-22T06:01:54.356Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
+{"at":"2026-09-22T11:37:30.453Z","cmd":"publish-due","post":35,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdlpO0ImxUU/"}
+{"at":"2026-09-22T11:37:30.836Z","cmd":"publish-due","post":60,"platform":"facebook","result":"error","error":"Graph API error 283: (#283) Requires pages_manage_metadata permission to manage the object"}
