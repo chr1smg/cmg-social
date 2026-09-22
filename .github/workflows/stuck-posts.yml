@@ -1,0 +1,20 @@
+name: stuck-posts
+# Hourly. Fails the moment a slot has passed by more than 90 minutes and the
+# post still has not gone out. This is the alarm that was missing when a BWD
+# row failed silently every 15 minutes for a day on 21-22 Sep 2026.
+on:
+  schedule:
+    - cron: '35 * * * *'
+  workflow_dispatch:
+jobs:
+  stuck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Any slot gone by without publishing?
+        env:
+          GRACE_MIN: '90'
+        run: node tools/check-stuck.js publisher/week.json
