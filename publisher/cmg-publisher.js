@@ -572,9 +572,26 @@ async function igPublish(c, url, caption) {
 
 async function fbPublishLive(c, url, caption, pg) {
   pg = pg || targetPage(c, {});
-  const resp = await graph('POST', `${pg.id}/photos`, {
-    url, caption, published: 'true', access_token: pg.tkn,
-  });
+
+  // A New Pages Experience page (schedules:false) REFUSES published=true with
+  // Graph error 283, "Requires pages_manage_metadata permission" — a scope the
+  // page token does not carry. Proved on Bolton Warm & Dry 12 Sep and again
+  // 21 Sep 2026, where every 15-minute run failed on the same row.
+  //
+  // The call that IS accepted with the credential as it stands is
+  // published=false + scheduled_publish_time. On this page type Meta ignores
+  // the schedule and publishes within seconds, which is exactly what is wanted
+  // here — publish-due is already firing at the slot.
+  const body = { url, caption, access_token: pg.tkn };
+  if (pg.schedules === false) {
+    // Meta requires a scheduled time at least 10 minutes out; it is ignored
+    // on this page type but the value must still be valid.
+    body.published = 'false';
+    body.scheduled_publish_time = String(Math.floor(Date.now() / 1000) + 660);
+  } else {
+    body.published = 'true';
+  }
+  const resp = await graph('POST', `${pg.id}/photos`, body);
   const postId = resp.post_id || resp.id;
   if (!postId) throw new Error('Facebook returned no post id — nothing was published.');
 
