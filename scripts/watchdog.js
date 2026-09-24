@@ -65,6 +65,7 @@ if (!lastPublish) {
 // 2) Approved posts still open 2h+ past their slot
 if (week.approved === true) {
   for (const post of week.posts || []) {
+    if (post.blocked) continue; // paused on purpose, not an open post
     const slotS = ukToEpoch(post.slot);
     if (now < slotS + 2 * 3600) continue;
     const fb = post.facebook || {}, ig = post.instagram || {};
@@ -74,6 +75,20 @@ if (week.approved === true) {
     if (ig.status !== 'published' && ig.status !== 'skipped') {
       problems.push(`post ${post.id} (${post.slot}) Instagram still open 2h+ past its slot.`);
     }
+  }
+}
+
+// 3) Published but NOT SEEN IN THE FEED — added 24 Sep 2026.
+// Posts 60 and 61 both logged "published" with a permalink while the Bolton
+// Warm & Dry feed still showed a five-day-old post. An API success is not a
+// thing a reader can see, so the publisher now records feedConfirmed and this
+// check reads it. Rows written before that change have no flag and are skipped.
+for (const post of week.posts || []) {
+  if (post.blocked) continue;
+  const fb = post.facebook || {};
+  if (fb.status === 'published' && fb.feedConfirmed === false) {
+    problems.push(`post ${post.id} (${post.slot}) was POSTED but is NOT VISIBLE IN THE FEED`
+      + (fb.why ? ` — ${fb.why}` : '') + '. Readers cannot see it.');
   }
 }
 
