@@ -85,3 +85,5 @@
 {"at":"2026-09-23T19:03:19.891Z","cmd":"publish-due","post":61,"page":"bwd","platform":"facebook","result":"published","permalink":"https://www.facebook.com/61594358698789/posts/122106703089478623"}
 {"at":"2026-09-24T10:25:41.288Z","cmd":"publish-due","post":38,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdqqmhXFvwp/"}
 {"at":"2026-09-24T10:25:41.772Z","cmd":"confirm-published","post":38,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1088663433913099&set=a.448112374634878&type=3"}
+{"at":"2026-09-24T15:23:28.712Z","cmd":"publish-due","post":39,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdrMrkuG819/"}
+{"at":"2026-09-24T15:23:29.269Z","cmd":"confirm-published","post":39,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1088663527246423&set=a.448112374634878&type=3"}
