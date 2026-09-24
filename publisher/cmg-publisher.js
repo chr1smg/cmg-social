@@ -572,47 +572,84 @@ async function igPublish(c, url, caption) {
 
 async function fbPublishLive(c, url, caption, pg) {
   pg = pg || targetPage(c, {});
+  if (!pg.ok) throw new Error(`No credentials for page "${pg.name}" — refusing to post.`);
 
-  // A New Pages Experience page (schedules:false) REFUSES published=true with
-  // Graph error 283, "Requires pages_manage_metadata permission" — a scope the
-  // page token does not carry. Proved on Bolton Warm & Dry 12 Sep and again
-  // 21 Sep 2026, where every 15-minute run failed on the same row.
+  // WHY THIS IS A TWO-STEP AND NOT A SINGLE POST TO /photos.
+  // Chris, 23 Sep 2026: the Bolton Warm & Dry feed showed a FIVE DAY OLD post
+  // while this function had logged "published" twice — post 60 (22 Sep 18:02)
+  // and post 61 (23 Sep 19:03). Both were real, both were reachable at their
+  // permalink by an ADMIN, and NEITHER was in the Page's feed. Followers saw
+  // nothing. Posting an image straight to {page}/photos creates a photo, not a
+  // timeline story.
   //
-  // The call that IS accepted with the credential as it stands is
-  // published=false + scheduled_publish_time. On this page type Meta ignores
-  // the schedule and publishes within seconds, which is exactly what is wanted
-  // here — publish-due is already firing at the slot.
-  const body = { url, caption, access_token: pg.tkn };
-  if (pg.schedules === false) {
-    // Meta requires a scheduled time at least 10 minutes out; it is ignored
-    // on this page type but the value must still be valid.
-    body.published = 'false';
-    body.scheduled_publish_time = String(Math.floor(Date.now() / 1000) + 660);
-  } else {
-    body.published = 'true';
-  }
-  const resp = await graph('POST', `${pg.id}/photos`, body);
-  const postId = resp.post_id || resp.id;
+  // The comment that used to sit here claimed a New Pages Experience profile
+  // "ignores the schedule and publishes within seconds". That was inferred from
+  // one test in September and never checked against the FEED. It is wrong, and
+  // it is what hid this for days.
+  //
+  // What works on BOTH page types and needs no pages_manage_metadata:
+  //   1. upload the image UNPUBLISHED to {page}/photos            -> media_fbid
+  //   2. POST {page}/feed with the message and attached_media[0]  -> real post
+  // Step 1 carries published=false and NO scheduled_publish_time, so it is an
+  // upload rather than a scheduled post, and Graph error 283 never fires.
+  const photo = await graph('POST', `${pg.id}/photos`, {
+    url,
+    published: 'false',
+    access_token: pg.tkn,
+  });
+  const mediaId = photo.id;
+  if (!mediaId) throw new Error('Facebook accepted the image but returned no media id — nothing was posted.');
+
+  const feed = await graph('POST', `${pg.id}/feed`, {
+    message: caption,
+    attached_media: JSON.stringify([{ media_fbid: String(mediaId) }]),
+    access_token: pg.tkn,
+  });
+  const postId = feed.id;
   if (!postId) throw new Error('Facebook returned no post id — nothing was published.');
 
-  // The post EXISTS from here on. Everything below is decoration.
+  // The post EXISTS from here on. Everything below is checking, never throwing.
   //
-  // Do NOT throw past this point. On 26 Aug 2026 the read-back asked for the
-  // `link` field, which Meta deprecated at v3.3; it answered error 12, the run
-  // recorded FAILED, and both posts were sitting live on the Page all along.
-  // A row left open is republished by the 15-minute task, so a failed read-back
-  // used to mean a DUPLICATE post. Losing the permalink is survivable; posting
-  // twice is not.
+  // Do NOT throw past this point. On 26 Aug 2026 a read-back asked for the
+  // `link` field, Meta answered error 12, the run recorded FAILED and both
+  // posts were live on the Page all along. A row left open is republished by
+  // the next run, so a failed read-back used to mean a DUPLICATE post. Losing
+  // a permalink is survivable; posting twice is not.
   let permalink = null;
+  let feedConfirmed = false;
+  let why = null;
   try {
     const read = await graph('GET', postId, {
-      fields: 'permalink_url', access_token: pg.tkn,
+      fields: 'permalink_url,is_published,created_time', access_token: pg.tkn,
     });
     permalink = read.permalink_url || null;
+
+    // THE CHECK THAT WAS MISSING. An id and a permalink prove Meta accepted the
+    // call. They do NOT prove a reader can see it. Read the Page's own feed back
+    // and look for this post in it — that is the thing a customer actually sees.
+    const recent = await graph('GET', `${pg.id}/feed`, {
+      fields: 'id', limit: '10', access_token: pg.tkn,
+    });
+    feedConfirmed = (recent.data || []).some(p => String(p.id) === String(postId));
+    if (read.is_published === false) {
+      feedConfirmed = false;
+      why = 'Meta reports is_published=false — the post is held, not live.';
+    } else if (!feedConfirmed) {
+      why = `post ${postId} is not in the last 10 items of the Page feed.`;
+    }
   } catch (e) {
-    console.log(`  (post ${postId} published; could not read its permalink back: ${e.message})`);
+    why = `could not read the post or the feed back: ${e.message}`;
   }
-  return permalink || `https://www.facebook.com/${pg.id}/posts/${String(postId).split('_').pop()}`;
+
+  if (!feedConfirmed) {
+    console.log(`  *** NOT CONFIRMED IN THE FEED on ${pg.name}: ${why}`);
+    console.log('  *** The post may exist and still be invisible to readers. Check the Page.');
+  }
+  return {
+    permalink: permalink || `https://www.facebook.com/${pg.id}/posts/${String(postId).split('_').pop()}`,
+    feedConfirmed,
+    why,
+  };
 }
 
 // ---------- REELS — new 3 Sep 2026, UNTESTED against live Meta endpoints ----------
@@ -904,12 +941,32 @@ async function cmdPublishDue() {
         process.exitCode = 1;
       } else if (fbOpen) {
         try {
-          const permalink = await fbPublishLive(c, url, post.caption, pg);
-          fb.status = 'published'; fb.permalink = permalink; fb.publishedAt = ukNowString();
+          const out = await fbPublishLive(c, url, post.caption, pg);
+          const permalink = out.permalink;
+          // ALWAYS mark the row done, confirmed or not. fbOpen re-publishes any
+          // row that is not 'published', so leaving it open would post AGAIN on
+          // the next run — a duplicate is worse than an unconfirmed post. The
+          // doubt is recorded on the row instead, and the run exits non-zero so
+          // it is never silent.
+          fb.status = 'published';
+          fb.permalink = permalink;
+          fb.publishedAt = ukNowString();
+          fb.feedConfirmed = out.feedConfirmed;
+          if (!out.feedConfirmed) fb.why = out.why;
           saveWeek(week);
           fb.page = pg.key;
-          logLine({ cmd: 'publish-due', post: post.id, page: pg.key, platform: 'facebook', result: 'published', permalink });
-          console.log(`post ${post.id} -> ${pg.name}: PUBLISHED (late catch-up) ${permalink}`); did++;
+          logLine({
+            cmd: 'publish-due', post: post.id, page: pg.key, platform: 'facebook',
+            result: out.feedConfirmed ? 'published' : 'unconfirmed',
+            permalink, why: out.why || undefined,
+          });
+          console.log(
+            `post ${post.id} -> ${pg.name}: ` +
+            (out.feedConfirmed ? 'PUBLISHED and SEEN IN THE FEED' : 'POSTED but NOT VISIBLE IN THE FEED') +
+            ` ${permalink}`
+          );
+          if (!out.feedConfirmed) process.exitCode = 1;
+          did++;
         } catch (e) {
           logLine({ cmd: 'publish-due', post: post.id, platform: 'facebook', result: 'error', error: e.message });
           console.log(`post ${post.id} -> Facebook: FAILED — ${e.message}`); process.exitCode = 1;
