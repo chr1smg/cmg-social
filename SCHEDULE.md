@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-09-25 15:49 UTC
+Last updated: 2026-09-25 19:49 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -33,9 +33,9 @@ Last updated: 2026-09-25 15:49 UTC
 | Wed 23 Sept | 18:00 | BWD — bwd_boiler_switch | DONE | Facebook only |
 | Thu 24 Sept | 10:00 | W4/5 — w4_where_pipes_freeze | DONE | Facebook + Instagram |
 | Thu 24 Sept | 12:30 | W4/5 — w4_radiator_blockers | DONE | Facebook + Instagram |
-| Thu 24 Sept | 18:00 | BWD — bwd_three_numbers | WAITING | Facebook only |
+| Thu 24 Sept | 18:00 | BWD - bwd_three_numbers | DONE | Facebook only |
 | Fri 25 Sept | 11:30 | W4/5 — w4_hidden_leak | QUEUED ON META | Facebook + Instagram |
-| Fri 25 Sept | 18:00 | BWD — bwd_burst_pipe | WAITING | Facebook only |
+| Fri 25 Sept | 18:00 | BWD — bwd_burst_pipe | DONE | Facebook only |
 | Sat 26 Sept | 09:00 | BWD — bwd_psr | WAITING | Facebook only |
 | Sat 26 Sept | 10:00 | W4/5 — w4_check_on_someone | QUEUED ON META | Facebook + Instagram |
 | Sun 27 Sept | 09:00 | BWD — bwd_mould_corner | WAITING | Facebook only |
