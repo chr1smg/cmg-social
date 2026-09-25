@@ -67,6 +67,30 @@ const LOCK_PATH = path.join(DIR, '.publisher.lock');
 const DEFAULT_IG_USER = '17841453338052736'; // @cmg_hp
 const DEFAULT_PAGE_REF = '110510101534769'; // CMG Heating and Plumbing (facebook.com/CONTACTCMG)
 
+// BOLTON WARM & DRY — THE PAGE ID THAT ACTUALLY PUBLISHES.
+// 25 Sep 2026. This page has TWO ids. 61594358698789 is the "global" id, the
+// one that appears in the page's web address, and it is the one that was
+// configured here from the start. Meta accepts it for /photos and then produces
+// a photo object with a working permalink and NO timeline story — which is why
+// posts 60 and 61 were "published" and invisible — and refuses /feed outright:
+//   (#100) The global id 61594358698789 is not allowed for this call
+// 1350006984862633 is the real page id. Confirmed from Chris's own authorised
+// Facebook connection, which lists exactly one page under that name, and proved
+// by a live post at 08:55 on 25 Sep that IS in the feed.
+// Hardcoded deliberately: the BWD_PAGE_ID secret has held the wrong value for
+// weeks and this must not depend on it again.
+const BWD_PAGE_ID = '1350006984862633';
+
+// WHERE THE POSTS COME FROM.
+// The post list used to live in publisher/week.json in this repo, which meant
+// every caption fix, new post or replaced graphic needed a human to commit it.
+// Now week.json is only the STATE file — what has gone out — and the content
+// is fetched from here before each run. Rows already published or scheduled are
+// never touched. If the feed is unreachable the run carries on with whatever is
+// already in week.json, so a fetch failure can never stop a post going out.
+const CONTENT_URL = process.env.CONTENT_URL ||
+  'https://drive.google.com/uc?export=download&id=1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9';
+
 // ---------- tiny .env ----------
 function readEnv() {
   const env = {};
@@ -189,6 +213,55 @@ function loadWeek() {
   if (!fs.existsSync(WEEK_PATH)) throw new Error(`No week.json found at ${WEEK_PATH}`);
   return JSON.parse(fs.readFileSync(WEEK_PATH, 'utf8'));
 }
+// Pull the post list from CONTENT_URL and merge it into week.json.
+//
+// THE RULES, and they exist so this can never double-post or lose history:
+//   - a row whose local status is 'published' or 'scheduled' is NEVER modified;
+//   - a row that exists locally and is still open takes the feed's wording,
+//     slot, image and (if the feed states one) its status;
+//   - a row that is new is added;
+//   - a row that has gone from the feed is LEFT ALONE, never deleted.
+// Returns a short summary for the log. Never throws.
+async function syncContent() {
+  if (!CONTENT_URL) return 'content feed not configured - using week.json as it stands';
+  let remote;
+  try {
+    const res = await fetch(CONTENT_URL + (CONTENT_URL.includes('?') ? '&' : '?') + 'cb=' + Date.now());
+    if (!res.ok) return `content feed answered HTTP ${res.status} - carrying on with week.json`;
+    remote = await res.json();
+  } catch (e) {
+    return `content feed unreachable (${e.message}) - carrying on with week.json`;
+  }
+  if (!remote || !Array.isArray(remote.posts)) return 'content feed had no posts array - ignored';
+
+  const week = loadWeek();
+  const byId = new Map(week.posts.map(p => [String(p.id), p]));
+  let added = 0, updated = 0, closed = 0, locked = 0;
+
+  for (const r of remote.posts) {
+    const local = byId.get(String(r.id));
+    if (!local) { week.posts.push(JSON.parse(JSON.stringify(r))); added++; continue; }
+    const st = (local.facebook || {}).status || '';
+    if (st === 'published' || st === 'scheduled') { locked++; continue; }
+    let touched = false;
+    for (const f of ['slot', 'title', 'image', 'imageUrl', 'caption', 'page', 'blocked']) {
+      if (Object.prototype.hasOwnProperty.call(r, f) && JSON.stringify(r[f]) !== JSON.stringify(local[f])) {
+        local[f] = r[f]; touched = true;
+      }
+    }
+    // The feed may declare a row already published - that is how a post made by
+    // some other route (a phone, another tool) stops this publisher repeating it.
+    const rst = ((r.facebook || {}).status) || '';
+    if (rst === 'published' || rst === 'scheduled') {
+      local.facebook = Object.assign({}, local.facebook, r.facebook);
+      closed++; touched = true;
+    }
+    if (touched) updated++;
+  }
+  saveWeek(week);
+  return `content feed: ${added} added, ${updated} updated (${closed} marked already done), ${locked} left alone because they are already out`;
+}
+
 function saveWeek(week) {
   const tmp = WEEK_PATH + '.tmp';
   fs.writeFileSync(tmp, JSON.stringify(week, null, 2));
@@ -407,7 +480,11 @@ function targetPage(c, row) {
   // A test row dated 11 Oct went live within seconds and had to be deleted by
   // hand. So this page is never given to schedule-week; publish-due fires its
   // rows at their slot instead (within one run, about 15 minutes).
-  if (key === 'bwd') return { key, name: 'Bolton Warm & Dry', id: c.bwdPageId, tkn: c.bwdPageToken, ok: !!(c.bwdPageId && c.bwdPageToken), instagram: false, schedules: false };
+  if (key === 'bwd') {
+    // NOT c.bwdPageId - see the BWD_PAGE_ID note at the top of this file.
+    const id = BWD_PAGE_ID;
+    return { key, name: 'Bolton Warm & Dry', id, tkn: c.bwdPageToken, ok: !!(id && c.bwdPageToken), instagram: false, schedules: false, simplePhoto: true };
+  }
   return { key, name: key, id: '', tkn: '', ok: false, instagram: false, schedules: false, unknown: true };
 }
 
@@ -592,6 +669,40 @@ async function fbPublishLive(c, url, caption, pg) {
   //   2. POST {page}/feed with the message and attached_media[0]  -> real post
   // Step 1 carries published=false and NO scheduled_publish_time, so it is an
   // upload rather than a scheduled post, and Graph error 283 never fires.
+  // THE SIMPLE PATH, for a page Meta will not let us post to /feed on.
+  // One call: the image URL and the caption straight to /photos, published.
+  // Proved on Bolton Warm & Dry at 08:55 on 25 Sep 2026 - it produced a real
+  // post that IS in the page feed, which the two-step below never managed.
+  // The two-step is still the right thing for a classic Page, so it stays.
+  if (pg.simplePhoto) {
+    const one = await graph('POST', `${pg.id}/photos`, {
+      url,
+      caption,
+      published: 'true',
+      access_token: pg.tkn,
+    });
+    const id = one.post_id || one.id;
+    if (!id) throw new Error('Facebook accepted the image but returned no post id.');
+    let permalink = null, feedConfirmed = false, why = null;
+    try {
+      const recent = await graph('GET', `${pg.id}/feed`, { fields: 'id', limit: '10', access_token: pg.tkn });
+      const want = String(one.post_id || '');
+      feedConfirmed = (recent.data || []).some(p => String(p.id) === want);
+      if (!feedConfirmed) why = `post ${id} is not in the last 10 items of the Page feed.`;
+    } catch (e) {
+      why = `could not read the feed back: ${e.message}`;
+    }
+    if (!feedConfirmed) {
+      console.log(`  *** NOT CONFIRMED IN THE FEED on ${pg.name}: ${why}`);
+      console.log('  *** The post may exist and still be invisible to readers. Check the Page.');
+    }
+    return {
+      permalink: permalink || `https://www.facebook.com/${pg.id}/posts/${String(id).split('_').pop()}`,
+      feedConfirmed,
+      why,
+    };
+  }
+
   const photo = await graph('POST', `${pg.id}/photos`, {
     url,
     published: 'false',
@@ -905,6 +1016,7 @@ async function cmdPublishDue() {
     fs.writeFileSync(LOCK_PATH, String(process.pid));
   } catch { /* lock is best-effort */ }
   try {
+    console.log(await syncContent());
     const c = cfg();
     const week = loadWeek();
     if (week.approved !== true) {
@@ -1067,4 +1179,4 @@ async function main() {
 if (require.main === module) {
   main().catch((e) => { console.error('FAILED: ' + e.message); process.exit(1); });
 }
-module.exports = { ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, cmdScheduleReels, cmdConfirmPublished, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
+module.exports = { syncContent, ukToEpoch, ukOffsetMinutes, readEnv, writeEnv, cmdScheduleWeek, cmdPublishDue, cmdCheck, cmdSetup, cmdUpload, cmdPublishReel, cmdScheduleReels, cmdConfirmPublished, _paths: { WEEK_PATH, ENV_PATH, LOG_PATH } };
