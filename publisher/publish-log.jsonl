@@ -94,3 +94,4 @@
 {"at":"2026-09-25T05:49:04.726Z","cmd":"publish-due","post":68,"platform":"facebook","result":"error","error":"Graph API error 100: (#100) The global id 61594358698789 is not allowed for this call"}
 {"at":"2026-09-25T11:10:22.539Z","cmd":"publish-due","post":40,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DdtUglimyUK/"}
 {"at":"2026-09-25T11:10:24.635Z","cmd":"publish-due","post":68,"platform":"facebook","result":"error","error":"Graph API error 100: (#100) The global id 61594358698789 is not allowed for this call"}
+{"at":"2026-09-25T15:49:01.671Z","cmd":"publish-due","post":68,"platform":"facebook","result":"error","error":"Graph API error 100: (#100) The global id 61594358698789 is not allowed for this call"}
