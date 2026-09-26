@@ -459,7 +459,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/Ddv9p0lG4jZ/",
+        "publishedAt": "26 Sept 2026, 12:48"
       }
     },
     {
@@ -789,7 +791,11 @@
       "caption": "There's a free register a lot of people qualify for and never hear about.\n\nIt's called the Priority Services Register. Free, UK-wide, run by the energy and water companies, and it isn't means tested.\n\nIt's for anyone older, disabled, with a long-term illness, with young children in the house, or relying on electricity for medical equipment. Also, temporarily, for people going through something — bereavement, coming out of hospital, that sort of thing.\n\nWhat you actually get: priority reconnection if the supply goes off, advance warning of planned work, a password so you know a caller at the door is genuine, bills in large print or braille if that helps, and in some cases alternative heating or hot meals during a long interruption.\n\nThe catch is that it's not one list. You sign up separately with your energy supplier, your electricity network operator and your water company.\n\nYou can also register on somebody else's behalf, which is the bit worth knowing if you've got an elderly parent.\n\nAnyone on it already? Was it worth doing?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "facebook": {
         "page": "bwd",
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122108649225478623",
+        "publishedAt": "26 Sept 2026, 12:48",
+        "feedConfirmed": false,
+        "why": "could not read the feed back: Graph API error 10: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details."
       },
       "instagram": {
         "status": "skipped"
