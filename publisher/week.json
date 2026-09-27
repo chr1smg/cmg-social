@@ -589,7 +589,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DdybSTDmw2i/",
+        "publishedAt": "27 Sept 2026, 11:45"
       }
     },
     {
@@ -694,7 +696,11 @@
       "caption": "It's almost never a coincidence which corner the mould picks.\n\nMould grows where the wall is coldest, because that's where warm moist air hits a cold surface and condenses. Which is why it turns up in external corners, behind furniture pushed flat against an outside wall, and around window reveals — every one of those is a cold spot.\n\nSo wiping it off treats the symptom. The corner is still the coldest bit of the room next week.\n\nWhat actually changes it is ventilation, a gap behind the furniture so air can move, and enough warmth reaching that surface to keep it above the point where moisture condenses.\n\nIf it comes back in the same place every winter, that spot is telling you something about the wall — sometimes insulation, sometimes a cold bridge, occasionally something wrong outside.\n\nDoes yours always appear in the same place?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "facebook": {
         "page": "bwd",
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122109163611478623",
+        "publishedAt": "27 Sept 2026, 11:45",
+        "feedConfirmed": false,
+        "why": "could not read the feed back: Graph API error 10: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details."
       },
       "instagram": {
         "status": "skipped"
