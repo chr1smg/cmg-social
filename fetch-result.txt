@@ -1,0 +1,3 @@
+/tmp/canva-probe.jpg: HTML document, ASCII text, with very long lines (65000)
+http+type+bytes: 403 text/html; charset=UTF-8 754721
+NOT AN IMAGE - nothing saved
