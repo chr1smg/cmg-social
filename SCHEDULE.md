@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-10-01 16:37 UTC
+Last updated: 2026-10-01 21:22 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -56,10 +56,15 @@ Last updated: 2026-10-01 16:37 UTC
 | Sun 4 Oct | 11:00 | Weekend — w5b_myth_smart_stat | QUEUED ON META | Facebook + Instagram |
 | Mon 5 Oct | 09:45 | W4/5 — w5_loft_tank | QUEUED ON META | Facebook + Instagram |
 | Mon 5 Oct | 18:00 | BWD — bwd_water_meter | WAITING | Facebook only |
-| Tue 6 Oct | 11:30 | Job photo — curved radiator, bay window | QUEUED ON META | Facebook + Instagram |
-| Wed 7 Oct | 11:30 | Job photo — service sticker | QUEUED ON META | Facebook + Instagram |
-| Thu 8 Oct | 11:30 | Job photo — expansion vessel | QUEUED ON META | Facebook + Instagram |
-| Fri 9 Oct | 11:30 | Job photo — drain with roots in it | QUEUED ON META | Facebook + Instagram |
-| Sat 10 Oct | 11:30 | Job photo — Ideal combi service | QUEUED ON META | Facebook + Instagram |
-| Sun 11 Oct | 11:30 | Job photo — boiler data plate | QUEUED ON META | Facebook + Instagram |
-| Mon 12 Oct | 11:30 | Job photo — Greenstar Heatstore | QUEUED ON META | Facebook + Instagram |
+| Tue 6 Oct | 09:45 | CMG — photo: prem_frost.jpg | QUEUED ON META | Facebook + Instagram |
+| Wed 7 Oct | 11:30 | Job photo — curved radiator, bay window | QUEUED ON META | Facebook + Instagram |
+| Thu 8 Oct | 10:00 | CMG — myth: w6_myth_hot_water_timer.jpg | QUEUED ON META | Facebook + Instagram |
+| Fri 9 Oct | 11:30 | CMG — icon: w6_icon_cold_snap.jpg | QUEUED ON META | Facebook + Instagram |
+| Sat 10 Oct | 10:00 | Job photo — service sticker | QUEUED ON META | Facebook + Instagram |
+| Sun 11 Oct | 11:00 | CMG — myth: w4b_myth_bleeding.jpg | QUEUED ON META | Facebook + Instagram |
+| Mon 12 Oct | 09:45 | CMG — steps: w5_loft_tank.jpg | QUEUED ON META | Facebook + Instagram |
+| Wed 14 Oct | 11:30 | Job photo — expansion vessel | QUEUED ON META | Facebook + Instagram |
+| Sat 17 Oct | 10:00 | Job photo — drain with roots in it | QUEUED ON META | Facebook + Instagram |
+| Wed 21 Oct | 11:30 | Job photo — Ideal combi service | QUEUED ON META | Facebook + Instagram |
+| Sat 24 Oct | 10:00 | Job photo — boiler data plate | QUEUED ON META | Facebook + Instagram |
+| Wed 28 Oct | 11:30 | Job photo — Greenstar Heatstore | QUEUED ON META | Facebook + Instagram |
