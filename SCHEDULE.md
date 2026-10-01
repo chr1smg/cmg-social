@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-10-01 14:56 UTC
+Last updated: 2026-10-01 15:00 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -56,10 +56,10 @@ Last updated: 2026-10-01 14:56 UTC
 | Sun 4 Oct | 11:00 | Weekend — w5b_myth_smart_stat | QUEUED ON META | Facebook + Instagram |
 | Mon 5 Oct | 09:45 | W4/5 — w5_loft_tank | QUEUED ON META | Facebook + Instagram |
 | Mon 5 Oct | 18:00 | BWD — bwd_water_meter | WAITING | Facebook only |
-| Tue 6 Oct | 11:30 | Job photo — curved radiator, bay window | WAITING | Facebook + Instagram |
-| Wed 7 Oct | 11:30 | Job photo — service sticker | WAITING | Facebook + Instagram |
-| Thu 8 Oct | 11:30 | Job photo — expansion vessel | WAITING | Facebook + Instagram |
-| Fri 9 Oct | 11:30 | Job photo — drain with roots in it | WAITING | Facebook + Instagram |
-| Sat 10 Oct | 11:30 | Job photo — Ideal combi service | WAITING | Facebook + Instagram |
-| Sun 11 Oct | 11:30 | Job photo — boiler data plate | WAITING | Facebook + Instagram |
-| Mon 12 Oct | 11:30 | Job photo — Greenstar Heatstore | WAITING | Facebook + Instagram |
+| Tue 6 Oct | 11:30 | Job photo — curved radiator, bay window | QUEUED ON META | Facebook + Instagram |
+| Wed 7 Oct | 11:30 | Job photo — service sticker | QUEUED ON META | Facebook + Instagram |
+| Thu 8 Oct | 11:30 | Job photo — expansion vessel | QUEUED ON META | Facebook + Instagram |
+| Fri 9 Oct | 11:30 | Job photo — drain with roots in it | QUEUED ON META | Facebook + Instagram |
+| Sat 10 Oct | 11:30 | Job photo — Ideal combi service | QUEUED ON META | Facebook + Instagram |
+| Sun 11 Oct | 11:30 | Job photo — boiler data plate | QUEUED ON META | Facebook + Instagram |
+| Mon 12 Oct | 11:30 | Job photo — Greenstar Heatstore | QUEUED ON META | Facebook + Instagram |
