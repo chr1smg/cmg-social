@@ -1,3 +1,3 @@
-/tmp/canva_frost_test.jpg: JPEG image data, Exif Standard: [TIFF image data, little-endian, direntries=6, orientation=upper-left, xresolution=86, yresolution=94, resolutionunit=2], baseline, precision 8, 1080x1350, components 3
-http+type+bytes: 200 image/jpeg 309608
-SAVED to graphics/canva_frost_test.jpg
+/tmp/canva_smell_gas.jpg: JPEG image data, Exif Standard: [TIFF image data, little-endian, direntries=6, orientation=upper-left, xresolution=86, yresolution=94, resolutionunit=2], baseline, precision 8, 1080x1350, components 3
+http+type+bytes: 200 image/jpeg 206722
+SAVED to graphics/canva_smell_gas.jpg
