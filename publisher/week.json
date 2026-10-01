@@ -823,9 +823,9 @@
    "id": 67,
    "slot": "2026-10-04 09:00",
    "page": "bwd",
-   "title": "BWD — bwd_autumn_walkround",
-   "image": "bwd_autumn_walkround.jpg",
-   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_autumn_walkround.jpg",
+   "title": "BWD — photo-led: autumn walk round",
+   "image": "bwd_photo_walkround.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_walkround.jpg",
    "caption": "Ten minutes outside this weekend, before the weather turns properly.\n\nGutters. Blocked ones spill straight down the wall every time it rains, and that wall doesn't get a chance to dry out all winter. Most damp patches on an outside wall start here.\n\nThe gully by the back door. Leaves sat in it means water backing up across the yard in heavy rain, and eventually finding a way somewhere it shouldn't.\n\nAirbricks. Clear of soil, leaves, shrubs and anything stacked against the wall. They feed air to the underfloor space and, in a lot of houses, to a gas appliance.\n\nAny overflow pipe. If one's dripping, something inside is filling past its stop point — and in a hard freeze that pipe can ice up and back the water into the loft instead.\n\nNone of it costs anything. All of it is a great deal cheaper than the thing it prevents.\n\nWhat's the state of your gutters?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
    "facebook": {
     "page": "bwd",
@@ -835,7 +835,7 @@
     "status": "skipped"
    },
    "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt",
-   "style": "list"
+   "style": "photo"
   },
   {
    "id": 68,
@@ -921,10 +921,10 @@
    "id": 72,
    "slot": "2026-10-03 09:00",
    "page": "bwd",
-   "title": "BWD — bwd_drinking_tap",
-   "image": "bwd_drinking_tap.jpg",
-   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_drinking_tap.jpg",
-   "caption": "In a lot of older Bolton houses, only one tap is actually drinking water.\n\nThe kitchen cold tap normally comes straight off the rising main — the mains water coming into the house. That's the one.\n\nIn an older system the other cold taps, including the bathroom, may be fed from a tank in the loft. That tank is often open, usually dusty, and occasionally has things in it that you'd rather not think about while filling a glass.\n\nNewer houses, and anything on a combi, are usually all mains-fed and it doesn't apply. But \"usually\" isn't \"definitely\", and if you don't know which yours is, then you don't know.\n\nEither way, let it run for a moment until it's properly cold. Water sat in a pipe overnight has been sat in a pipe overnight.\n\nWorth knowing if anyone in your house fills a kettle or a glass upstairs.\n\nDo you know which system you've got?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+   "title": "BWD — the light one: stopcock",
+   "image": "bwd_light_stopcock.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_light_stopcock.jpg",
+   "caption": "The stopcock is always behind the one cupboard you can't get to.\n\nUnder the sink behind the bleach. In the cellar behind the Christmas decorations. In one Bolton terrace, under a floorboard in the hall with a carpet over it, which the owner found out about during a leak.\n\nFind yours this week. Check it actually turns, because they seize over the years and a tap you can't shut off in a hurry isn't much of a stopcock. Then tell everyone in the house where it is.\n\nWhere's yours hiding?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
    "facebook": {
     "page": "bwd",
     "status": ""
@@ -933,7 +933,7 @@
     "status": "skipped"
    },
    "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt",
-   "style": "list"
+   "style": "light"
   },
   {
    "id": 73,
@@ -955,7 +955,7 @@
   },
   {
    "id": 51,
-   "slot": "2026-10-06 11:30",
+   "slot": "2026-10-07 11:30",
    "page": "cmg",
    "title": "Job photo — curved radiator, bay window",
    "image": "cmg-curved-radiator-bay-window-install-bolton-4x5.jpg",
@@ -975,7 +975,7 @@
   },
   {
    "id": 52,
-   "slot": "2026-10-07 11:30",
+   "slot": "2026-10-10 10:00",
    "page": "cmg",
    "title": "Job photo — service sticker",
    "image": "cmg-service-sticker-next-service-due-bolton-4x5.jpg",
@@ -995,7 +995,7 @@
   },
   {
    "id": 53,
-   "slot": "2026-10-08 11:30",
+   "slot": "2026-10-14 11:30",
    "page": "cmg",
    "title": "Job photo — expansion vessel",
    "image": "cmg-recharging-expansion-vessel-bolton-4x5.jpg",
@@ -1015,7 +1015,7 @@
   },
   {
    "id": 54,
-   "slot": "2026-10-09 11:30",
+   "slot": "2026-10-17 10:00",
    "page": "cmg",
    "title": "Job photo — drain with roots in it",
    "image": "cmg-drain-repair-excavation-root-damaged-drain-bolton-4x5.jpg",
@@ -1035,7 +1035,7 @@
   },
   {
    "id": 55,
-   "slot": "2026-10-10 11:30",
+   "slot": "2026-10-21 11:30",
    "page": "cmg",
    "title": "Job photo — Ideal combi service",
    "image": "cmg-ideal-combi-annual-service-bolton-4x5.jpg",
@@ -1055,7 +1055,7 @@
   },
   {
    "id": 56,
-   "slot": "2026-10-11 11:30",
+   "slot": "2026-10-24 10:00",
    "page": "cmg",
    "title": "Job photo — boiler data plate",
    "image": "cmg-boiler-data-plate-model-gc-number-bolton-4x5.jpg",
@@ -1075,7 +1075,7 @@
   },
   {
    "id": 57,
-   "slot": "2026-10-12 11:30",
+   "slot": "2026-10-28 11:30",
    "page": "cmg",
    "title": "Job photo — Greenstar Heatstore",
    "image": "cmg-greenstar-heatstore-service-repair-bolton-4x5.jpg",
@@ -1092,6 +1092,81 @@
     "status": ""
    },
    "style": "jobphoto"
+  },
+  {
+   "id": 58,
+   "slot": "2026-10-06 09:45",
+   "style": "photo",
+   "title": "CMG — photo: prem_frost.jpg",
+   "image": "prem_frost.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/prem_frost.jpg",
+   "caption": "Three jobs worth doing this week, before the first frost.\n\nDrain the outside tap and leave it open all winter — water that can't drain is water that can freeze, and the split happens inside the wall.\n\nLag the loft pipes, with the insulation under them rather than over. A well-insulated loft is a cold loft, and pipes above the insulation are the ones that burst.\n\nRun the heating for twenty minutes now and listen to it. A fault found in October is a normal appointment. The same fault in the first cold snap is a queue.\n\nWhich one's first on your list? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "facebook": {
+    "status": ""
+   },
+   "instagram": {
+    "status": ""
+   }
+  },
+  {
+   "id": 59,
+   "slot": "2026-10-08 10:00",
+   "style": "myth",
+   "title": "CMG — myth: w6_myth_hot_water_timer.jpg",
+   "image": "w6_myth_hot_water_timer.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w6_myth_hot_water_timer.jpg",
+   "caption": "Myth: \"leaving the hot water on all day is cheaper than heating it twice.\"\n\nIf you've got a hot water cylinder, it loses heat all day whether you use the water or not. A good jacket slows that down but doesn't stop it. So heating it continuously means paying to keep water hot at 2pm that nobody wants until 7.\n\nTwo shorter heating periods — morning and early evening — usually beats continuous, and most people never notice the difference at the tap.\n\nCombi? None of this applies. A combi only heats water as you draw it, so there's nothing to leave on.\n\nWhat's yours set to? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "facebook": {
+    "status": ""
+   },
+   "instagram": {
+    "status": ""
+   }
+  },
+  {
+   "id": 74,
+   "slot": "2026-10-09 11:30",
+   "style": "icon",
+   "title": "CMG — icon: w6_icon_cold_snap.jpg",
+   "image": "w6_icon_cold_snap.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w6_icon_cold_snap.jpg",
+   "caption": "What actually breaks in the first cold snap. Same three things, every year.\n\nOutside taps. The pipe splits inside the wall where nobody sees it, and the first anyone knows is a wet kitchen ceiling in the thaw.\n\nLoft pipes above the insulation. The loft used to get a bit of warmth from below. Insulate properly and it doesn't, so pipes that were fine for twenty years are suddenly in an unheated space.\n\nBoilers that have been off since March and get asked to work perfectly first go. Nothing else in the house gets left six months and then expected to be fine.\n\nAll three are preventable this week and a nuisance in December. 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "facebook": {
+    "status": ""
+   },
+   "instagram": {
+    "status": ""
+   }
+  },
+  {
+   "id": 75,
+   "slot": "2026-10-11 11:00",
+   "style": "myth",
+   "title": "CMG — myth: w4b_myth_bleeding.jpg",
+   "image": "w4b_myth_bleeding.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w4b_myth_bleeding.jpg",
+   "caption": "Sunday myth: radiators need bleeding every autumn.\n\nYou bleed a radiator when it's cold at the top and warm at the bottom. That's air, and the key lets it out. It's not a calendar job.\n\nThe bit worth knowing: a sealed system shouldn't be making air. If you're bleeding the same radiator twice a year, something is drawing it in, and that's worth finding rather than living with.\n\nGot one you bleed over and over? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "facebook": {
+    "status": ""
+   },
+   "instagram": {
+    "status": ""
+   }
+  },
+  {
+   "id": 76,
+   "slot": "2026-10-12 09:45",
+   "style": "steps",
+   "title": "CMG — steps: w5_loft_tank.jpg",
+   "image": "w5_loft_tank.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w5_loft_tank.jpg",
+   "caption": "Water trickling down the outside wall from a pipe high up? That's an overflow, and something inside has failed to stop filling.\n\nNine times out of ten it's a ball valve in a loft tank or a toilet cistern. The float should rise and shut the water off. When it doesn't, the overflow pipe does its job — takes it outside rather than through your ceiling.\n\nSo the overflow running isn't the fault. It's the safety device working.\n\nBut it won't fix itself, it wastes water day and night, and in a hard freeze that pipe can ice up and back the water into the loft instead.\n\nIf you can see one running, get it sorted while it's still just a nuisance. 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "facebook": {
+    "status": ""
+   },
+   "instagram": {
+    "status": ""
+   }
   }
  ],
  "reels": [
