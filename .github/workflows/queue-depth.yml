@@ -19,3 +19,5 @@ jobs:
           MIN_POSTS: '8'
           MIN_DAYS: '5'
         run: node tools/check-queue.js publisher/week.json
+      - name: Is the style rotation being kept?
+        run: node tools/check-style.js publisher/week.json
