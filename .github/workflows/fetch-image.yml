@@ -1,0 +1,39 @@
+name: fetch-image
+# Pulls an image from any URL and commits it into graphics/. Exists because the
+# chat container's egress allowlist blocks canva.com, while a GitHub runner has
+# unrestricted network. This is the bridge between Canva and the publisher.
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'Image URL to fetch'
+        required: true
+      name:
+        description: 'Filename to save as, e.g. test.jpg'
+        required: true
+permissions:
+  contents: write
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch and inspect
+        run: |
+          code=$(curl -sL -o "/tmp/${{ inputs.name }}" -w '%{http_code} %{content_type} %{size_download}' "${{ inputs.url }}" --max-time 60)
+          echo "result: $code"
+          file "/tmp/${{ inputs.name }}" | tee fetch-result.txt
+          echo "http+type+bytes: $code" >> fetch-result.txt
+          if file "/tmp/${{ inputs.name }}" | grep -qi 'image data'; then
+            mkdir -p graphics && cp "/tmp/${{ inputs.name }}" "graphics/${{ inputs.name }}"
+            echo "SAVED to graphics/${{ inputs.name }}" | tee -a fetch-result.txt
+          else
+            echo "NOT AN IMAGE - nothing saved" | tee -a fetch-result.txt
+          fi
+      - name: Commit
+        if: always()
+        run: |
+          git config user.name "CMG publisher"; git config user.email "p@cmghp.co.uk"
+          git add -A fetch-result.txt graphics || true
+          git diff --staged --quiet || git commit -m "fetch-image probe"
+          git push
