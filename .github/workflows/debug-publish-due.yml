@@ -1,0 +1,44 @@
+name: debug-publish-due
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  dbg:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Run publish-due and capture everything it says, redacted
+        working-directory: publisher
+        env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          BWD_PAGE_ID: ${{ secrets.BWD_PAGE_ID }}
+          BWD_PAGE_TOKEN: ${{ secrets.BWD_PAGE_TOKEN }}
+        run: |
+          : > .env
+          for k in FB_APP_ID FB_APP_SECRET FB_PAGE_ID FB_PAGE_TOKEN IG_TOKEN IG_USER_ID BWD_PAGE_ID BWD_PAGE_TOKEN; do
+            printf '%s=%s\n' "$k" "${!k}" >> .env
+          done
+          echo "lock present before run: $([ -f .publisher.lock ] && echo YES || echo no)" > /tmp/raw.log
+          set +e
+          node cmg-publisher.js publish-due >> /tmp/raw.log 2>&1
+          echo "exit=$?" >> /tmp/raw.log
+          set -e
+          sed -E 's/[A-Za-z0-9_-]{32,}/[REDACTED]/g' /tmp/raw.log > ../debug-publish-due.log
+          rm -f .env /tmp/raw.log
+          cat ../debug-publish-due.log
+      - name: Commit the log (and any state change)
+        if: always()
+        run: |
+          git config user.name "CMG publisher"; git config user.email "p@cmghp.co.uk"
+          git add -A debug-publish-due.log publisher/week.json publisher/publish-log.jsonl || true
+          git diff --staged --quiet || git commit -m "debug: publish-due output"
+          git push
