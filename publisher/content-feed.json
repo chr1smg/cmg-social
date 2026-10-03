@@ -1,0 +1,177 @@
+{
+  "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily.",
+  "posts": [
+    {
+      "id": 51,
+      "slot": "2026-10-07 11:30",
+      "page": "cmg",
+      "title": "Job photo — curved radiator, bay window",
+      "image": "cmg-curved-radiator-bay-window-install-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-curved-radiator-bay-window-install-bolton-4x5-1.jpg",
+      "caption": "A curved radiator, fitted to follow the bay.\n\nBay windows are the coldest wall in most Bolton front rooms, and the usual answer is a flat radiator stuck on the wall next to them doing half a job.\n\nA curved one goes where the cold actually comes in. Same heat, right place, and the room stops having a cold end.\n\nGot a bay with nothing under it? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 52,
+      "slot": "2026-10-10 10:00",
+      "page": "cmg",
+      "title": "Job photo — service sticker",
+      "image": "cmg-service-sticker-next-service-due-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-service-sticker-next-service-due-bolton-4x5-1.jpg",
+      "caption": "This sticker is the last thing I do on a service.\n\nDate, next due, my number. It goes on the boiler so nobody has to dig through a drawer for a certificate in twelve months' time.\n\nGo and look at yours now. If there's no sticker, no date, and you can't remember — that's your answer.\n\nWhen was yours last done? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 53,
+      "slot": "2026-10-14 11:30",
+      "page": "cmg",
+      "title": "Job photo — expansion vessel",
+      "image": "cmg-recharging-expansion-vessel-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-recharging-expansion-vessel-bolton-4x5-1.jpg",
+      "caption": "Boiler pressure keeps dropping, you keep topping it up, and there's no leak anywhere. Nine times out of ten it's this.\n\nThat's the expansion vessel. It's a cushion of air behind a rubber diaphragm, and the air slowly goes. When it's gone the pressure swings about and the safety valve dumps water outside.\n\nIt's a recharge, not a new boiler. Ten minutes with a pump and a gauge, and I check it on every service.\n\nTopping yours up more than once a month? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 54,
+      "slot": "2026-10-17 10:00",
+      "page": "cmg",
+      "title": "Job photo — drain with roots in it",
+      "image": "cmg-drain-repair-excavation-root-damaged-drain-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-drain-repair-excavation-root-damaged-drain-bolton-4x5-1.jpg",
+      "caption": "A drain dug out for repair. This one had tree roots in it.\n\nRoots find the joints in old clay pipework, get in, and grow. First it's a slow sink. Then it's a gully that fills up every time it rains. Then it's this.\n\nThe fix is to dig, cut the damaged run out, and put new pipe in with proper joints. Rodding it clears it for a month; it doesn't fix it.\n\nGully outside filling up in the rain? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 55,
+      "slot": "2026-10-21 11:30",
+      "page": "cmg",
+      "title": "Job photo — Ideal combi service",
+      "image": "cmg-ideal-combi-annual-service-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-ideal-combi-annual-service-bolton-4x5-1.jpg",
+      "caption": "Saturday job: an Ideal combi in for its annual service.\n\nThis is the time of year to have it done. The heating's about to go on properly, and a fault that's been sat there all summer shows up in the first cold week — when everybody else is ringing too.\n\nA service now is a quiet half hour. The same fault in November is a cold house and a wait.\n\nIs yours booked? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 56,
+      "slot": "2026-10-24 10:00",
+      "page": "cmg",
+      "title": "Job photo — boiler data plate",
+      "image": "cmg-boiler-data-plate-model-gc-number-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-boiler-data-plate-model-gc-number-bolton-4x5-1.jpg",
+      "caption": "Sunday tip: find this plate on your boiler and take a photo of it.\n\nIt's on the boiler somewhere — inside the front panel, behind a flap, or on the side. The GC number on it tells an engineer exactly what you've got, so when you ring with a fault I can turn up with the right part instead of coming out twice.\n\nThirty seconds now saves a second visit later.\n\nFound yours? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 57,
+      "slot": "2026-10-28 11:30",
+      "page": "cmg",
+      "title": "Job photo — Greenstar Heatstore",
+      "image": "cmg-greenstar-heatstore-service-repair-bolton-4x5.jpg",
+      "imageUrl": "https://cmghp.co.uk/wp-content/uploads/2026/09/cmg-greenstar-heatstore-service-repair-bolton-4x5-1.jpg",
+      "caption": "Not every boiler is a combi. This is a Worcester Greenstar Heatstore — a boiler with its own hot water store built in.\n\nThey're less common, and I've had people told \"we don't do those\" on the phone. They're a boiler like any other: Gas Safe engineer, manufacturer's instructions, the right parts.\n\nIf yours is a bit unusual, that's not a reason to put the service off.\n\nWhat have you got on the wall? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "facebook": {
+        "page": "cmg",
+        "status": ""
+      },
+      "instagram": {
+        "status": ""
+      },
+      "style": "jobphoto"
+    },
+    {
+      "id": 71,
+      "slot": "2026-10-01 18:00",
+      "page": "bwd",
+      "title": "BWD — bwd_bleed_radiator",
+      "image": "bwd_bleed_radiator.jpg",
+      "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+    },
+    {
+      "id": 66,
+      "slot": "2026-10-02 18:00",
+      "page": "bwd",
+      "title": "BWD — bwd_water_off",
+      "image": "bwd_water_off.jpg",
+      "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+    },
+    {
+      "id": 72,
+      "slot": "2026-10-03 09:00",
+      "page": "bwd",
+      "title": "BWD — the light one: stopcock",
+      "image": "bwd_light_stopcock.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_light_stopcock.jpg",
+      "style": "light",
+      "caption": "The stopcock is always behind the one cupboard you can't get to.\n\nUnder the sink behind the bleach. In the cellar behind the Christmas decorations. In one Bolton terrace, under a floorboard in the hall with a carpet over it, which the owner found out about during a leak.\n\nFind yours this week. Check it actually turns, because they seize over the years and a tap you can't shut off in a hurry isn't much of a stopcock. Then tell everyone in the house where it is.\n\nWhere's yours hiding?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962"
+    },
+    {
+      "id": 67,
+      "slot": "2026-10-04 09:00",
+      "page": "bwd",
+      "title": "BWD — photo-led: autumn walk round",
+      "image": "bwd_photo_walkround.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_walkround.jpg",
+      "style": "photo",
+      "caption": "Ten minutes outside this weekend, before the weather turns properly.\n\nGutters. Blocked ones spill straight down the wall every time it rains, and that wall doesn't get a chance to dry out all winter.\n\nThe gully by the back door. Leaves sat in it means water backing up across the yard in heavy rain.\n\nAirbricks. Clear of soil, leaves, shrubs and anything stacked against the wall. They feed air to the underfloor space and, in a lot of houses, to a gas appliance.\n\nAny overflow pipe. If one's dripping, something inside is filling past its stop point — and in a hard freeze that pipe can ice up and back the water into the loft.\n\nNone of it costs anything. All of it is cheaper than the thing it prevents.\n\nWhat's the state of your gutters?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962"
+    },
+    {
+      "id": 73,
+      "slot": "2026-10-05 18:00",
+      "page": "bwd",
+      "title": "BWD — bwd_water_meter",
+      "image": "bwd_water_meter.jpg",
+      "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+    },
+    {
+      "id": 68,
+      "page": "bwd",
+      "facebook": {
+        "page": "bwd",
+        "status": "published",
+        "note": "published 25 Sep 08:55 via Zapier"
+      }
+    }
+  ]
+}
