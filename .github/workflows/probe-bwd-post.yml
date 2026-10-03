@@ -18,7 +18,9 @@ jobs:
             echo "--- the page the token belongs to ---"
             curl -s "https://graph.facebook.com/v23.0/me?fields=id,name&access_token=$BWD_PAGE_TOKEN"; echo
             echo "--- the post ---"
-            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122112244473478623?fields=id,is_published,scheduled_publish_time,created_time,permalink_url,message&access_token=$BWD_PAGE_TOKEN" | cut -c1-600; echo
+            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122112244473478623?fields=id,is_published,is_hidden,timeline_visibility,status_type,is_expired,created_time,updated_time,privacy&access_token=$BWD_PAGE_TOKEN" ; echo
+            echo "--- the 22 Sep post that DID show, for comparison ---"
+            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122105595225478623?fields=id,is_published,is_hidden,timeline_visibility,status_type,created_time,privacy&access_token=$BWD_PAGE_TOKEN"; echo
             echo "--- what is in the page's scheduled queue ---"
             curl -s "https://graph.facebook.com/v23.0/$BWD_PAGE_ID/scheduled_posts?fields=id,scheduled_publish_time,message&access_token=$BWD_PAGE_TOKEN" | cut -c1-600; echo
             echo "--- last 3 published ---"
