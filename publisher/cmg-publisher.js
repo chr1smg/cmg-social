@@ -88,8 +88,11 @@ const BWD_PAGE_ID = '1350006984862633';
 // is fetched from here before each run. Rows already published or scheduled are
 // never touched. If the feed is unreachable the run carries on with whatever is
 // already in week.json, so a fetch failure can never stop a post going out.
+// The feed lives in this repo from 3 Oct 2026. It used to be a Google Drive JSON
+// (id 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9) which no connector could rewrite, so every
+// API edit to an open row in week.json was silently reverted on the next run.
 const CONTENT_URL = process.env.CONTENT_URL ||
-  'https://drive.google.com/uc?export=download&id=1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9';
+  'https://raw.githubusercontent.com/chr1smg/cmg-social/main/publisher/content-feed.json';
 
 // ---------- tiny .env ----------
 function readEnv() {
