@@ -9,7 +9,10 @@ const GRACE_MIN = Number(process.env.GRACE_MIN || 90);
 const week = JSON.parse(fs.readFileSync(process.argv[2] || 'publisher/week.json', 'utf8'));
 const cutoff = Date.now() - GRACE_MIN * 60000;
 
+const parked = (week.posts || []).filter(p => p.blocked);
+if (parked.length) { console.log(`${parked.length} row(s) PARKED on purpose (blocked):`); parked.forEach(p => console.log(`   post ${p.id}  ${p.slot}  ${p.blocked}`)); }
 const stuck = (week.posts || []).filter(p => {
+  if (p.blocked) return false; // parked by a session on purpose - not stuck
   const slot = new Date(String(p.slot || '').replace(' ', 'T'));
   if (isNaN(slot) || slot.getTime() > cutoff) return false;
   const fb = (p.facebook || {}).status || '';
