@@ -1,0 +1,31 @@
+name: probe-bwd-post
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask Meta what post 122112244473478623 actually is
+        env:
+          BWD_PAGE_ID: ${{ secrets.BWD_PAGE_ID }}
+          BWD_PAGE_TOKEN: ${{ secrets.BWD_PAGE_TOKEN }}
+        run: |
+          {
+            echo "configured BWD_PAGE_ID: $BWD_PAGE_ID"
+            echo "--- the page the token belongs to ---"
+            curl -s "https://graph.facebook.com/v23.0/me?fields=id,name&access_token=$BWD_PAGE_TOKEN"; echo
+            echo "--- the post ---"
+            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122112244473478623?fields=id,is_published,scheduled_publish_time,created_time,permalink_url,message&access_token=$BWD_PAGE_TOKEN" | cut -c1-600; echo
+            echo "--- what is in the page's scheduled queue ---"
+            curl -s "https://graph.facebook.com/v23.0/$BWD_PAGE_ID/scheduled_posts?fields=id,scheduled_publish_time,message&access_token=$BWD_PAGE_TOKEN" | cut -c1-600; echo
+            echo "--- last 3 published ---"
+            curl -s "https://graph.facebook.com/v23.0/$BWD_PAGE_ID/published_posts?fields=id,created_time,message&limit=3&access_token=$BWD_PAGE_TOKEN" | cut -c1-700; echo
+          } > /tmp/raw.txt 2>&1
+          sed -E 's/[A-Za-z0-9_-]{40,}/[REDACTED]/g' /tmp/raw.txt > probe-bwd.txt; cat probe-bwd.txt
+      - if: always()
+        run: |
+          git config user.name "CMG publisher"; git config user.email "p@cmghp.co.uk"
+          git add probe-bwd.txt && git commit -m "probe bwd post" && git push
