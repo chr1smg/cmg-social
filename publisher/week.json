@@ -841,7 +841,7 @@
       },
       "style": "photo",
       "note": "block cleared 3 Oct: row rebuilt to new style 2 Oct, 1 Oct block stale",
-      "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+      "blocked": ""
     },
     {
       "id": 68,
@@ -934,14 +934,18 @@
       "caption": "The stopcock is always behind the one cupboard you can't get to.\n\nUnder the sink behind the bleach. In the cellar behind the Christmas decorations. In one Bolton terrace, under a floorboard in the hall with a carpet over it, which the owner found out about during a leak.\n\nFind yours this week. Check it actually turns, because they seize over the years and a tap you can't shut off in a hurry isn't much of a stopcock. Then tell everyone in the house where it is.\n\nWhere's yours hiding?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "facebook": {
         "page": "bwd",
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122112244473478623",
+        "publishedAt": "3 Oct 2026, 09:18",
+        "feedConfirmed": false,
+        "why": "could not read the feed back: Graph API error 10: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details."
       },
       "instagram": {
         "status": "skipped"
       },
       "style": "light",
       "note": "block cleared 3 Oct: row rebuilt to new style 2 Oct, 1 Oct block stale",
-      "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+      "blocked": ""
     },
     {
       "id": 73,
