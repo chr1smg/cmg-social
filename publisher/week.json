@@ -840,7 +840,7 @@
     "status": "skipped"
    },
    "style": "photo",
-   "note": "block cleared 3 Oct: rebuilt to photo-led style 2 Oct"
+   "note": "block cleared 3 Oct: row rebuilt to new style 2 Oct, 1 Oct block stale"
   },
   {
    "id": 68,
@@ -939,8 +939,7 @@
     "status": "skipped"
    },
    "style": "light",
-   "note": "block cleared 3 Oct: row was rebuilt to the new light style on 2 Oct, the 1 Oct block was stale",
-   "blocked": "old template withdrawn 1 Oct 2026 - not to go out until the design is rebuilt"
+   "note": "block cleared 3 Oct: row rebuilt to new style 2 Oct, 1 Oct block stale"
   },
   {
    "id": 73,
