@@ -683,7 +683,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DeEw7cploex/",
+        "publishedAt": "4 Oct 2026, 14:41"
       },
       "style": "myth"
     },
@@ -838,7 +840,11 @@
       "caption": "Ten minutes outside this weekend, before the weather turns properly.\n\nGutters. Blocked ones spill straight down the wall every time it rains, and that wall doesn't get a chance to dry out all winter.\n\nThe gully by the back door. Leaves sat in it means water backing up across the yard in heavy rain.\n\nAirbricks. Clear of soil, leaves, shrubs and anything stacked against the wall. They feed air to the underfloor space and, in a lot of houses, to a gas appliance.\n\nAny overflow pipe. If one's dripping, something inside is filling past its stop point — and in a hard freeze that pipe can ice up and back the water into the loft.\n\nNone of it costs anything. All of it is cheaper than the thing it prevents.\n\nWhat's the state of your gutters?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "facebook": {
         "page": "bwd",
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122112797595478623",
+        "publishedAt": "4 Oct 2026, 14:41",
+        "feedConfirmed": false,
+        "why": "could not read the feed back: Graph API error 10: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details."
       },
       "instagram": {
         "status": "skipped"
