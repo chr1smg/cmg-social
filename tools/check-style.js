@@ -10,7 +10,7 @@ const week = JSON.parse(fs.readFileSync(process.argv[2] || 'publisher/week.json'
 const now = Date.now();
 const rows = (week.posts || [])
   .map(p => ({ id: p.id, slot: new Date(String(p.slot||'').replace(' ','T')), style: p.style,
-               page: (p.facebook||{}).page || 'cmg', done: ((p.facebook||{}).status==='published') }))
+               page: p.page || (p.facebook||{}).page || 'cmg', done: ((p.facebook||{}).status==='published') }))
   .filter(r => !isNaN(r.slot) && r.slot.getTime() > now)
   .sort((a,b) => a.slot - b.slot);
 

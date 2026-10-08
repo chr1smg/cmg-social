@@ -2,7 +2,7 @@ name: publish
 
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '4,19,34,49 * * * *'   # off the quarter-hour: GitHub drops/delays schedules firing on :00/:15/:30/:45 (runs were 3-7h apart 1-8 Oct)
   workflow_dispatch:
 
 permissions:
