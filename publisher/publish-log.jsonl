@@ -142,3 +142,5 @@
 {"at":"2026-10-07T16:46:43.898Z","cmd":"confirm-published","post":51,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1098808159565293&set=a.448112374634878&type=3"}
 {"at":"2026-10-08T15:30:33.899Z","cmd":"publish-due","post":59,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DePQnh3m62n/"}
 {"at":"2026-10-08T15:30:34.465Z","cmd":"confirm-published","post":59,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1099087402870702&set=a.448112374634878&type=3"}
+{"at":"2026-10-09T14:29:23.483Z","cmd":"publish-due","post":74,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DeRuaUeG9Pz/"}
+{"at":"2026-10-09T14:29:24.470Z","cmd":"confirm-published","post":74,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1099087456204030&set=a.448112374634878&type=3"}
