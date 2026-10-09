@@ -542,6 +542,11 @@ async function verifyScheduled(pg, apiId, slotS, caption) {
 async function cmdScheduleWeek() {
   const c = cfg();
   if (!c.pageId || !c.pageToken) throw new Error('Facebook not set up — run setup first.');
+  // Pull the content feed BEFORE scheduling, not only in publish-due. Until 9 Oct
+  // 2026 the sync ran only in publish-due (step 9), so rows added to the feed were
+  // written into week.json AFTER schedule-week (step 7) had already run, and did
+  // not reach Meta until the following run - hours later under GitHub's starved cron.
+  console.log(await syncContent());
   const week = loadWeek();
   if (week.approved !== true) {
     console.log('week.json is NOT approved — nothing will be scheduled.');
