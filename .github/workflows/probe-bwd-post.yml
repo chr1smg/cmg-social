@@ -1,6 +1,11 @@
 name: probe-bwd-post
 on:
   workflow_dispatch:
+    inputs:
+      post_id:
+        description: 'BWD post id to read back'
+        required: false
+        default: '122112244473478623'
 permissions:
   contents: write
 jobs:
@@ -8,17 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Ask Meta what post 122112244473478623 actually is
+      - name: Ask Meta what the post actually is
         env:
           BWD_PAGE_ID: ${{ secrets.BWD_PAGE_ID }}
           BWD_PAGE_TOKEN: ${{ secrets.BWD_PAGE_TOKEN }}
+          POST_ID: ${{ inputs.post_id }}
         run: |
           {
             echo "configured BWD_PAGE_ID: $BWD_PAGE_ID"
             echo "--- the page the token belongs to ---"
             curl -s "https://graph.facebook.com/v23.0/me?fields=id,name&access_token=$BWD_PAGE_TOKEN"; echo
             echo "--- the post ---"
-            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122112244473478623?fields=id,is_published,is_hidden,timeline_visibility,status_type,is_expired,created_time,updated_time,privacy&access_token=$BWD_PAGE_TOKEN" ; echo
+            curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_${POST_ID}?fields=id,is_published,is_hidden,timeline_visibility,status_type,is_expired,created_time,updated_time,privacy&access_token=$BWD_PAGE_TOKEN" ; echo
             echo "--- the 22 Sep post that DID show, for comparison ---"
             curl -s "https://graph.facebook.com/v23.0/${BWD_PAGE_ID}_122105595225478623?fields=id,is_published,is_hidden,timeline_visibility,status_type,created_time,privacy&access_token=$BWD_PAGE_TOKEN"; echo
             echo "--- what is in the page's scheduled queue ---"
