@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py.",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78).",
  "posts": [
   {
    "id": 51,
@@ -177,7 +177,7 @@
   },
   {
    "id": 77,
-   "slot": "2026-10-08 18:00",
+   "slot": "2026-10-29 18:00",
    "page": "bwd",
    "title": "BWD — big number: one degree",
    "image": "bwd_big_one_degree.jpg",
