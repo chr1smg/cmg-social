@@ -2,12 +2,12 @@ configured BWD_PAGE_ID: 61594358698789
 --- the page the token belongs to ---
 {"id":"1350006984862633","name":"Bolton Warm & Dry"}
 --- the post ---
-{"id":"1350006984862633_122112244473478623","is_published":true,"is_hidden":false,"timeline_visibility":"normal","status_type":"added_photos","is_expired":false,"created_time":"2026-10-03T08:18:50+0000","updated_time":"2026-10-03T08:18:50+0000","privacy":{"allow":"","deny":"","description":"Public","friends":"","value":"EVERYONE"}}
+{"id":"1350006984862633_122114990883478623","is_published":true,"is_hidden":false,"timeline_visibility":"normal","status_type":"added_photos","is_expired":false,"created_time":"2026-10-09T17:17:33+0000","updated_time":"2026-10-09T17:17:33+0000","privacy":{"allow":"","deny":"","description":"Public","friends":"","value":"EVERYONE"}}
 --- the 22 Sep post that DID show, for comparison ---
 {"id":"1350006984862633_122105595225478623","is_published":false,"is_hidden":true,"timeline_visibility":"no timeline unit for this post","status_type":"added_photos","created_time":"2026-09-22T18:02:29+0000","privacy":{"allow":"","deny":"","description":"Public","friends":"","value":"EVERYONE"}}
 --- what is in the page's scheduled queue ---
-{"error":{"message":"(#100) Tried accessing nonexisting field (scheduled_posts)","type":"OAuthException","code":100,"fbtrace_id":"Ay6EMi-om24uUHgelcV0Qy7"}}
+{"error":{"message":"(#100) Tried accessing nonexisting field (scheduled_posts)","type":"OAuthException","code":100,"fbtrace_id":"ABpX1vXI69y-fATIS8M4xO8"}}
 
 --- last 3 published ---
-{"error":{"message":"(#100) Tried accessing nonexisting field (published_posts)","type":"OAuthException","code":100,"fbtrace_id":"ALjYej7TGatGyl-AhmdMKcm"}}
+{"error":{"message":"(#100) Tried accessing nonexisting field (published_posts)","type":"OAuthException","code":100,"fbtrace_id":"AIyiffUctZMGRmNgEAykkzY"}}
 
