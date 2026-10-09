@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78).",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py.",
  "posts": [
   {
    "id": 51,
@@ -371,6 +371,116 @@
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_four_smells.jpg",
    "style": "list",
    "caption": "Four smells in a house and what they mean.\n\nRotten eggs: that's gas. It's made to smell like that so you notice. Windows open, don't touch a switch, get out, ring 0800 111 999 from outside. Free, 24 hours.\n\nBurning dust, the first time the heating goes on: normal. It's a summer's worth of dust cooking off the radiators. Gone in an hour.\n\nMusty and damp in one room: condensation or a leak. Worth finding out which before anyone paints over it.\n\nDrains, near a sink or shower that's hardly used: the trap under it has dried out and the smell's coming up the pipe. Run the tap for a minute. Sorted.\n\nAnd a reminder: the clocks went back this morning. Did the heating timer?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+   "blocked": ""
+  },
+  {
+   "id": 95,
+   "slot": "2026-10-13 09:45",
+   "title": "CMG — photo: condensate trap",
+   "image": "w7_prem_condensate.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_prem_condensate.jpg",
+   "style": "photo",
+   "caption": "This came out of a boiler on a Bolton job. It's condensate, and every condensing boiler makes it, a few litres a day, slightly acidic.\n\nIt collects in a trap like this one and drains away down a plastic pipe, often the white one you can see on the outside wall. When that outside pipe freezes in January the boiler can't drain, and it shuts itself down. Cue the coldest morning of the year with no heating.\n\nThe fix is dull and cheap: lag the outside run now, while it's dry and you can feel your fingers. If the pipe is long, thin or drips, that's worth sorting properly before the cold.\n\nCan you see yours from the back door?",
+   "blocked": ""
+  },
+  {
+   "id": 96,
+   "slot": "2026-10-15 09:45",
+   "title": "CMG — steps: combi or system",
+   "image": "w7_combi_or_system.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_combi_or_system.jpg",
+   "style": "steps",
+   "caption": "\"Is it a combi?\" is the first thing you'll get asked when you ring about a heating fault, and a surprising number of people have to go and look. Four ways to tell:\n\n1. A hot water cylinder in the airing cupboard means it isn't a combi. Combis heat water on demand and store nothing.\n\n2. Tanks in the loft point to an older regular (open vented) system. A cylinder but no loft tanks is usually a system boiler.\n\n3. Turn a hot tap on and listen. If the boiler fires up, it's a combi.\n\n4. Count the pipes underneath. Five is the classic combi, three or four for the others.\n\nWhy it matters: the fault, the fix and the cost all change with the type. Knowing yours saves the first five minutes of every call.\n\nWhich one have you got?",
+   "blocked": ""
+  },
+  {
+   "id": 97,
+   "slot": "2026-10-16 10:00",
+   "title": "CMG — myth: new boiler halves the bill",
+   "image": "w7_myth_new_boiler_bills.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_myth_new_boiler_bills.jpg",
+   "style": "myth",
+   "caption": "Myth: a new boiler halves your gas bill.\n\nIt depends entirely on what you're replacing.\n\nAn old non-condensing boiler, the sort from before 2005 with no white plastic pipe outside, wastes a good chunk of its heat up the flue. Replacing that with a modern condensing boiler is a real, noticeable saving.\n\nA ten-year-old condensing boiler replaced with a new condensing boiler? The efficiency is close. You'd be buying reliability and parts availability, not a dramatically smaller bill.\n\nWhere the money usually is on an existing system: proper controls, a thermostat set a degree lower, insulation, and a system that's been balanced and cleaned so the boiler isn't fighting it.\n\nHonest answer before you spend: ask what you've got now and what the realistic difference is. We'll tell you if it isn't worth it.",
+   "blocked": ""
+  },
+  {
+   "id": 98,
+   "slot": "2026-10-18 10:00",
+   "title": "CMG — icon: gas emergency control",
+   "image": "w7_icon_gas_ecv.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_icon_gas_ecv.jpg",
+   "style": "icon",
+   "caption": "One switch everyone in the house should be able to find in the dark: the gas emergency control valve.\n\nIt's a yellow or brass lever on the pipe next to the gas meter. Meter box on the outside wall, a cupboard, under the stairs, sometimes a cellar. Lever across the pipe is off, in line with the pipe is on. A quarter turn.\n\nIf you ever smell gas: turn it off, open the windows, don't touch any switches, get outside and ring the National Gas Emergency line on 0800 111 999. Free, 24 hours.\n\nGo and find yours now, while it's a two-minute thing and not an emergency. Then show whoever else lives there.\n\nWhere's yours hiding?",
+   "blocked": ""
+  },
+  {
+   "id": 99,
+   "slot": "2026-10-19 10:00",
+   "title": "CMG — photo: the data plate",
+   "image": "w7_prem_data_plate.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_prem_data_plate.jpg",
+   "style": "photo",
+   "caption": "Every boiler has a label like this, usually behind the drop-down flap or inside the front panel. It carries the make, the exact model and the GC number.\n\nThat label is the difference between \"it's a white Worcester\" and the engineer turning up with the right part in the van. With a model and GC number, a fault can be narrowed down over the phone and parts ordered before anyone's been out.\n\nTwo minutes: find it, photograph it, keep it on your phone with the fault code list from the manual.\n\nIf it's faded, worn or missing, the model is sometimes on the inside of the case too.\n\nGot yours?",
+   "blocked": ""
+  },
+  {
+   "id": 100,
+   "slot": "2026-10-20 09:45",
+   "title": "CMG — steps: dripping tap",
+   "image": "w7_dripping_tap.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_dripping_tap.jpg",
+   "style": "steps",
+   "caption": "A dripping tap is the job people put off for a year and then apologise for ringing about. Don't. Four checks first:\n\n1. Which tap, and where's the drip coming from? From the spout with the tap off is one part. From under the handle while it's running is another.\n\n2. Old-style two-handle taps dripping from the spout are nearly always a washer. Cheap, quick.\n\n3. A single-lever mixer is usually the cartridge inside. Make and model matter, so a photo of the tap helps.\n\n4. Look under the sink for a small isolation valve on each pipe. If there isn't one, the water for the whole house comes off at the stopcock while it's done.\n\nWhere to stop and ring: if the tap's seized, the isolator won't shut, or it's a boiling or filtered tap with its own gubbins underneath.\n\nHow long has yours been dripping? Be honest.",
+   "blocked": ""
+  },
+  {
+   "id": 101,
+   "slot": "2026-10-22 09:45",
+   "title": "CMG — myth: heat pumps and the cold",
+   "image": "w7_myth_heat_pump_cold.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_myth_heat_pump_cold.jpg",
+   "style": "myth",
+   "caption": "Myth: heat pumps don't work when it's cold.\n\nThey're built for exactly that. Most air source heat pumps are rated to keep going well below minus 15, and they're the normal way to heat a house in Norway and Sweden, where winter means it. A Bolton January is mild next to that.\n\nWhat actually decides whether one works well in your house isn't the weather, it's the house. A heat pump runs the radiators cooler for longer, so the radiators need to be sized for that, and the insulation needs to be reasonable. That's what the survey is for, and it's why a good installer will sometimes say \"not yet, do the insulation first\".\n\nThinking about one? Ask us what your house would need before anyone quotes a number.",
+   "blocked": ""
+  },
+  {
+   "id": 102,
+   "slot": "2026-10-23 10:00",
+   "title": "CMG — icon: stuck TRV pin",
+   "image": "w7_icon_trv_pin.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_icon_trv_pin.jpg",
+   "style": "icon",
+   "caption": "One radiator stone cold while the rest are fine, the first week the heating's on? Nine times out of ten it's the pin.\n\nThermostatic radiator valves (the ones with numbers) sit closed all summer, and the small pin under the plastic head sticks down. The head says 5, the valve says shut.\n\nUnscrew the plastic head by hand, no tools. Underneath there's a pin about 3 mm proud that should spring back when you press it. If it's sunk and stuck, tap it gently, or ease it up a touch with pliers. Put the head back on. Don't pull the pin out, it'll weep.\n\nIf it won't move at all, or the valve starts dripping, stop there. That's a valve replacement, a quick job for us.\n\nWhich room is the cold one in your house?",
+   "blocked": ""
+  },
+  {
+   "id": 103,
+   "slot": "2026-10-25 10:00",
+   "title": "CMG — photo: expansion vessel",
+   "image": "w7_prem_expansion_vessel.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_prem_expansion_vessel.jpg",
+   "style": "photo",
+   "caption": "Boiler pressure keeps dropping every few weeks, you top it up, nothing's wet anywhere, and it does it again. Very often it's this.\n\nThe red thing is the expansion vessel. It's a rubber diaphragm with air on one side that takes up the expansion as the water heats. When the air charge leaks away over the years, there's nowhere for the expansion to go, so the pressure shoots up when the heating's on, the relief valve dumps a bit out of the pipe outside, and then it reads low when everything cools down.\n\nThe fix is recharging it with a pump, like a tyre, and it's a ten-minute job. Occasionally the vessel itself has failed and needs replacing. Neither one is a new boiler.\n\nIf you've been topping up more than once a month, that's worth a look.",
+   "blocked": ""
+  },
+  {
+   "id": 104,
+   "slot": "2026-10-26 10:00",
+   "title": "CMG — steps: toilet running",
+   "image": "w7_toilet_running.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_toilet_running.jpg",
+   "style": "steps",
+   "caption": "A toilet that never quite stops running is one of the quietest ways to waste water, and on a meter it's money every single day. Four checks:\n\n1. Lid off. Water trickling over the top of the overflow tube in the middle means the fill valve isn't shutting off. Common, cheap.\n\n2. Level looks right but water's still trickling into the pan? The flush valve seal at the bottom isn't seating. Usually a worn washer or a bit of debris.\n\n3. Press the button and let go. If it sticks, the button or its cable is holding the valve open.\n\n4. There's usually a small isolator on the pipe feeding the cistern. Turn it off to stop the waste while you decide what to do.\n\nWhere to stop: isolator won't turn, or the cistern's hidden in a wall or furniture. That's a job for us rather than a Sunday afternoon.\n\nClocks went back last night, by the way. Check the heating timer.",
+   "blocked": ""
+  },
+  {
+   "id": 105,
+   "slot": "2026-10-27 09:45",
+   "title": "CMG — myth: the pilot light",
+   "image": "w7_myth_pilot_light.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_myth_pilot_light.jpg",
+   "style": "myth",
+   "caption": "Myth: the boiler's stopped, so the pilot light must have gone out.\n\nAny boiler fitted in the last twenty years doesn't have one. It sparks to light the burner each time it fires, which is why you hear a click and a whoomph. There's nothing to relight.\n\nIf your boiler does have a little flame burning away behind a window all day, that's a permanent pilot, and it means the appliance is old. It burns gas 24 hours a day, 365 days a year, heating nothing, which is one reason very old boilers cost more to run than people think.\n\nSo if a modern boiler won't fire: check the pressure gauge, check the fault code on the display, and check the gas is on (has anyone been working in the house?). Then ring.\n\nAnyone still got a pilot light? We'd like to see it.",
    "blocked": ""
   }
  ]
