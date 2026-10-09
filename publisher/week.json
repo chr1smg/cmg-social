@@ -1231,6 +1231,212 @@
       "instagram": {
         "status": ""
       }
+    },
+    {
+      "id": 77,
+      "slot": "2026-10-29 18:00",
+      "page": "bwd",
+      "title": "BWD — big number: one degree",
+      "image": "bwd_big_one_degree.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_big_one_degree.jpg",
+      "style": "bignum",
+      "caption": "One degree.\n\nThat's it. That's the post.\n\nThe Energy Saving Trust have been saying it for years: turn the thermostat down by a single degree and you take roughly a tenth off the heating part of the bill. No kit, no engineer, no app.\n\nMost living rooms in Bolton sit at 20 or 21. Try 19 for a week. Jumpers are cheaper than gas.\n\nWhat's yours set to? Be honest.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 78,
+      "slot": "2026-10-09 18:00",
+      "page": "bwd",
+      "title": "BWD — photo: sludge on the magnet",
+      "image": "bwd_photo_sludge.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_sludge.jpg",
+      "style": "photo",
+      "caption": "This came off a magnetic filter on a Bolton job. It's not mud. It's the inside of a heating system.\n\nRadiators are steel, water has oxygen in it, and over the years the two make black iron oxide. It sinks to the bottom of radiators, which is why so many are hot at the top and cold at the bottom, and it grinds through pumps and boilers well before their time.\n\nA magnetic filter on the pipework catches it before it reaches the boiler. If you've had a new boiler in the last few years there's probably one fitted. If you haven't, it's worth asking about.\n\nGot a radiator that's cold at the bottom? That's this.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": "",
+      "instagram": {},
+      "facebook": {
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122114990883478623",
+        "publishedAt": "9 Oct 2026, 18:17",
+        "feedConfirmed": false,
+        "why": "could not read the feed back: Graph API error 10: (#10) This endpoint requires the 'pages_read_engagement' permission or the 'Page Public Content Access' feature. Refer to https://developers.facebook.com/docs/apps/review/login-permissions#manage-pages and https://developers.facebook.com/docs/apps/review/feature#reference-PAGES_ACCESS for details."
+      }
+    },
+    {
+      "id": 79,
+      "slot": "2026-10-10 09:00",
+      "page": "bwd",
+      "title": "BWD — myth: turn the spare rooms off",
+      "image": "bwd_myth_rooms_off.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_myth_rooms_off.jpg",
+      "style": "myth",
+      "caption": "Myth: turn the radiators off in the rooms you don't use and you'll save a fortune.\n\nHalf right, which is the dangerous kind of right.\n\nTurn them down, don't turn them off. A room that sits stone cold all winter is where condensation lands and mould starts, usually in the corner behind the wardrobe where nobody looks until spring. And the warm rooms next door are losing heat through the wall into it anyway.\n\nSpare room: valve on 1 or 2, door shut. It costs very little to keep a room just above cold, and a lot to repaint it.\n\nAnyone got the classic black corner? You're not alone.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 80,
+      "slot": "2026-10-11 09:00",
+      "page": "bwd",
+      "title": "BWD — list: four quiet costs",
+      "image": "bwd_list_quiet_costs.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_quiet_costs.jpg",
+      "style": "list",
+      "caption": "Four things in a house that quietly cost money and look like nothing.\n\n1. The overflow pipe dripping outside. If it's dripping, something inside is filling past its stop point, and you pay for every drop.\n\n2. The immersion heater switch, left on since the boiler broke that one time in 2023. Electricity is the expensive way to heat a tank.\n\n3. The towel rail that's been on all summer. Worth finding out what it's wired to.\n\n4. Running the hot tap while you brush your teeth. The boiler fires up every single time.\n\nTen minutes on a Sunday. Which one's yours?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 81,
+      "slot": "2026-10-12 18:00",
+      "page": "bwd",
+      "title": "BWD — photo: how old is your boiler",
+      "image": "bwd_photo_old_combi.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_old_combi.jpg",
+      "style": "photo",
+      "caption": "A boiler in a Bolton garage, early 2000s, still going.\n\nOld isn't the same as bad. Plenty of boilers from that era are still doing a job and will do for a while yet. The three questions that matter:\n\nWhen was it last serviced? Not looked at. Serviced.\nAre parts still made for it? Some older models are getting hard to keep going.\nDoes it keep up on a cold morning, or is everyone in coats until ten?\n\nAn old boiler isn't a problem. A forgotten one is.\n\nSo go on, what year is yours? There's always someone with a 1998 that's never missed a day.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 82,
+      "slot": "2026-10-13 18:00",
+      "page": "bwd",
+      "title": "BWD — list: who to ring for what",
+      "image": "bwd_list_who_to_ring.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_who_to_ring.jpg",
+      "style": "list",
+      "caption": "Who to ring for what. Save it now, it's no use at 11pm with the phone at 4%.\n\nSmell of gas: National Gas Emergency, 0800 111 999. Free, 24 hours. Open the windows, don't touch any switches, get outside and ring from there.\n\nPower cut: 105. One number, goes to your local network operator wherever you are in the country.\n\nWater gushing out of the road or pavement: United Utilities, through the leak line on their website.\n\nNo heating, no hot water, boiler showing a code: a Gas Safe registered engineer. Anyone touching gas should have the card, and you're allowed to ask to see it.\n\nScreenshot this one. Share it with the one person in the family who'd ring you instead.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 83,
+      "slot": "2026-10-14 18:00",
+      "page": "bwd",
+      "title": "BWD — the light one: the lukewarm radiator",
+      "image": "bwd_light_radiator.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_light_radiator.jpg",
+      "style": "light",
+      "caption": "Every house in Bolton has one radiator that's been lukewarm since 2009 and a family agreement never to mention it.\n\nCold at the top: that's air. Bleed it, two minutes, done.\nCold at the bottom: that's sludge, and bleeding it does nothing.\nCold all over while the others are fine: that's balancing, or a stuck valve.\n\nWhich one's yours, and how long has the agreement been in place?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 84,
+      "slot": "2026-10-15 18:00",
+      "page": "bwd",
+      "title": "BWD — big number: sixty",
+      "image": "bwd_big_sixty.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_big_sixty.jpg",
+      "style": "bignum",
+      "caption": "Sixty.\n\nIf there's a hot water cylinder in the airing cupboard, the tank itself should be kept at 60°C. Cooler than that and legionella bacteria can grow in stored water. Hotter and you're paying to heat water you'll only mix back down at the tap.\n\nCombi boiler, no tank? This one's not for you. Combis heat water as it's used and don't store it.\n\nIf the cylinder stat is set lower to \"save money\" it's the wrong place to save it. Turn the thermostat on the wall down instead.\n\nCylinder or combi? Most people have to go and look.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 85,
+      "slot": "2026-10-16 18:00",
+      "page": "bwd",
+      "title": "BWD — photo: the curved radiator",
+      "image": "bwd_photo_curved.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_curved.jpg",
+      "style": "photo",
+      "caption": "A bay window in Bolton. The radiator follows the curve.\n\nNearly every bay in town has a straight radiator stuck across it, either standing out into the room or leaving a cold gap behind. Curved ones exist. They're made to the sweep of the wall, they heat the coldest part of the room properly, and you get the floor space back.\n\nNot a cheap radiator, but a lot cheaper than people assume, and it's the kind of thing you only find out about by seeing one.\n\nWho's got the straight one across the bay?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 86,
+      "slot": "2026-10-17 09:00",
+      "page": "bwd",
+      "title": "BWD — myth: cold radiators mean a new boiler",
+      "image": "bwd_myth_new_boiler_cold_rads.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_myth_new_boiler_cold_rads.jpg",
+      "style": "myth",
+      "caption": "Myth: cold radiators mean you need a new boiler.\n\nUsually not.\n\nRadiators cold at the bottom are sludge. Cold at the top is air. One radiator roasting and the one at the end of the house stone cold is balancing. None of those are the boiler, and a brand new boiler bolted onto a dirty, unbalanced system gets exactly the same cold radiators, plus a shorter life, because it's pumping the same muck round.\n\nSort the system first. Then decide about the boiler, with the right information.\n\nHas anyone been told \"new boiler\" when it turned out to be something smaller?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 87,
+      "slot": "2026-10-18 09:00",
+      "page": "bwd",
+      "title": "BWD — list: half term checklist",
+      "image": "bwd_list_half_term.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_half_term.jpg",
+      "style": "list",
+      "caption": "Going away for half term? Four things before you lock up.\n\n1. Leave the heating on low, 12 to 15 degrees, or on the frost setting if the controls have one. An empty, cold house is exactly where pipes freeze.\n\n2. Know where the stopcock is, and tell whoever's keeping an eye on the place. A leak with nobody home is a very different leak.\n\n3. Don't turn the water off at the stopcock if the heating's staying on. The boiler needs it.\n\n4. In a proper cold snap, leave the loft hatch open a crack so some warmth gets to the tank and pipes up there.\n\nBolton schools break up on the 23rd. Where's everyone off to?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 88,
+      "slot": "2026-10-19 18:00",
+      "page": "bwd",
+      "title": "BWD — photo: the fault code flap",
+      "image": "bwd_photo_fault_code.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_fault_code.jpg",
+      "style": "photo",
+      "caption": "Open the flap on the front of the boiler. On a lot of them, the fault codes are printed right there.\n\nThe number flashing on the screen isn't random. It says whether the boiler's seeing low pressure, no gas, a blocked condensate pipe, a flame fault or a part that's given up. Some of those you can sort yourself in two minutes. Some you shouldn't touch.\n\nEither way: read the code, write it down, and tell whoever you ring. It saves the first ten minutes of every call and sometimes saves the call.\n\nWhat code is yours showing? Stick it in the comments and we'll tell you what it means.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 89,
+      "slot": "2026-10-20 18:00",
+      "page": "bwd",
+      "title": "BWD — list: four things to stop doing",
+      "image": "bwd_list_stop_doing.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_stop_doing.jpg",
+      "style": "list",
+      "caption": "Four things every heating engineer wishes you'd stop doing. Said with love.\n\n1. Drying washing on the boiler. It needs air, and a wet jumper over the case isn't air.\n\n2. Boxing the boiler in with a nice cupboard and no way to get at it. Somebody has to service it, and it's a lot less nice after the cupboard comes off.\n\n3. Painting over the vent or the airbrick because it was ugly. It's ugly on purpose. It's feeding a flame.\n\n4. Turning the thermostat to 30 to warm the room up faster. It doesn't warm up faster. It just doesn't stop.\n\nGuilty of one? Everybody is. Which one?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 90,
+      "slot": "2026-10-21 18:00",
+      "page": "bwd",
+      "title": "BWD — the light one: the immersion switch",
+      "image": "bwd_light_immersion.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_light_immersion.jpg",
+      "style": "light",
+      "caption": "The immersion heater switch. The most expensive switch in the house, and nobody can remember turning it on.\n\nIt's in the airing cupboard, usually a small plate with a neon light, and it heats the hot water tank with electricity. Brilliant when the boiler's broken. Ruinous when it's been on since the boiler was fixed.\n\nGo and look. If the light's on and you don't know why, that's why the bill is.\n\nWho's just found theirs on?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 91,
+      "slot": "2026-10-22 18:00",
+      "page": "bwd",
+      "title": "BWD — big number: the 25th",
+      "image": "bwd_big_25th.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_big_25th.jpg",
+      "style": "bignum",
+      "caption": "Sunday the 25th. Clocks go back an hour.\n\nYour phone sorts itself. Most heating timers don't. If the heating's set to come on at six for seven o'clock alarms, from Monday it's coming on at five, warming an empty landing for an hour a day until somebody notices in December.\n\nThirty seconds on the controls, Sunday morning, before the kettle.\n\nWhile you're there: anyone still got a timer with the little pins you push in?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 92,
+      "slot": "2026-10-23 18:00",
+      "page": "bwd",
+      "title": "BWD — photo: boiler in the loft",
+      "image": "bwd_photo_loft_boiler.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_photo_loft_boiler.jpg",
+      "style": "photo",
+      "caption": "Yes, a boiler can live in the loft. This one does, in Bolton, and it's a tidy job.\n\nIt frees up a kitchen cupboard and keeps the noise out of the way. The catch is the cold. A loft is the coldest room in the house, so a boiler up there needs a frost thermostat, lagged pipework, and a condensate pipe routed so it won't freeze in January.\n\nThe other catch: out of sight, out of mind. It still needs servicing every year and somebody has to go up the ladder.\n\nWhere's yours? Kitchen, garage, airing cupboard, loft, or the one under the stairs nobody can reach?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 93,
+      "slot": "2026-10-24 09:00",
+      "page": "bwd",
+      "title": "BWD — myth: the electric heater",
+      "image": "bwd_myth_electric_heater.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_myth_electric_heater.jpg",
+      "style": "myth",
+      "caption": "Myth: a plug-in electric heater is cheaper than putting the gas heating on.\n\nPer unit of heat, electricity costs around four times what gas does. So heating one small room for an hour with a fan heater while the rest of the house stays cold can make sense. Heating the house with three of them every evening does not, and the meter will tell you so in a month.\n\nIf the gas heating is on but one room never warms up, that's a system problem worth fixing, not a reason to buy a heater.\n\nWho's got one under the desk right now?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
+    },
+    {
+      "id": 94,
+      "slot": "2026-10-25 09:00",
+      "page": "bwd",
+      "title": "BWD — list: four smells",
+      "image": "bwd_list_four_smells.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/bwd_list_four_smells.jpg",
+      "style": "list",
+      "caption": "Four smells in a house and what they mean.\n\nRotten eggs: that's gas. It's made to smell like that so you notice. Windows open, don't touch a switch, get out, ring 0800 111 999 from outside. Free, 24 hours.\n\nBurning dust, the first time the heating goes on: normal. It's a summer's worth of dust cooking off the radiators. Gone in an hour.\n\nMusty and damp in one room: condensation or a leak. Worth finding out which before anyone paints over it.\n\nDrains, near a sink or shower that's hardly used: the trap under it has dried out and the smell's coming up the pipe. Run the tap for a minute. Sorted.\n\nAnd a reminder: the clocks went back this morning. Did the heating timer?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
+      "blocked": ""
     }
   ],
   "reels": [
