@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-10-09 17:20 UTC
+Last updated: 2026-10-09 17:45 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -67,22 +67,33 @@ Last updated: 2026-10-09 17:20 UTC
 | Sun 11 Oct | 11:00 | CMG — myth: w4b_myth_bleeding.jpg | QUEUED ON META | Facebook + Instagram |
 | Mon 12 Oct | 09:45 | CMG — steps: w5_loft_tank.jpg | QUEUED ON META | Facebook + Instagram |
 | Mon 12 Oct | 18:00 | BWD — photo: how old is your boiler | WAITING | Facebook + Instagram |
+| Tue 13 Oct | 09:45 | CMG — photo: condensate trap | WAITING | Facebook + Instagram |
 | Tue 13 Oct | 18:00 | BWD — list: who to ring for what | WAITING | Facebook + Instagram |
 | Wed 14 Oct | 11:30 | Job photo — expansion vessel | QUEUED ON META | Facebook + Instagram |
 | Wed 14 Oct | 18:00 | BWD — the light one: the lukewarm radiator | WAITING | Facebook + Instagram |
+| Thu 15 Oct | 09:45 | CMG — steps: combi or system | WAITING | Facebook + Instagram |
 | Thu 15 Oct | 18:00 | BWD — big number: sixty | WAITING | Facebook + Instagram |
+| Fri 16 Oct | 10:00 | CMG — myth: new boiler halves the bill | WAITING | Facebook + Instagram |
 | Fri 16 Oct | 18:00 | BWD — photo: the curved radiator | WAITING | Facebook + Instagram |
 | Sat 17 Oct | 09:00 | BWD — myth: cold radiators mean a new boiler | WAITING | Facebook + Instagram |
 | Sat 17 Oct | 10:00 | Job photo — drain with roots in it | QUEUED ON META | Facebook + Instagram |
 | Sun 18 Oct | 09:00 | BWD — list: half term checklist | WAITING | Facebook + Instagram |
+| Sun 18 Oct | 10:00 | CMG — icon: gas emergency control | WAITING | Facebook + Instagram |
+| Mon 19 Oct | 10:00 | CMG — photo: the data plate | WAITING | Facebook + Instagram |
 | Mon 19 Oct | 18:00 | BWD — photo: the fault code flap | WAITING | Facebook + Instagram |
+| Tue 20 Oct | 09:45 | CMG — steps: dripping tap | WAITING | Facebook + Instagram |
 | Tue 20 Oct | 18:00 | BWD — list: four things to stop doing | WAITING | Facebook + Instagram |
 | Wed 21 Oct | 11:30 | Job photo — Ideal combi service | QUEUED ON META | Facebook + Instagram |
 | Wed 21 Oct | 18:00 | BWD — the light one: the immersion switch | WAITING | Facebook + Instagram |
+| Thu 22 Oct | 09:45 | CMG — myth: heat pumps and the cold | WAITING | Facebook + Instagram |
 | Thu 22 Oct | 18:00 | BWD — big number: the 25th | WAITING | Facebook + Instagram |
+| Fri 23 Oct | 10:00 | CMG — icon: stuck TRV pin | WAITING | Facebook + Instagram |
 | Fri 23 Oct | 18:00 | BWD — photo: boiler in the loft | WAITING | Facebook + Instagram |
 | Sat 24 Oct | 09:00 | BWD — myth: the electric heater | WAITING | Facebook + Instagram |
 | Sat 24 Oct | 10:00 | Job photo — boiler data plate | QUEUED ON META | Facebook + Instagram |
 | Sun 25 Oct | 09:00 | BWD — list: four smells | WAITING | Facebook + Instagram |
+| Sun 25 Oct | 10:00 | CMG — photo: expansion vessel | WAITING | Facebook + Instagram |
+| Mon 26 Oct | 10:00 | CMG — steps: toilet running | WAITING | Facebook + Instagram |
+| Tue 27 Oct | 09:45 | CMG — myth: the pilot light | WAITING | Facebook + Instagram |
 | Wed 28 Oct | 11:30 | Job photo — Greenstar Heatstore | QUEUED ON META | Facebook + Instagram |
 | Thu 29 Oct | 18:00 | BWD — big number: one degree | WAITING | Facebook + Instagram |
