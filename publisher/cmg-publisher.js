@@ -695,6 +695,29 @@ async function fbPublishLive(c, url, caption, pg) {
     } catch (e) {
       why = `could not read the feed back: ${e.message}`;
     }
+    // SECOND ROUTE, added 9 Oct 2026. On Bolton Warm & Dry the {page}/feed read
+    // answers Graph error 10 (no feed permission on a New Pages Experience
+    // profile), so every BWD post was logged "unconfirmed", the run went red and
+    // confirm-published was skipped for CMG too - on 3, 4 and 9 Oct. Reading the
+    // post itself by id DOES work with the same token (proved by the
+    // probe-bwd-post workflow on 9 Oct: is_published true, is_hidden false,
+    // timeline_visibility normal). A post that is published, not hidden and on
+    // the timeline is a confirmed post.
+    if (!feedConfirmed && one.post_id) {
+      try {
+        const p = await graph('GET', `${one.post_id}`, {
+          fields: 'id,is_published,is_hidden,timeline_visibility', access_token: pg.tkn,
+        });
+        if (p.is_published === true && p.is_hidden !== true && String(p.timeline_visibility || 'normal') === 'normal') {
+          feedConfirmed = true; why = null;
+          console.log(`  read back by id: published, visible, on the timeline`);
+        } else {
+          why = `post ${one.post_id} read back as is_published=${p.is_published} is_hidden=${p.is_hidden} timeline_visibility=${p.timeline_visibility}`;
+        }
+      } catch (e) {
+        why = `${why} / by-id read failed too: ${e.message}`;
+      }
+    }
     if (!feedConfirmed) {
       console.log(`  *** NOT CONFIRMED IN THE FEED on ${pg.name}: ${why}`);
       console.log('  *** The post may exist and still be invisible to readers. Check the Page.');

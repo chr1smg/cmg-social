@@ -128,7 +128,7 @@ jobs:
         run: node cmg-publisher.js publish-due
 
       - name: Confirm what actually published on Facebook
-        if: steps.gate.outputs.ready == 'yes'
+        if: always() && steps.gate.outputs.ready == 'yes'
         working-directory: publisher
         run: |
           if ! grep -q '^FB_PAGE_TOKEN=' .env; then echo "no Facebook credentials yet"; exit 0; fi
