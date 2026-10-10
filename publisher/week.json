@@ -1015,13 +1015,17 @@
       "caption": "This sticker is the last thing I do on a service.\n\nDate, next due, my number. It goes on the boiler so nobody has to dig through a drawer for a certificate in twelve months' time.\n\nGo and look at yours now. If there's no sticker, no date, and you can't remember — that's your answer.\n\nWhen was yours last done? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
       "facebook": {
         "page": "cmg",
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1098808239565285",
         "scheduledFor": "2026-10-07 11:30",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1098808239565285&set=a.448112374634878&type=3",
+        "publishedAt": "10 Oct 2026, 14:59"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DeUPzHZFIsI/",
+        "publishedAt": "10 Oct 2026, 14:59"
       },
       "style": "jobphoto"
     },
@@ -1273,7 +1277,13 @@
       "style": "myth",
       "caption": "Myth: turn the radiators off in the rooms you don't use and you'll save a fortune.\n\nHalf right, which is the dangerous kind of right.\n\nTurn them down, don't turn them off. A room that sits stone cold all winter is where condensation lands and mould starts, usually in the corner behind the wardrobe where nobody looks until spring. And the warm rooms next door are losing heat through the wall into it anyway.\n\nSpare room: valve on 1 or 2, door shut. It costs very little to keep a room just above cold, and a lot to repaint it.\n\nAnyone got the classic black corner? You're not alone.\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "blocked": "",
-      "facebook": {}
+      "facebook": {
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122115330609478623",
+        "publishedAt": "10 Oct 2026, 14:59",
+        "feedConfirmed": true
+      },
+      "instagram": {}
     },
     {
       "id": 80,

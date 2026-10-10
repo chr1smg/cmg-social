@@ -156,3 +156,6 @@
 {"at":"2026-10-09T17:47:37.385Z","cmd":"schedule-week","post":103,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1106248232154619","slot":"2026-10-25 10:00","verified":"seen in scheduled_posts"}
 {"at":"2026-10-09T17:47:40.492Z","cmd":"schedule-week","post":104,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1106248302154612","slot":"2026-10-26 10:00","verified":"seen in scheduled_posts"}
 {"at":"2026-10-09T17:47:44.767Z","cmd":"schedule-week","post":105,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1106248358821273","slot":"2026-10-27 09:45","verified":"seen in scheduled_posts"}
+{"at":"2026-10-10T13:59:33.805Z","cmd":"publish-due","post":52,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DeUPzHZFIsI/"}
+{"at":"2026-10-10T13:59:38.159Z","cmd":"publish-due","post":79,"page":"bwd","platform":"facebook","result":"published","permalink":"https://www.facebook.com/1350006984862633/posts/122115330609478623"}
+{"at":"2026-10-10T13:59:38.805Z","cmd":"confirm-published","post":52,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1098808239565285&set=a.448112374634878&type=3"}
