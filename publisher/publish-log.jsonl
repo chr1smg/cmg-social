@@ -159,3 +159,6 @@
 {"at":"2026-10-10T13:59:33.805Z","cmd":"publish-due","post":52,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DeUPzHZFIsI/"}
 {"at":"2026-10-10T13:59:38.159Z","cmd":"publish-due","post":79,"page":"bwd","platform":"facebook","result":"published","permalink":"https://www.facebook.com/1350006984862633/posts/122115330609478623"}
 {"at":"2026-10-10T13:59:38.805Z","cmd":"confirm-published","post":52,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1098808239565285&set=a.448112374634878&type=3"}
+{"at":"2026-10-11T13:27:38.411Z","cmd":"publish-due","post":75,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DeWw73Emyx6/"}
+{"at":"2026-10-11T13:27:43.790Z","cmd":"publish-due","post":80,"page":"bwd","platform":"facebook","result":"published","permalink":"https://www.facebook.com/1350006984862633/posts/122115728223478623"}
+{"at":"2026-10-11T13:27:45.408Z","cmd":"confirm-published","post":75,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1099087502870692&set=a.448112374634878&type=3"}

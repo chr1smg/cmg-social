@@ -1207,14 +1207,18 @@
       "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w4b_myth_bleeding.jpg",
       "caption": "Sunday myth: radiators need bleeding every autumn.\n\nYou bleed a radiator when it's cold at the top and warm at the bottom. That's air, and the key lets it out. It's not a calendar job.\n\nThe bit worth knowing: a sealed system shouldn't be making air. If you're bleeding the same radiator twice a year, something is drawing it in, and that's worth finding rather than living with.\n\nGot one you bleed over and over? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1099087502870692",
         "scheduledFor": "2026-10-11 11:00",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1099087502870692&set=a.448112374634878&type=3",
+        "publishedAt": "11 Oct 2026, 14:27"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DeWw73Emyx6/",
+        "publishedAt": "11 Oct 2026, 14:27"
       }
     },
     {
@@ -1295,7 +1299,13 @@
       "style": "list",
       "caption": "Four things in a house that quietly cost money and look like nothing.\n\n1. The overflow pipe dripping outside. If it's dripping, something inside is filling past its stop point, and you pay for every drop.\n\n2. The immersion heater switch, left on since the boiler broke that one time in 2023. Electricity is the expensive way to heat a tank.\n\n3. The towel rail that's been on all summer. Worth finding out what it's wired to.\n\n4. Running the hot tap while you brush your teeth. The boiler fires up every single time.\n\nTen minutes on a Sunday. Which one's yours?\n\nPublished by CMG Heating & Plumbing, Bolton · Gas Safe 917962",
       "blocked": "",
-      "facebook": {}
+      "facebook": {
+        "status": "published",
+        "permalink": "https://www.facebook.com/1350006984862633/posts/122115728223478623",
+        "publishedAt": "11 Oct 2026, 14:27",
+        "feedConfirmed": true
+      },
+      "instagram": {}
     },
     {
       "id": 81,
