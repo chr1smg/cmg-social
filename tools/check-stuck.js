@@ -18,7 +18,11 @@ const stuck = (week.posts || []).filter(p => {
   const fb = (p.facebook || {}).status || '';
   const ig = (p.instagram || {}).status || '';
   const fbDone = fb === 'published' || fb === 'skipped';
-  const igDone = ig === 'published' || ig === 'skipped';
+  // Bolton Warm & Dry rows never go to Instagram (the publisher does not write
+  // instagram.status for them), so Facebook alone is "done" there. Fixed 12 Oct 2026
+  // after rows 78-80 - all live on the page - were reported overdue every hour.
+  const pageOf = p.page || (p.facebook || {}).page || 'cmg';
+  const igDone = ig === 'published' || ig === 'skipped' || pageOf === 'bwd';
   return !(fbDone && igDone);
 });
 
@@ -26,7 +30,7 @@ if (!stuck.length) { console.log(`No stuck posts. Every slot older than ${GRACE_
 
 console.error(`${stuck.length} POST(S) OVERDUE AND NOT PUBLISHED:\n`);
 for (const p of stuck) {
-  const page = (p.facebook || {}).page || 'cmg';
+  const page = p.page || (p.facebook || {}).page || 'cmg';
   console.error(`  post ${p.id}  slot ${p.slot}  page ${page}`);
   console.error(`     facebook: ${JSON.stringify(p.facebook || {})}`);
   console.error(`     instagram: ${JSON.stringify(p.instagram || {})}`);
