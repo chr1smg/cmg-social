@@ -1,8 +1,8 @@
 name: publish
 
+# 12 Oct 2026: the cron moved to keeper.yml, which loops the same cycle every 15 minutes inside one
+# long run. This workflow is kept for manual runs (workflow_dispatch) and shares the concurrency group.
 on:
-  schedule:
-    - cron: '4,19,34,49 * * * *'   # off the quarter-hour: GitHub drops/delays schedules firing on :00/:15/:30/:45 (runs were 3-7h apart 1-8 Oct)
   workflow_dispatch:
 
 permissions:

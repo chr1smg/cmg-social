@@ -1,0 +1,67 @@
+name: keeper
+
+# WHY THIS EXISTS (12 Oct 2026). GitHub's scheduler starts this repo's cron workflows only every
+# 3-7 hours (measured 1-12 Oct, unchanged by moving the minute), so Instagram and Bolton Warm & Dry
+# posts - which the publisher fires at their slot - went out 3-6 hours late. Starting a run is what
+# GitHub starves; a run that is already going is not. So this job runs the publisher cycle every
+# 15 minutes for ~5.5 hours, then dispatches itself (workflow_dispatch from GITHUB_TOKEN does start
+# a new run, unlike push). The hourly cron is only a backstop that restarts the chain if it ever
+# breaks. publish.yml stays for manual runs; both share the "publish" concurrency group so they
+# never overlap.
+
+on:
+  schedule:
+    - cron: '7 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  keep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Write .env from secrets
+        working-directory: publisher
+        env:
+          FB_APP_ID: ${{ secrets.FB_APP_ID }}
+          FB_APP_SECRET: ${{ secrets.FB_APP_SECRET }}
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          IG_USER_ID: ${{ secrets.IG_USER_ID }}
+          BWD_PAGE_ID: ${{ secrets.BWD_PAGE_ID }}
+          BWD_PAGE_TOKEN: ${{ secrets.BWD_PAGE_TOKEN }}
+        run: |
+          : > .env
+          for k in FB_APP_ID FB_APP_SECRET FB_PAGE_ID FB_PAGE_TOKEN IG_TOKEN IG_USER_ID BWD_PAGE_ID BWD_PAGE_TOKEN; do
+            v="${!k}"
+            if [ -n "$v" ]; then printf '%s=%s\n' "$k" "$v" >> .env; fi
+          done
+          if [ -z "$IG_USER_ID" ]; then sed -i '/^IG_TOKEN=/d' .env; echo "Instagram not configured - skipped"; fi
+
+      - name: Run the publisher cycle every 15 minutes for ~5.5 hours
+        run: |
+          chmod +x tools/cycle.sh
+          for i in $(seq 1 21); do
+            bash tools/cycle.sh || echo "cycle $i reported a problem"
+            if [ "$i" -lt 21 ]; then sleep 900; fi
+          done
+
+      - name: Hand over to the next keeper run
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          rm -f publisher/.env publisher/.publisher.lock
+          gh workflow run keeper.yml --repo "$GITHUB_REPOSITORY" --ref main && echo "next keeper dispatched" || echo "self-dispatch failed - the hourly cron will restart the chain"
