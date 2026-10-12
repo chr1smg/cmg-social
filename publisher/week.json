@@ -1237,7 +1237,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DeY18-5lbvr/",
+        "publishedAt": "12 Oct 2026, 09:49"
       }
     },
     {
