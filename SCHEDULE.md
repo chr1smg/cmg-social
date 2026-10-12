@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-10-12 08:49 UTC
+Last updated: 2026-10-12 09:04 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -65,7 +65,7 @@ Last updated: 2026-10-12 08:49 UTC
 | Sat 10 Oct | 10:00 | Job photo — service sticker | DONE | Facebook + Instagram |
 | Sun 11 Oct | 09:00 | BWD — list: four quiet costs | DONE | Facebook + Instagram |
 | Sun 11 Oct | 11:00 | CMG — myth: w4b_myth_bleeding.jpg | DONE | Facebook + Instagram |
-| Mon 12 Oct | 09:45 | CMG — steps: w5_loft_tank.jpg | QUEUED ON META | Facebook + Instagram |
+| Mon 12 Oct | 09:45 | CMG — steps: w5_loft_tank.jpg | DONE | Facebook + Instagram |
 | Mon 12 Oct | 18:00 | BWD — photo: how old is your boiler | WAITING | Facebook + Instagram |
 | Tue 13 Oct | 09:45 | CMG — photo: condensate trap | QUEUED ON META | Facebook + Instagram |
 | Tue 13 Oct | 18:00 | BWD — list: who to ring for what | WAITING | Facebook + Instagram |
