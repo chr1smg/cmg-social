@@ -1495,11 +1495,18 @@
       "caption": "This came out of a boiler on a Bolton job. It's condensate, and every condensing boiler makes it, a few litres a day, slightly acidic.\n\nIt collects in a trap like this one and drains away down a plastic pipe, often the white one you can see on the outside wall. When that outside pipe freezes in January the boiler can't drain, and it shuts itself down. Cue the coldest morning of the year with no heating.\n\nThe fix is dull and cheap: lag the outside run now, while it's dry and you can feel your fingers. If the pipe is long, thin or drips, that's worth sorting properly before the cold.\n\nCan you see yours from the back door?",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1106247662154676",
         "scheduledFor": "2026-10-13 09:45",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1106247662154676&set=a.448112374634878&type=3",
+        "publishedAt": "13 Oct 2026, 09:55"
+      },
+      "instagram": {
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DebbWm7FufC/",
+        "publishedAt": "13 Oct 2026, 09:55"
       }
     },
     {
