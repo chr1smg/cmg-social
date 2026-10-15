@@ -1535,11 +1535,18 @@
       "caption": "\"Is it a combi?\" is the first thing you'll get asked when you ring about a heating fault, and a surprising number of people have to go and look. Four ways to tell:\n\n1. A hot water cylinder in the airing cupboard means it isn't a combi. Combis heat water on demand and store nothing.\n\n2. Tanks in the loft point to an older regular (open vented) system. A cylinder but no loft tanks is usually a system boiler.\n\n3. Turn a hot tap on and listen. If the boiler fires up, it's a combi.\n\n4. Count the pipes underneath. Five is the classic combi, three or four for the others.\n\nWhy it matters: the fault, the fix and the cost all change with the type. Knowing yours saves the first five minutes of every call.\n\nWhich one have you got?",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1106247758821333",
         "scheduledFor": "2026-10-15 09:45",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1106247758821333&set=a.448112374634878&type=3",
+        "publishedAt": "15 Oct 2026, 09:51"
+      },
+      "instagram": {
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DegkeVPm7BB/",
+        "publishedAt": "15 Oct 2026, 09:51"
       }
     },
     {
