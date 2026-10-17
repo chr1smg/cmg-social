@@ -1069,7 +1069,9 @@
         "verified": "seen in scheduled_posts"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DelvT4hleqR/",
+        "publishedAt": "17 Oct 2026, 10:02"
       },
       "style": "jobphoto"
     },
