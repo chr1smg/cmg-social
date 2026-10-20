@@ -1,0 +1,26 @@
+probe at 2026-10-20 19:17:02 UTC
+--- 110510101534769_1098808592898583 ---
+{"id":"110510101534769_1098808592898583","is_published":true,"created_time":"2026-10-10T10:30:05+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1098808592898583&set=a.448112374634878&type=3","message":"Saturday job: an Ideal combi in for its annual service.\n\nThis is the time of year to have it done. The heating's about to go on properly, and a fault that's been sat there all summer shows up in the first cold week \u2014 when everybody else is ringing too.\n\nA service now is
+
+--- 110510101534769_1098808666231909 ---
+{"id":"110510101534769_1098808666231909","is_published":true,"created_time":"2026-10-11T10:30:01+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1098808666231909&set=a.448112374634878&type=3","message":"Sunday tip: find this plate on your boiler and take a photo of it.\n\nIt's on the boiler somewhere \u2014 inside the front panel, behind a flap, or on the side. The GC number on it tells an engineer exactly what you've got, so when you ring with a fault I can turn up with the ri
+
+--- 110510101534769_1106248078821301 ---
+{"id":"110510101534769_1106248078821301","is_published":false,"scheduled_publish_time":1792658700,"created_time":"2026-10-09T17:47:24+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1106248078821301&set=p.1106248078821301&type=3","message":"Myth: heat pumps don't work when it's cold.\n\nThey're built for exactly that. Most air source heat pumps are rated to keep going well below minus 15, and they're the normal way to heat a house in Norway and Sweden, where winter means it. A 
+
+--- 110510101534769_1106248165487959 ---
+{"id":"110510101534769_1106248165487959","is_published":false,"scheduled_publish_time":1792746000,"created_time":"2026-10-09T17:47:29+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1106248165487959&set=p.1106248165487959&type=3","message":"One radiator stone cold while the rest are fine, the first week the heating's on? Nine times out of ten it's the pin.\n\nThermostatic radiator valves (the ones with numbers) sit closed all summer, and the small pin under the plastic head sti
+
+--- 110510101534769_1106248302154612 ---
+{"id":"110510101534769_1106248302154612","is_published":false,"scheduled_publish_time":1793008800,"created_time":"2026-10-09T17:47:37+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1106248302154612&set=p.1106248302154612&type=3","message":"A toilet that never quite stops running is one of the quietest ways to waste water, and on a meter it's money every single day. Four checks:\n\n1. Lid off. Water trickling over the top of the overflow tube in the middle means the fill valve 
+
+--- 110510101534769_1106248358821273 ---
+{"id":"110510101534769_1106248358821273","is_published":false,"scheduled_publish_time":1793094300,"created_time":"2026-10-09T17:47:40+0000","permalink_url":"https:\/\/www.facebook.com\/photo.php?fbid=1106248358821273&set=p.1106248358821273&type=3","message":"Myth: the boiler's stopped, so the pilot light must have gone out.\n\nAny boiler fitted in the last twenty years doesn't have one. It sparks to light the burner each time it fires, which is why you hear a click and a whoomph. There's nothing
+
+--- scheduled_posts queue ---
+<string>:5: DeprecationWarning: datetime.datetime.utcfromtimestamp() is deprecated and scheduled for removal in a future version. Use timezone-aware objects to represent datetimes in UTC: datetime.datetime.fromtimestamp(timestamp, datetime.UTC).
+110510101534769_1106248358821273 2026-10-27 09:45 UTC Myth: the boiler's stopped, so the pilot light must have gone out. |  | Any boiler fitted in the last twenty years doesn't have one. It sparks to light the burner e
+110510101534769_1106248302154612 2026-10-26 10:00 UTC A toilet that never quite stops running is one of the quietest ways to waste water, and on a meter it's money every single day. Four checks: |  | 1. Lid off. Water 
+110510101534769_1106248232154619 2026-10-25 10:00 UTC Boiler pressure keeps dropping every few weeks, you top it up, nothing's wet anywhere, and it does it again. Very often it's this. |  | The red thing is the expansi
+110510101534769_1106248165487959 2026-10-23 09:00 UTC One radiator stone cold while the rest are fine, the first week the heating's on? Nine times out of ten it's the pin. |  | Thermostatic radiator valves (the ones wi
+110510101534769_1106248078821301 2026-10-22 08:45 UTC Myth: heat pumps don't work when it's cold. |  | They're built for exactly that. Most air source heat pumps are rated to keep going well below minus 15, and they're
