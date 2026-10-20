@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-10-20 19:18 UTC
+Last updated: 2026-10-20 19:34 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -96,4 +96,11 @@ Last updated: 2026-10-20 19:18 UTC
 | Mon 26 Oct | 10:00 | CMG — steps: toilet running | QUEUED ON META | Facebook + Instagram |
 | Tue 27 Oct | 09:45 | CMG — myth: the pilot light | QUEUED ON META | Facebook + Instagram |
 | Wed 28 Oct | 11:30 | Job photo — Greenstar Heatstore | QUEUED ON META | Facebook + Instagram |
+| Thu 29 Oct | 10:00 | Job photo — flue gas analyser | QUEUED ON META | Facebook + Instagram |
 | Thu 29 Oct | 18:00 | BWD — big number: one degree | WAITING | Facebook + Instagram |
+| Fri 30 Oct | 11:30 | Job photo — corroded gas valve | QUEUED ON META | Facebook + Instagram |
+| Sat 31 Oct | 10:00 | Job photo — heat pump cylinder | QUEUED ON META | Facebook + Instagram |
+| Sun 1 Nov | 10:00 | Job photo — new main and stopcock | QUEUED ON META | Facebook + Instagram |
+| Mon 2 Nov | 10:00 | Job photo — unvented cylinder label | QUEUED ON META | Facebook + Instagram |
+| Tue 3 Nov | 09:45 | Job photo — service, casing off | QUEUED ON META | Facebook + Instagram |
+| Wed 4 Nov | 09:30 | Job photo — Worcester combi and condensate pump | QUEUED ON META | Facebook + Instagram |

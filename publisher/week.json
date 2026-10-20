@@ -1695,9 +1695,12 @@
       "caption": "Myth: heat pumps don't work when it's cold.\n\nThey're built for exactly that. Most air source heat pumps are rated to keep going well below minus 15, and they're the normal way to heat a house in Norway and Sweden, where winter means it. A Bolton January is mild next to that.\n\nWhat actually decides whether one works well in your house isn't the weather, it's the house. A heat pump runs the radiators cooler for longer, so the radiators need to be sized for that, and the insulation needs to be reasonable. That's what the survey is for, and it's why a good installer will sometimes say \"not yet, do the insulation first\".\n\nThinking about one? Book a free estimate at www.cmghp.co.uk/book/heat-pump and I'll tell you what your house would need before anyone quotes a number.",
       "blocked": "",
       "facebook": {
-        "status": "",
+        "status": "scheduled",
         "page": "cmg",
-        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248078821301 listed in cancel.json for the next keeper cycle to delete and reschedule"
+        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248078821301 listed in cancel.json for the next keeper cycle to delete and reschedule",
+        "scheduledPostId": "110510101534769_1116717391107703",
+        "scheduledFor": "2026-10-22 09:45",
+        "verified": "seen in scheduled_posts"
       }
     },
     {
@@ -1710,9 +1713,12 @@
       "caption": "One radiator stone cold while the rest are fine, the first week the heating's on? Nine times out of ten it's the pin.\n\nThermostatic radiator valves (the ones with numbers) sit closed all summer, and the small pin under the plastic head sticks down. The head says 5, the valve says shut.\n\nUnscrew the plastic head by hand, no tools. Underneath there's a pin about 3 mm proud that should spring back when you press it. If it's sunk and stuck, tap it gently, or ease it up a touch with pliers. Put the head back on. Don't pull the pin out, it'll weep.\n\nIf it won't move at all, or the valve starts dripping, stop there. That's a valve replacement, and a quick job for me.\n\nWhich room is the cold one in your house?",
       "blocked": "",
       "facebook": {
-        "status": "",
+        "status": "scheduled",
         "page": "cmg",
-        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248165487959 listed in cancel.json for the next keeper cycle to delete and reschedule"
+        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248165487959 listed in cancel.json for the next keeper cycle to delete and reschedule",
+        "scheduledPostId": "110510101534769_1116717451107697",
+        "scheduledFor": "2026-10-23 10:00",
+        "verified": "seen in scheduled_posts"
       }
     },
     {
@@ -1742,9 +1748,12 @@
       "caption": "A toilet that never quite stops running is one of the quietest ways to waste water, and on a meter it's money every single day. Four checks:\n\n1. Lid off. Water trickling over the top of the overflow tube in the middle means the fill valve isn't shutting off. Common, cheap.\n\n2. Level looks right but water's still trickling into the pan? The flush valve seal at the bottom isn't seating. Usually a worn washer or a bit of debris.\n\n3. Press the button and let go. If it sticks, the button or its cable is holding the valve open.\n\n4. There's usually a small isolator on the pipe feeding the cistern. Turn it off to stop the waste while you decide what to do.\n\nWhere to stop: isolator won't turn, or the cistern's hidden in a wall or furniture. That's a job for me rather than a Sunday afternoon.\n\nClocks went back last night, by the way. Check the heating timer.",
       "blocked": "",
       "facebook": {
-        "status": "",
+        "status": "scheduled",
         "page": "cmg",
-        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248302154612 listed in cancel.json for the next keeper cycle to delete and reschedule"
+        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248302154612 listed in cancel.json for the next keeper cycle to delete and reschedule",
+        "scheduledPostId": "110510101534769_1116717501107692",
+        "scheduledFor": "2026-10-26 10:00",
+        "verified": "seen in scheduled_posts"
       }
     },
     {
@@ -1757,9 +1766,138 @@
       "caption": "Myth: the boiler's stopped, so the pilot light must have gone out.\n\nAny boiler fitted in the last twenty years doesn't have one. It sparks to light the burner each time it fires, which is why you hear a click and a whoomph. There's nothing to relight.\n\nIf your boiler does have a little flame burning away behind a window all day, that's a permanent pilot, and it means the appliance is old. It burns gas 24 hours a day, 365 days a year, heating nothing, which is one reason very old boilers cost more to run than people think.\n\nSo if a modern boiler won't fire: check the pressure gauge, check the fault code on the display, and check the gas is on (has anyone been working in the house?). Then ring.\n\nAnyone still got a pilot light? I'd like to see it.",
       "blocked": "",
       "facebook": {
-        "status": "",
+        "status": "scheduled",
         "page": "cmg",
-        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248358821273 listed in cancel.json for the next keeper cycle to delete and reschedule"
+        "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248358821273 listed in cancel.json for the next keeper cycle to delete and reschedule",
+        "scheduledPostId": "110510101534769_1116717544441021",
+        "scheduledFor": "2026-10-27 09:45",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 106,
+      "slot": "2026-10-29 10:00",
+      "page": "cmg",
+      "title": "Job photo — flue gas analyser",
+      "image": "cmg-combustion-test-intergas-combi-compact-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-combustion-test-intergas-combi-compact-bolton-4x5.jpg",
+      "caption": "That box clipped to the front of the boiler is a flue gas analyser, and it is the part of a service that tells me the most.\n\nIt reads what is coming out of the flue while the boiler runs: carbon monoxide, carbon dioxide and the balance between them. A boiler can look clean and fire up fine and still be burning badly. The numbers are what show it.\n\nNext time yours is serviced, ask to see the readings. They should be on your service record.\n\nBook yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717591107683",
+        "scheduledFor": "2026-10-29 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 107,
+      "slot": "2026-10-30 11:30",
+      "page": "cmg",
+      "title": "Job photo — corroded gas valve",
+      "image": "cmg-corroded-leaking-gas-cock-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-corroded-leaking-gas-cock-bolton-4x5.jpg",
+      "caption": "This is the gas valve under a boiler, and it has been sitting in water long enough to corrode.\n\nNobody sees it because it is tucked under the casing, but water had been getting at the fittings and the base of the boiler for a long time.\n\nIf you ever see water marks under your boiler, a drip from the pipes underneath or rust on the casing, do not leave it until the next service. Get it looked at by a Gas Safe engineer.\n\nIf you smell gas, ring the National Gas Emergency line on 0800 111 999 straight away.\n\nBook a repair visit at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717634441012",
+        "scheduledFor": "2026-10-30 11:30",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 108,
+      "slot": "2026-10-31 10:00",
+      "page": "cmg",
+      "title": "Job photo — heat pump cylinder",
+      "image": "cmg-heat-pump-cylinder-neat-install-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-heat-pump-cylinder-neat-install-bolton-4x5.jpg",
+      "caption": "This is the inside end of an air source heat pump. Cylinder, controls, pumps and filter, every pipe insulated, nothing crammed in.\n\nThe unit outside gets the attention, but this cupboard is where the system is won or lost. Get the pipework and the controls right and it runs the way it was designed to.\n\nThinking about one? It starts with a free estimate, then a heat loss survey and design before anyone gives you a number. There is £7,500 off under the Boiler Upgrade Scheme.\n\nStart at www.cmghp.co.uk/book/heat-pump\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717671107675",
+        "scheduledFor": "2026-10-31 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 109,
+      "slot": "2026-11-01 10:00",
+      "page": "cmg",
+      "title": "Job photo — new main and stopcock",
+      "image": "cmg-new-mains-water-supply-stopcock-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-new-mains-water-supply-stopcock-bolton-4x5.jpg",
+      "caption": "New water main in, new stopcock on. The blue pipe coming up through the floor is the new supply from the street.\n\nA stopcock is only any use if you can reach it and it turns. Under the sink is fine. Behind a fitted unit is not.\n\nWorth two minutes today: find yours and check it moves. If it is seized, now is the time to find out, not with water coming through the ceiling.\n\nIf your supply is old lead or keeps leaking, book a quote at www.cmghp.co.uk/book/quote\n\nWhere is yours hiding?\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717787774330",
+        "scheduledFor": "2026-11-01 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 110,
+      "slot": "2026-11-02 10:00",
+      "page": "cmg",
+      "title": "Job photo — unvented cylinder label",
+      "image": "cmg-unvented-cylinder-label-g3-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-unvented-cylinder-label-g3-bolton-4x5.jpg",
+      "caption": "If your hot water cylinder has no tank in the loft above it, this label is worth finding.\n\nIt means an unvented cylinder: mains pressure hot water, stored under pressure. That is why it needs an annual check by someone qualified to work on it. Have a look whether the installer details on yours are filled in.\n\nA cylinder service is a check, a test and a clean: the expansion vessel, the pressure reducing valve and the safety valves, with a written report on the day.\n\nBook one at www.cmghp.co.uk/book/cylinder\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717834440992",
+        "scheduledFor": "2026-11-02 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 111,
+      "slot": "2026-11-03 09:45",
+      "page": "cmg",
+      "title": "Job photo — service, casing off",
+      "image": "cmg-boiler-service-fan-heat-exchanger-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-service-fan-heat-exchanger-bolton-4x5.jpg",
+      "caption": "Casing off. This is the part of a boiler service you are paying for.\n\nBehind the front panel are the burner, the fan and the heat exchanger. A proper service means opening it up, checking the seals, cleaning what needs cleaning, putting it back to the manufacturer's instructions and then testing the flue.\n\nIf you have never seen the front come off at a service, ask.\n\nThe heating is on properly now. Book yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717937774315",
+        "scheduledFor": "2026-11-03 09:45",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 112,
+      "slot": "2026-11-04 09:30",
+      "page": "cmg",
+      "title": "Job photo — Worcester combi and condensate pump",
+      "image": "cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
+      "caption": "A new Worcester combi, and the small white box underneath is doing an important job.\n\nA modern boiler makes water as it runs, and it has to go somewhere. Where there is no drain close by, a condensate pump lifts it away to one, so there is no long pipe outside waiting to freeze.\n\nWhere the condensate goes is part of fitting a boiler, not an afterthought.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1116717981107644",
+        "scheduledFor": "2026-11-04 09:30",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
       }
     }
   ],
