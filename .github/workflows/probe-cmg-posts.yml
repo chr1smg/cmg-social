@@ -24,7 +24,7 @@ jobs:
             echo "probe at $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
             for id in $IDS; do
               echo "--- $id ---"
-              curl -s "https://graph.facebook.com/v23.0/$id?fields=id,is_published,scheduled_publish_time,created_time,permalink_url,message&access_token=$FB_PAGE_TOKEN" | cut -c1-500; echo
+              curl -s "https://graph.facebook.com/v23.0/$id?fields=id,is_published,scheduled_publish_time,created_time,permalink_url,message&access_token=$FB_PAGE_TOKEN" | cut -c1-4000; echo
             done
             echo "--- scheduled_posts queue ---"
             curl -s "https://graph.facebook.com/v23.0/$FB_PAGE_ID/scheduled_posts?fields=id,scheduled_publish_time,message&limit=50&access_token=$FB_PAGE_TOKEN" \
