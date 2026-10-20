@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py.",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com.",
  "posts": [
   {
    "id": 51,
@@ -481,6 +481,83 @@
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/w7_myth_pilot_light.jpg",
    "style": "myth",
    "caption": "Myth: the boiler's stopped, so the pilot light must have gone out.\n\nAny boiler fitted in the last twenty years doesn't have one. It sparks to light the burner each time it fires, which is why you hear a click and a whoomph. There's nothing to relight.\n\nIf your boiler does have a little flame burning away behind a window all day, that's a permanent pilot, and it means the appliance is old. It burns gas 24 hours a day, 365 days a year, heating nothing, which is one reason very old boilers cost more to run than people think.\n\nSo if a modern boiler won't fire: check the pressure gauge, check the fault code on the display, and check the gas is on (has anyone been working in the house?). Then ring.\n\nAnyone still got a pilot light? I'd like to see it.",
+   "blocked": ""
+  },
+  {
+   "id": 106,
+   "slot": "2026-10-29 10:00",
+   "page": "cmg",
+   "title": "Job photo — flue gas analyser",
+   "image": "cmg-combustion-test-intergas-combi-compact-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-combustion-test-intergas-combi-compact-bolton-4x5.jpg",
+   "caption": "That box clipped to the front of the boiler is a flue gas analyser, and it is the part of a service that tells me the most.\n\nIt reads what is coming out of the flue while the boiler runs: carbon monoxide, carbon dioxide and the balance between them. A boiler can look clean and fire up fine and still be burning badly. The numbers are what show it.\n\nNext time yours is serviced, ask to see the readings. They should be on your service record.\n\nBook yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 107,
+   "slot": "2026-10-30 11:30",
+   "page": "cmg",
+   "title": "Job photo — corroded gas valve",
+   "image": "cmg-corroded-leaking-gas-cock-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-corroded-leaking-gas-cock-bolton-4x5.jpg",
+   "caption": "This is the gas valve under a boiler, and it has been sitting in water long enough to corrode.\n\nNobody sees it because it is tucked under the casing, but water had been getting at the fittings and the base of the boiler for a long time.\n\nIf you ever see water marks under your boiler, a drip from the pipes underneath or rust on the casing, do not leave it until the next service. Get it looked at by a Gas Safe engineer.\n\nIf you smell gas, ring the National Gas Emergency line on 0800 111 999 straight away.\n\nBook a repair visit at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 108,
+   "slot": "2026-10-31 10:00",
+   "page": "cmg",
+   "title": "Job photo — heat pump cylinder",
+   "image": "cmg-heat-pump-cylinder-neat-install-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-heat-pump-cylinder-neat-install-bolton-4x5.jpg",
+   "caption": "This is the inside end of an air source heat pump. Cylinder, controls, pumps and filter, every pipe insulated, nothing crammed in.\n\nThe unit outside gets the attention, but this cupboard is where the system is won or lost. Get the pipework and the controls right and it runs the way it was designed to.\n\nThinking about one? It starts with a free estimate, then a heat loss survey and design before anyone gives you a number. There is £7,500 off under the Boiler Upgrade Scheme.\n\nStart at www.cmghp.co.uk/book/heat-pump\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 109,
+   "slot": "2026-11-01 10:00",
+   "page": "cmg",
+   "title": "Job photo — new main and stopcock",
+   "image": "cmg-new-mains-water-supply-stopcock-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-new-mains-water-supply-stopcock-bolton-4x5.jpg",
+   "caption": "New water main in, new stopcock on. The blue pipe coming up through the floor is the new supply from the street.\n\nA stopcock is only any use if you can reach it and it turns. Under the sink is fine. Behind a fitted unit is not.\n\nWorth two minutes today: find yours and check it moves. If it is seized, now is the time to find out, not with water coming through the ceiling.\n\nIf your supply is old lead or keeps leaking, book a quote at www.cmghp.co.uk/book/quote\n\nWhere is yours hiding?\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 110,
+   "slot": "2026-11-02 10:00",
+   "page": "cmg",
+   "title": "Job photo — unvented cylinder label",
+   "image": "cmg-unvented-cylinder-label-g3-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-unvented-cylinder-label-g3-bolton-4x5.jpg",
+   "caption": "If your hot water cylinder has no tank in the loft above it, this label is worth finding.\n\nIt means an unvented cylinder: mains pressure hot water, stored under pressure. That is why it needs an annual check by someone qualified to work on it. Have a look whether the installer details on yours are filled in.\n\nA cylinder service is a check, a test and a clean: the expansion vessel, the pressure reducing valve and the safety valves, with a written report on the day.\n\nBook one at www.cmghp.co.uk/book/cylinder\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 111,
+   "slot": "2026-11-03 09:45",
+   "page": "cmg",
+   "title": "Job photo — service, casing off",
+   "image": "cmg-boiler-service-fan-heat-exchanger-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-service-fan-heat-exchanger-bolton-4x5.jpg",
+   "caption": "Casing off. This is the part of a boiler service you are paying for.\n\nBehind the front panel are the burner, the fan and the heat exchanger. A proper service means opening it up, checking the seals, cleaning what needs cleaning, putting it back to the manufacturer's instructions and then testing the flue.\n\nIf you have never seen the front come off at a service, ask.\n\nThe heating is on properly now. Book yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 112,
+   "slot": "2026-11-04 09:30",
+   "page": "cmg",
+   "title": "Job photo — Worcester combi and condensate pump",
+   "image": "cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
+   "caption": "A new Worcester combi, and the small white box underneath is doing an important job.\n\nA modern boiler makes water as it runs, and it has to go somewhere. Where there is no drain close by, a condensate pump lifts it away to one, so there is no long pipe outside waiting to freeze.\n\nWhere the condensate goes is part of fitting a boiler, not an afterthought.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
    "blocked": ""
   }
  ]
