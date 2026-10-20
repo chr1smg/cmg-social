@@ -1,0 +1,42 @@
+name: probe-cmg-posts
+# READ-ONLY. Asks Meta what a list of CMG post ids actually are (published? scheduled for when?)
+# and lists the CMG page's scheduled queue. Writes probe-cmg.txt with tokens redacted. Added 20 Oct 2026.
+on:
+  workflow_dispatch:
+    inputs:
+      post_ids:
+        description: 'Space-separated full CMG post ids (pageid_postid)'
+        required: true
+permissions:
+  contents: write
+jobs:
+  p:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask Meta
+        env:
+          FB_PAGE_ID: ${{ secrets.FB_PAGE_ID }}
+          FB_PAGE_TOKEN: ${{ secrets.FB_PAGE_TOKEN }}
+          IDS: ${{ inputs.post_ids }}
+        run: |
+          {
+            echo "probe at $(date -u '+%Y-%m-%d %H:%M:%S') UTC"
+            for id in $IDS; do
+              echo "--- $id ---"
+              curl -s "https://graph.facebook.com/v23.0/$id?fields=id,is_published,scheduled_publish_time,created_time,permalink_url,message&access_token=$FB_PAGE_TOKEN" | cut -c1-500; echo
+            done
+            echo "--- scheduled_posts queue ---"
+            curl -s "https://graph.facebook.com/v23.0/$FB_PAGE_ID/scheduled_posts?fields=id,scheduled_publish_time,message&limit=50&access_token=$FB_PAGE_TOKEN" \
+              | python3 -c 'import sys,json,datetime
+          d=json.load(sys.stdin)
+          if "error" in d: print(d); sys.exit()
+          for p in d.get("data",[]):
+              t=datetime.datetime.utcfromtimestamp(int(p.get("scheduled_publish_time",0))).strftime("%Y-%m-%d %H:%M UTC")
+              print(p["id"], t, (p.get("message") or "")[:160].replace("\n"," | "))'
+          } > /tmp/raw.txt 2>&1
+          sed -E 's/EAA[A-Za-z0-9_-]{20,}/[REDACTED]/g' /tmp/raw.txt > probe-cmg.txt; cat probe-cmg.txt
+      - if: always()
+        run: |
+          git config user.name "CMG publisher"; git config user.email "p@cmghp.co.uk"
+          git add probe-cmg.txt && git commit -m "probe cmg posts" && (git pull --rebase origin main; git push)
