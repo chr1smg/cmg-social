@@ -1087,13 +1087,17 @@
       "caption": "An Ideal combi in for its annual service.\n\nThis is the time of year to have it done. The heating's about to go on properly, and a fault that's been sat there all summer shows up in the first cold week — when everybody else is ringing too.\n\nA service now is a quiet half hour. The same fault in November is a cold house and a wait.\n\nIs yours booked? 👇\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
       "facebook": {
         "page": "cmg",
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1098808592898583",
         "scheduledFor": "2026-10-10 11:30",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1098808592898583&set=a.448112374634878&type=3",
+        "publishedAt": "21 Oct 2026, 11:37"
       },
       "instagram": {
-        "status": ""
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DewNa7ikckF/",
+        "publishedAt": "21 Oct 2026, 11:37"
       },
       "style": "jobphoto"
     },
