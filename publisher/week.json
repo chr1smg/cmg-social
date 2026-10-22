@@ -1705,12 +1705,14 @@
       "caption": "Myth: heat pumps don't work when it's cold.\n\nThey're built for exactly that. Most air source heat pumps are rated to keep going well below minus 15, and they're the normal way to heat a house in Norway and Sweden, where winter means it. A Bolton January is mild next to that.\n\nWhat actually decides whether one works well in your house isn't the weather, it's the house. A heat pump runs the radiators cooler for longer, so the radiators need to be sized for that, and the insulation needs to be reasonable. That's what the survey is for, and it's why a good installer will sometimes say \"not yet, do the insulation first\".\n\nThinking about one? Book a free estimate at www.cmghp.co.uk/book/heat-pump and I'll tell you what your house would need before anyone quotes a number.",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "page": "cmg",
         "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248078821301 listed in cancel.json for the next keeper cycle to delete and reschedule",
         "scheduledPostId": "110510101534769_1116717391107703",
         "scheduledFor": "2026-10-22 09:45",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717391107703&set=a.448112374634878&type=3",
+        "publishedAt": "22 Oct 2026, 09:57"
       }
     },
     {
