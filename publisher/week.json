@@ -1731,12 +1731,14 @@
       "caption": "One radiator stone cold while the rest are fine, the first week the heating's on? Nine times out of ten it's the pin.\n\nThermostatic radiator valves (the ones with numbers) sit closed all summer, and the small pin under the plastic head sticks down. The head says 5, the valve says shut.\n\nUnscrew the plastic head by hand, no tools. Underneath there's a pin about 3 mm proud that should spring back when you press it. If it's sunk and stuck, tap it gently, or ease it up a touch with pliers. Put the head back on. Don't pull the pin out, it'll weep.\n\nIf it won't move at all, or the valve starts dripping, stop there. That's a valve replacement, and a quick job for me.\n\nWhich room is the cold one in your house?",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "page": "cmg",
         "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248165487959 listed in cancel.json for the next keeper cycle to delete and reschedule",
         "scheduledPostId": "110510101534769_1116717451107697",
         "scheduledFor": "2026-10-23 10:00",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717451107697&set=a.448112374634878&type=3",
+        "publishedAt": "23 Oct 2026, 10:18"
       }
     },
     {
