@@ -1771,11 +1771,13 @@
       "caption": "Boiler pressure keeps dropping every few weeks, you top it up, nothing's wet anywhere, and it does it again. Very often it's this.\n\nThe red thing is the expansion vessel. It's a rubber diaphragm with air on one side that takes up the expansion as the water heats. When the air charge leaks away over the years, there's nowhere for the expansion to go, so the pressure shoots up when the heating's on, the relief valve dumps a bit out of the pipe outside, and then it reads low when everything cools down.\n\nThe fix is recharging it with a pump, like a tyre, and it's a ten-minute job. Occasionally the vessel itself has failed and needs replacing. Neither one is a new boiler.\n\nIf you've been topping up more than once a month, that's worth a look.",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1106248232154619",
         "scheduledFor": "2026-10-25 10:00",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1106248232154619&set=a.448112374634878&type=3",
+        "publishedAt": "25 Oct 2026, 10:14"
       }
     },
     {
