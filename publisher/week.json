@@ -1790,12 +1790,14 @@
       "caption": "A toilet that never quite stops running is one of the quietest ways to waste water, and on a meter it's money every single day. Four checks:\n\n1. Lid off. Water trickling over the top of the overflow tube in the middle means the fill valve isn't shutting off. Common, cheap.\n\n2. Level looks right but water's still trickling into the pan? The flush valve seal at the bottom isn't seating. Usually a worn washer or a bit of debris.\n\n3. Press the button and let go. If it sticks, the button or its cable is holding the valve open.\n\n4. There's usually a small isolator on the pipe feeding the cistern. Turn it off to stop the waste while you decide what to do.\n\nWhere to stop: isolator won't turn, or the cistern's hidden in a wall or furniture. That's a job for me rather than a Sunday afternoon.\n\nClocks went back last night, by the way. Check the heating timer.",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "page": "cmg",
         "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248302154612 listed in cancel.json for the next keeper cycle to delete and reschedule",
         "scheduledPostId": "110510101534769_1116717501107692",
         "scheduledFor": "2026-10-26 10:00",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717501107692&set=a.448112374634878&type=3",
+        "publishedAt": "26 Oct 2026, 10:05"
       }
     },
     {
