@@ -1810,12 +1810,14 @@
       "caption": "Myth: the boiler's stopped, so the pilot light must have gone out.\n\nAny boiler fitted in the last twenty years doesn't have one. It sparks to light the burner each time it fires, which is why you hear a click and a whoomph. There's nothing to relight.\n\nIf your boiler does have a little flame burning away behind a window all day, that's a permanent pilot, and it means the appliance is old. It burns gas 24 hours a day, 365 days a year, heating nothing, which is one reason very old boilers cost more to run than people think.\n\nSo if a modern boiler won't fire: check the pressure gauge, check the fault code on the display, and check the gas is on (has anyone been working in the house?). Then ring.\n\nAnyone still got a pilot light? I'd like to see it.",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "page": "cmg",
         "note": "caption fix 20 Oct 2026 (Chris approved): old Meta copy 110510101534769_1106248358821273 listed in cancel.json for the next keeper cycle to delete and reschedule",
         "scheduledPostId": "110510101534769_1116717544441021",
         "scheduledFor": "2026-10-27 09:45",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717544441021&set=a.448112374634878&type=3",
+        "publishedAt": "27 Oct 2026, 09:55"
       }
     },
     {
