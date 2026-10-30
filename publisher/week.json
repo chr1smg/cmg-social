@@ -1859,11 +1859,13 @@
       "style": "jobphoto",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1116717634441012",
         "scheduledFor": "2026-10-30 11:30",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717634441012&set=a.448112374634878&type=3",
+        "publishedAt": "30 Oct 2026, 11:45"
       }
     },
     {
