@@ -1939,11 +1939,13 @@
       "style": "jobphoto",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1116717937774315",
         "scheduledFor": "2026-11-03 09:45",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1116717937774315&set=a.448112374634878&type=3",
+        "publishedAt": "3 Nov 2026, 09:57"
       }
     },
     {
