@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com.",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com.",
  "posts": [
   {
    "id": 51,
@@ -557,6 +557,61 @@
    "image": "cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-worcester-combi-condensate-pump-bolton-4x5.jpg",
    "caption": "A new Worcester combi, and the small white box underneath is doing an important job.\n\nA modern boiler makes water as it runs, and it has to go somewhere. Where there is no drain close by, a condensate pump lifts it away to one, so there is no long pipe outside waiting to freeze.\n\nWhere the condensate goes is part of fitting a boiler, not an afterthought.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 113,
+   "slot": "2026-11-05 10:00",
+   "page": "cmg",
+   "title": "Job photo — blocked heat exchanger fins",
+   "image": "cmg-blocked-heat-exchanger-fins-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-blocked-heat-exchanger-fins-bolton-4x5.jpg",
+   "caption": "This is a boiler heat exchanger with the cover off, and the gaps between the fins are clogged.\n\nThe fins are where the heat from the burner passes into your heating water. When the gaps fill with debris, the boiler has to work harder for the same heat, and in time it can start locking out.\n\nChecking this is part of every proper service. If it needs a deeper clean like this one, I tell you what it involves and what it costs before I start.\n\nBook yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 114,
+   "slot": "2026-11-06 11:30",
+   "page": "cmg",
+   "title": "Job photo — Baxi install and magnetic filter",
+   "image": "cmg-baxi-800-install-cmg-badge-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-baxi-800-install-cmg-badge-bolton-4x5.jpg",
+   "caption": "A new Baxi boiler in, with the CMG badge on the front. Under it is a magnetic system filter.\n\nEvery heating system builds up sludge over the years, and the filter catches it before it can reach the new boiler. A magnetic filter goes in with every boiler I fit.\n\nI am an accredited installer with Baxi, Worcester Bosch and Ideal, and I register the manufacturer guarantee for you.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 115,
+   "slot": "2026-11-07 10:00",
+   "page": "cmg",
+   "title": "Job photo — boiler pressure gauge",
+   "image": "cmg-boiler-controls-close-up-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-controls-close-up-bolton-4x5.jpg",
+   "caption": "A weekend check that takes ten seconds: the pressure gauge on your boiler. On this Ideal it is the round dial at the bottom left.\n\nMost combi boilers want somewhere around 1 to 1.5 bar with the heating off, and your boiler's manual gives the exact figure.\n\nIf it keeps dropping and you keep topping it up, that water is going somewhere. It is usually a small leak or a tired expansion vessel, and it is worth finding before it gets worse.\n\nBook a repair visit at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 116,
+   "slot": "2026-11-08 10:00",
+   "page": "cmg",
+   "title": "Job photo — accumulator and booster pump",
+   "image": "cmg-accumulator-booster-pump-water-pressure-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-accumulator-booster-pump-water-pressure-bolton-4x5.jpg",
+   "caption": "Poor water pressure upstairs, or a shower that dies when someone runs a tap downstairs?\n\nThis is one answer: a pump with a storage vessel. It holds water under pressure and tops itself up from the mains, so there is more flow when several taps are on at once.\n\nIt is not the right fix for every house. It depends on what is coming in from the street, so it starts with a look at your supply.\n\nBook a quote at www.cmghp.co.uk/book/quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 117,
+   "slot": "2026-11-09 09:45",
+   "page": "cmg",
+   "title": "Job photo — garage boiler pipework",
+   "image": "cmg-boiler-pump-smart-control-garage-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-pump-smart-control-garage-bolton-4x5.jpg",
+   "caption": "Boiler in the garage? This is how the pipework round it should look.\n\nEvery pipe is lagged, because a garage gets as cold as outside on a frosty night. The pump and valves are easy to reach, and the receiver for the heating controls is wired in neatly where it can be seen.\n\nIf yours has bare pipes in a garage, loft or outbuilding, foam lagging is a cheap job worth doing before the first hard frost.\n\nIf your heating needs looking at this winter, book at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
    "style": "jobphoto",
    "blocked": ""
   }
