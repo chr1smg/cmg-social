@@ -2075,7 +2075,12 @@
       "style": "jobphoto",
       "blocked": "",
       "facebook": {
-        "note": "photo swapped 7 Nov 2026 on Chris's 'Swap the photo' (12:25); old Meta post 110510101534769_1134283116017797 cancelled via cancel.json"
+        "note": "photo swapped 7 Nov 2026 on Chris's 'Swap the photo' (12:25); old Meta post 110510101534769_1134283116017797 cancelled via cancel.json",
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1134294522683323",
+        "scheduledFor": "2026-11-10 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
       }
     },
     {
