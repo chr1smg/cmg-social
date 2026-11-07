@@ -2063,6 +2063,42 @@
         "page": "cmg",
         "verified": "seen in scheduled_posts"
       }
+    },
+    {
+      "id": 132,
+      "slot": "2026-11-10 10:00",
+      "page": "cmg",
+      "title": "Job photo — Worcester boiler in a loft",
+      "image": "cmg-boiler-installed-in-loft-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-installed-in-loft-bolton-4x5.jpg",
+      "caption": "A Worcester boiler fitted in a loft. When there is no room for a boiler downstairs, a loft can be a good home for one, as long as it is done properly.\n\nThere is boarding to stand on, the pipework runs neatly along the wall, the expansion vessel sits right beside the boiler, and a system filter is fitted underneath to catch sludge before it reaches the new boiler.\n\nI fit Baxi, Worcester Bosch and Ideal boilers and register the manufacturer guarantee for you.\n\nThinking about moving or replacing your boiler? Get a free quote at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1134283116017797",
+        "scheduledFor": "2026-11-10 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 133,
+      "slot": "2026-11-11 09:30",
+      "page": "cmg",
+      "title": "Job photo — Ideal boiler in a kitchen cupboard",
+      "image": "cmg-boiler-in-kitchen-cupboard-gap-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-in-kitchen-cupboard-gap-bolton-4x5.jpg",
+      "caption": "Plenty of combi boilers live in a kitchen cupboard like this Ideal, and it works well as long as the cupboard is kept for the boiler.\n\nTry not to store things against it or on the pipes underneath, and keep the doors easy to open, because you need to reach the controls and the pressure gauge, and the boiler needs clear space round it to be serviced. Your boiler's manual gives the exact clearances it needs.\n\nIf yours is due a service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1134283179351124",
+        "scheduledFor": "2026-11-11 09:30",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
     }
   ],
   "reels": [
