@@ -1119,7 +1119,8 @@
         "publishedAt": "24 Oct 2026, 10:08"
       },
       "instagram": {
-        "status": ""
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       },
       "style": "jobphoto"
     },
@@ -1141,7 +1142,8 @@
         "publishedAt": "28 Oct 2026, 11:47"
       },
       "instagram": {
-        "status": ""
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       },
       "style": "jobphoto"
     },
@@ -1747,6 +1749,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717391107703&set=a.448112374634878&type=3",
         "publishedAt": "22 Oct 2026, 09:57"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1767,6 +1773,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717451107697&set=a.448112374634878&type=3",
         "publishedAt": "23 Oct 2026, 10:18"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1786,6 +1796,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1106248232154619&set=a.448112374634878&type=3",
         "publishedAt": "25 Oct 2026, 10:14"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1806,6 +1820,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717501107692&set=a.448112374634878&type=3",
         "publishedAt": "26 Oct 2026, 10:05"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1826,6 +1844,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717544441021&set=a.448112374634878&type=3",
         "publishedAt": "27 Oct 2026, 09:55"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1846,6 +1868,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717591107683&set=a.448112374634878&type=3",
         "publishedAt": "29 Oct 2026, 10:09"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1866,6 +1892,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717634441012&set=a.448112374634878&type=3",
         "publishedAt": "30 Oct 2026, 11:45"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1886,6 +1916,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717671107675&set=a.448112374634878&type=3",
         "publishedAt": "31 Oct 2026, 10:07"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1906,6 +1940,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717787774330&set=a.448112374634878&type=3",
         "publishedAt": "1 Nov 2026, 10:13"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1926,6 +1964,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717834440992&set=a.448112374634878&type=3",
         "publishedAt": "2 Nov 2026, 10:05"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1946,6 +1988,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717937774315&set=a.448112374634878&type=3",
         "publishedAt": "3 Nov 2026, 09:57"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1966,6 +2012,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1116717981107644&set=a.448112374634878&type=3",
         "publishedAt": "4 Nov 2026, 09:40"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -1986,6 +2036,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1131101783002597&set=a.448112374634878&type=3",
         "publishedAt": "5 Nov 2026, 10:06"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -2006,6 +2060,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1131101826335926&set=a.448112374634878&type=3",
         "publishedAt": "6 Nov 2026, 11:43"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
@@ -2026,6 +2084,10 @@
         "verified": "is_published read back off Meta after the slot",
         "permalink": "https://www.facebook.com/photo.php?fbid=1131101873002588&set=a.448112374634878&type=3",
         "publishedAt": "7 Nov 2026, 10:05"
+      },
+      "instagram": {
+        "status": "skipped",
+        "skipReason": "IG token expired ~24 Oct; overdue post skipped on Chris approval 7 Nov 2026 (not to be bulk-posted late)"
       }
     },
     {
