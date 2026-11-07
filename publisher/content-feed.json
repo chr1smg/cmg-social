@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling.",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling. | 7 Nov 2026: CMG rows 134 (Thu 12 Nov 10:00, D15 condensate trap) and 135 (Fri 13 Nov 10:00, D16 porch install, ADEY MagnaClean filter; photo cropped to remove pliers) added, approved by Chris 7 Nov 12:50 Yes Board 'Load both'. D16 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' and links www.cmghp.co.uk/boiler-prices/. Instagram normal (token works from 7 Nov).",
  "posts": [
   {
    "id": 51,
@@ -634,6 +634,28 @@
    "image": "cmg-boiler-in-kitchen-cupboard-gap-bolton-4x5.jpg",
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-in-kitchen-cupboard-gap-bolton-4x5.jpg",
    "caption": "Plenty of combi boilers live in a kitchen cupboard like this Ideal, and it works well as long as the cupboard is kept for the boiler.\n\nTry not to store things against it or on the pipes underneath, and keep the doors easy to open, because you need to reach the controls and the pressure gauge, and the boiler needs clear space round it to be serviced. Your boiler's manual gives the exact clearances it needs.\n\nIf yours is due a service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 134,
+   "slot": "2026-11-12 10:00",
+   "page": "cmg",
+   "title": "Job photo — condensate trap cleaned on a service",
+   "image": "cmg-condensate-trap-removed-for-cleaning-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-condensate-trap-removed-for-cleaning-bolton-4x5.jpg",
+   "caption": "This is the condensate trap from under a boiler, taken off during a service so I can clean it out.\n\nModern boilers make water as they run, and it drains away through this trap and a pipe to outside. If the trap silts up, or the pipe freezes in a cold snap, the boiler can stop and show a fault.\n\nCleaning the trap is part of every service I do.\n\nIf you smell gas, ring the National Gas Emergency line on 0800 111 999.\n\nIf your boiler is due a service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 135,
+   "slot": "2026-11-13 10:00",
+   "page": "cmg",
+   "title": "Job photo — boiler fitted in a porch with magnetic filter",
+   "image": "cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
+   "caption": "Not every boiler lives in a kitchen. This one went into a porch.\n\nA porch, garage or loft can work well, but it is colder than the house, so before anything goes in I check the boiler suits the spot and plan how the pipes and the condensate run so they are protected in winter.\n\nA magnetic filter goes in with every boiler I fit, to catch sludge before it reaches the new boiler.\n\nI fit Baxi, Worcester Bosch and Ideal boilers and register the manufacturer guarantee for you.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/boiler-prices/\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
    "style": "jobphoto",
    "blocked": ""
   }
