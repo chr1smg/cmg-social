@@ -2162,6 +2162,42 @@
         "page": "cmg",
         "verified": "seen in scheduled_posts"
       }
+    },
+    {
+      "id": 134,
+      "slot": "2026-11-12 10:00",
+      "page": "cmg",
+      "title": "Job photo — condensate trap cleaned on a service",
+      "image": "cmg-condensate-trap-removed-for-cleaning-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-condensate-trap-removed-for-cleaning-bolton-4x5.jpg",
+      "caption": "This is the condensate trap from under a boiler, taken off during a service so I can clean it out.\n\nModern boilers make water as they run, and it drains away through this trap and a pipe to outside. If the trap silts up, or the pipe freezes in a cold snap, the boiler can stop and show a fault.\n\nCleaning the trap is part of every service I do.\n\nIf you smell gas, ring the National Gas Emergency line on 0800 111 999.\n\nIf your boiler is due a service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1134317159347726",
+        "scheduledFor": "2026-11-12 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
+    },
+    {
+      "id": 135,
+      "slot": "2026-11-13 10:00",
+      "page": "cmg",
+      "title": "Job photo — boiler fitted in a porch with magnetic filter",
+      "image": "cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
+      "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
+      "caption": "Not every boiler lives in a kitchen. This one went into a porch.\n\nA porch, garage or loft can work well, but it is colder than the house, so before anything goes in I check the boiler suits the spot and plan how the pipes and the condensate run so they are protected in winter.\n\nA magnetic filter goes in with every boiler I fit, to catch sludge before it reaches the new boiler.\n\nI fit Baxi, Worcester Bosch and Ideal boilers and register the manufacturer guarantee for you.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/boiler-prices/\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+      "style": "jobphoto",
+      "blocked": "",
+      "facebook": {
+        "status": "scheduled",
+        "scheduledPostId": "110510101534769_1134317216014387",
+        "scheduledFor": "2026-11-13 10:00",
+        "page": "cmg",
+        "verified": "seen in scheduled_posts"
+      }
     }
   ],
   "reels": [
