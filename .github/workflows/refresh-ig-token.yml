@@ -12,6 +12,7 @@ name: refresh-ig-token
 # If anything fails the run goes red AND an issue is opened in this repo, so it is never silent.
 # Manual run with mode=check: proves the current token and the secret-write route without
 # refreshing (it re-writes IG_TOKEN with its own verified value). Use it after any token change.
+# mode=alarm-test fails on purpose before touching anything, to prove the red run + issue alarm.
 # Meta refuses to refresh a token less than 24 hours old - so a mode=refresh run straight after a
 # new token is pasted in will fail; that is expected, the next scheduled run will succeed.
 #
@@ -28,7 +29,7 @@ on:
         required: true
         default: check
         type: choice
-        options: [check, refresh]
+        options: [check, refresh, alarm-test]
 
 permissions:
   contents: read
@@ -56,6 +57,7 @@ jobs:
           if [ -z "${GH_TOKEN:-}" ]; then echo "::error::REPO_PAT secret is empty - cannot write IG_TOKEN back"; exit 1; fi
           echo "::add-mask::$IG_TOKEN"
           echo "mode: $MODE"
+          if [ "$MODE" = "alarm-test" ]; then echo "::error::alarm-test - deliberate failure to prove the alarm fires (nothing refreshed or written)"; exit 1; fi
 
           if [ "$MODE" = "refresh" ]; then
             code=$(curl -sS -o "$out" -w '%{http_code}' -G 'https://graph.instagram.com/refresh_access_token' \
