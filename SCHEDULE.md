@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-11-07 12:36 UTC
+Last updated: 2026-11-07 12:51 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -85,28 +85,28 @@ Last updated: 2026-11-07 12:36 UTC
 | Tue 20 Oct | 18:00 | BWD — list: four things to stop doing | DONE | Facebook + Instagram |
 | Wed 21 Oct | 11:30 | Job photo — Ideal combi service | DONE | Facebook + Instagram |
 | Wed 21 Oct | 18:00 | BWD — the light one: the immersion switch | DONE | Facebook + Instagram |
-| Thu 22 Oct | 09:45 | CMG — myth: heat pumps and the cold | DONE | Facebook + Instagram |
+| Thu 22 Oct | 09:45 | CMG — myth: heat pumps and the cold | DONE | Facebook only |
 | Thu 22 Oct | 18:00 | BWD — big number: the 25th | DONE | Facebook + Instagram |
-| Fri 23 Oct | 10:00 | CMG — icon: stuck TRV pin | DONE | Facebook + Instagram |
+| Fri 23 Oct | 10:00 | CMG — icon: stuck TRV pin | DONE | Facebook only |
 | Fri 23 Oct | 18:00 | BWD — photo: boiler in the loft | DONE | Facebook + Instagram |
 | Sat 24 Oct | 09:00 | BWD — myth: the electric heater | DONE | Facebook + Instagram |
-| Sat 24 Oct | 10:00 | Job photo — boiler data plate | DONE | Facebook + Instagram |
+| Sat 24 Oct | 10:00 | Job photo — boiler data plate | DONE | Facebook only |
 | Sun 25 Oct | 09:00 | BWD — list: four smells | DONE | Facebook + Instagram |
-| Sun 25 Oct | 10:00 | CMG — photo: expansion vessel | DONE | Facebook + Instagram |
-| Mon 26 Oct | 10:00 | CMG — steps: toilet running | DONE | Facebook + Instagram |
-| Tue 27 Oct | 09:45 | CMG — myth: the pilot light | DONE | Facebook + Instagram |
-| Wed 28 Oct | 11:30 | Job photo — Greenstar Heatstore | DONE | Facebook + Instagram |
-| Thu 29 Oct | 10:00 | Job photo — flue gas analyser | DONE | Facebook + Instagram |
+| Sun 25 Oct | 10:00 | CMG — photo: expansion vessel | DONE | Facebook only |
+| Mon 26 Oct | 10:00 | CMG — steps: toilet running | DONE | Facebook only |
+| Tue 27 Oct | 09:45 | CMG — myth: the pilot light | DONE | Facebook only |
+| Wed 28 Oct | 11:30 | Job photo — Greenstar Heatstore | DONE | Facebook only |
+| Thu 29 Oct | 10:00 | Job photo — flue gas analyser | DONE | Facebook only |
 | Thu 29 Oct | 18:00 | BWD — big number: one degree | DONE | Facebook + Instagram |
-| Fri 30 Oct | 11:30 | Job photo — corroded gas valve | DONE | Facebook + Instagram |
-| Sat 31 Oct | 10:00 | Job photo — heat pump cylinder | DONE | Facebook + Instagram |
-| Sun 1 Nov | 10:00 | Job photo — new main and stopcock | DONE | Facebook + Instagram |
-| Mon 2 Nov | 10:00 | Job photo — unvented cylinder label | DONE | Facebook + Instagram |
-| Tue 3 Nov | 09:45 | Job photo — service, casing off | DONE | Facebook + Instagram |
-| Wed 4 Nov | 09:30 | Job photo — Worcester combi and condensate pump | DONE | Facebook + Instagram |
-| Thu 5 Nov | 10:00 | Job photo — blocked heat exchanger fins | DONE | Facebook + Instagram |
-| Fri 6 Nov | 11:30 | Job photo — Baxi install and magnetic filter | DONE | Facebook + Instagram |
-| Sat 7 Nov | 10:00 | Job photo — boiler pressure gauge | DONE | Facebook + Instagram |
+| Fri 30 Oct | 11:30 | Job photo — corroded gas valve | DONE | Facebook only |
+| Sat 31 Oct | 10:00 | Job photo — heat pump cylinder | DONE | Facebook only |
+| Sun 1 Nov | 10:00 | Job photo — new main and stopcock | DONE | Facebook only |
+| Mon 2 Nov | 10:00 | Job photo — unvented cylinder label | DONE | Facebook only |
+| Tue 3 Nov | 09:45 | Job photo — service, casing off | DONE | Facebook only |
+| Wed 4 Nov | 09:30 | Job photo — Worcester combi and condensate pump | DONE | Facebook only |
+| Thu 5 Nov | 10:00 | Job photo — blocked heat exchanger fins | DONE | Facebook only |
+| Fri 6 Nov | 11:30 | Job photo — Baxi install and magnetic filter | DONE | Facebook only |
+| Sat 7 Nov | 10:00 | Job photo — boiler pressure gauge | DONE | Facebook only |
 | Sun 8 Nov | 10:00 | Job photo — accumulator and booster pump | QUEUED ON META | Facebook + Instagram |
 | Mon 9 Nov | 09:45 | Job photo — garage boiler pipework | QUEUED ON META | Facebook + Instagram |
 | Tue 10 Nov | 10:00 | Job photo — Worcester boiler in a utility room | QUEUED ON META | Facebook + Instagram |
