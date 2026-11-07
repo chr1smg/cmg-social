@@ -1,0 +1,105 @@
+name: refresh-ig-token
+
+# WHY THIS EXISTS (7 Nov 2026). The Instagram long-lived token (IGAA..., Instagram Login) lasts
+# 60 days. It expired around 24 Oct 2026 and Instagram silently missed 17 posts. Chris approved an
+# automatic refresh on 7 Nov 2026 ("Yes, set it up").
+#
+# What it does: every ~10 days (1st, 11th, 21st and 31st, 03:23 UTC) it swaps the current IG_TOKEN
+# for a fresh 60-day one via graph.instagram.com/refresh_access_token, proves the new token works
+# by reading /me, and writes it back to the IG_TOKEN repository secret using REPO_PAT (the default
+# GITHUB_TOKEN cannot write secrets). Several missed runs in a row still leave weeks of margin.
+#
+# If anything fails the run goes red AND an issue is opened in this repo, so it is never silent.
+# Manual run with mode=check: proves the current token and the secret-write route without
+# refreshing (it re-writes IG_TOKEN with its own verified value). Use it after any token change.
+# Meta refuses to refresh a token less than 24 hours old - so a mode=refresh run straight after a
+# new token is pasted in will fail; that is expected, the next scheduled run will succeed.
+#
+# NEVER print a token. No set -x. Tokens are masked, passed by env/stdin, never as arguments to
+# echo, never in a URL that is logged.
+
+on:
+  schedule:
+    - cron: '23 3 */10 * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'refresh = get a new 60-day token; check = prove current token + secret write, no refresh'
+        required: true
+        default: check
+        type: choice
+        options: [check, refresh]
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: refresh-ig-token
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Refresh, verify and store the Instagram token
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          GH_TOKEN: ${{ secrets.REPO_PAT }}
+          MODE: ${{ github.event.inputs.mode || 'refresh' }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          out="$RUNNER_TEMP/ig.json"
+          if [ -z "${IG_TOKEN:-}" ]; then echo "::error::IG_TOKEN secret is empty"; exit 1; fi
+          if [ -z "${GH_TOKEN:-}" ]; then echo "::error::REPO_PAT secret is empty - cannot write IG_TOKEN back"; exit 1; fi
+          echo "::add-mask::$IG_TOKEN"
+          echo "mode: $MODE"
+
+          if [ "$MODE" = "refresh" ]; then
+            code=$(curl -sS -o "$out" -w '%{http_code}' -G 'https://graph.instagram.com/refresh_access_token' \
+              --data-urlencode 'grant_type=ig_refresh_token' --data-urlencode "access_token=$IG_TOKEN")
+            if [ "$code" != "200" ]; then
+              echo "::error::refresh refused (HTTP $code): $(jq -r '.error.message // "no message"' "$out" 2>/dev/null)"
+              exit 1
+            fi
+            NEW=$(jq -r '.access_token // empty' "$out")
+            EXPIRES_IN=$(jq -r '.expires_in // 0' "$out")
+            rm -f "$out"
+            if [ -z "$NEW" ]; then echo "::error::refresh answered 200 but returned no token"; exit 1; fi
+            echo "::add-mask::$NEW"
+          else
+            NEW="$IG_TOKEN"
+            EXPIRES_IN=""
+          fi
+
+          # Prove the token we are about to store actually works.
+          code=$(curl -sS -o "$out" -w '%{http_code}' -G 'https://graph.instagram.com/me' \
+            --data-urlencode 'fields=user_id,username' --data-urlencode "access_token=$NEW")
+          if [ "$code" != "200" ]; then
+            echo "::error::token does not work on graph.instagram.com/me (HTTP $code): $(jq -r '.error.message // "no message"' "$out" 2>/dev/null)"
+            exit 1
+          fi
+          echo "token works for @$(jq -r '.username // "?"' "$out")"
+          rm -f "$out"
+
+          # Store it. Value goes in on stdin, never on the command line.
+          printf '%s' "$NEW" | gh secret set IG_TOKEN --repo "$REPO"
+          echo "IG_TOKEN secret written"
+          if [ -n "$EXPIRES_IN" ] && [ "$EXPIRES_IN" != "0" ]; then
+            echo "new token expires about $(date -u -d "@$(( $(date +%s) + EXPIRES_IN ))" '+%Y-%m-%d %H:%M UTC')"
+          fi
+          echo "OK $(date -u '+%Y-%m-%d %H:%M UTC') mode=$MODE"
+
+      - name: Shout if it failed
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          gh issue create --repo "$REPO" \
+            --title "Instagram token refresh FAILED $(date -u '+%d %b %Y')" \
+            --body "The automatic Instagram token refresh failed. Instagram posts will stop when the current token expires (60 days from its last refresh). Run log: $RUN_URL" \
+            || echo "could not open an issue - the red run is the alarm"
