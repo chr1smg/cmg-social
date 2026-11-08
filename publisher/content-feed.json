@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling. | 7 Nov 2026: CMG rows 134 (Thu 12 Nov 10:00, D15 condensate trap) and 135 (Fri 13 Nov 10:00, D16 porch install, ADEY MagnaClean filter; photo cropped to remove pliers) added, approved by Chris 7 Nov 12:50 Yes Board 'Load both'. D16 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' and links www.cmghp.co.uk/boiler-prices/. Instagram normal (token works from 7 Nov).",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling. | 7 Nov 2026: CMG rows 134 (Thu 12 Nov 10:00, D15 condensate trap) and 135 (Fri 13 Nov 10:00, D16 porch install, ADEY MagnaClean filter; photo cropped to remove pliers) added, approved by Chris 7 Nov 12:50 Yes Board 'Load both'. D16 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' and links www.cmghp.co.uk/boiler-prices/. Instagram normal (token works from 7 Nov). | 8 Nov 2026: CMG rows 136-142 (Sat 14 Nov - Sat 21 Nov, one a day, Sunday 15 Nov skipped; job photos, 4:5 crops from Yes Board card posts-9-22-nov attachments) added, approved by Chris 8 Nov 17:03 Yes Board 'Load all 7'. Captions word for word from the card. Ids 118-131 still left free for the BWD batch. Instagram normal.",
  "posts": [
   {
    "id": 51,
@@ -656,6 +656,83 @@
    "image": "cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-install-porch-magnetic-filter-bolton-4x5.jpg",
    "caption": "Not every boiler lives in a kitchen. This one went into a porch.\n\nA porch, garage or loft can work well, but it is colder than the house, so before anything goes in I check the boiler suits the spot and plan how the pipes and the condensate run so they are protected in winter.\n\nA magnetic filter goes in with every boiler I fit, to catch sludge before it reaches the new boiler.\n\nI fit Baxi, Worcester Bosch and Ideal boilers and register the manufacturer guarantee for you.\n\nThinking about a new boiler? Get a free quote at www.cmghp.co.uk/boiler-prices/\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 136,
+   "slot": "2026-11-14 10:00",
+   "page": "cmg",
+   "title": "Job photo — Checking an expansion vessel",
+   "image": "cmg-checking-expansion-vessel-pressure-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-checking-expansion-vessel-pressure-bolton-4x5.jpg",
+   "caption": "This is me checking the air charge in the expansion vessel on an unvented hot water cylinder. When hot water heats up it expands, and the vessel takes up that extra water. If the air charge has gone, the water has nowhere to go, and it can end up running out of the discharge pipe outside. Checking and topping up the vessel is part of every unvented cylinder service I do, along with testing the safety valves. If your cylinder is due its check, book it at www.cmghp.co.uk/book/cylinder\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 137,
+   "slot": "2026-11-16 09:45",
+   "page": "cmg",
+   "title": "Job photo — Sludge blocking a gauge pipe",
+   "image": "cmg-magnetite-sludge-blocking-gauge-pipe-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-magnetite-sludge-blocking-gauge-pipe-bolton-4x5.jpg",
+   "caption": "This black lump is magnetite, the sludge that builds up inside a heating system as radiators slowly rust from the inside. I found it blocking the small pipe to a boiler's pressure gauge, so the gauge was not showing the real pressure. The same sludge settles in radiators, leaving them cold at the bottom, and wears out pumps and boilers. Cleaning it out and fitting a magnetic filter stops it building back up. If your radiators are cold at the bottom or your pressure gauge looks stuck, book a visit at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 138,
+   "slot": "2026-11-17 10:00",
+   "page": "cmg",
+   "title": "Job photo — Inside a boiler service",
+   "image": "cmg-boiler-service-heat-exchanger-pins-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-service-heat-exchanger-pins-bolton-4x5.jpg",
+   "caption": "This is inside a boiler during a service, with the burner taken out so I can see the heat exchanger. These rows of pins are where the heat from the flame passes into your heating water. I check them for build up and clean them if needed, check the seals, and test the combustion readings before the case goes back on. A quick look with the cover off is not the same as a proper service. If you ever smell gas, ring the National Gas Emergency line on 0800 111 999. If your boiler is due a service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 139,
+   "slot": "2026-11-18 09:30",
+   "page": "cmg",
+   "title": "Job photo — An unvented cylinder needs a yearly check",
+   "image": "cmg-unvented-cylinder-airing-cupboard-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-unvented-cylinder-airing-cupboard-bolton-4x5.jpg",
+   "caption": "An unvented hot water cylinder in an airing cupboard, giving mains pressure hot water at every tap. Because it holds hot water under pressure, it has safety valves, a pressure reducing valve and an expansion vessel, and most manufacturers want it checked every year by someone qualified to work on unvented systems. I test the valves, check the expansion vessel and look at the discharge pipe. If yours has not been looked at in the last year, book a check at www.cmghp.co.uk/book/cylinder\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 140,
+   "slot": "2026-11-19 10:00",
+   "page": "cmg",
+   "title": "Job photo — Overflow dripping? Check the loft tank",
+   "image": "cmg-loft-tank-float-valve-repair-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-loft-tank-float-valve-repair-bolton-4x5.jpg",
+   "caption": "This is the cold water tank in a loft, and the orange float is the ball valve that tops it up. When a float valve wears or sticks, the tank keeps filling and water runs out of the overflow pipe outside, which is often the first thing anyone notices. I repaired the valve on this one so it shuts off properly again. If you have water dripping from a pipe high up on an outside wall, it is worth sorting before the frost. Book a repair at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 141,
+   "slot": "2026-11-20 11:30",
+   "page": "cmg",
+   "title": "Job photo — A burner and its new seal",
+   "image": "cmg-boiler-burner-and-new-seal-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-boiler-burner-and-new-seal-bolton-4x5.jpg",
+   "caption": "A boiler burner on the left, and the new seal that goes with it on the right. On some boilers the burner seal has to be renewed whenever the burner comes out, and on others only if it is damaged. Either way, a seal that does not sit properly can let combustion gases go where they should not. If a part is needed on a service, I tell you what it is and what it costs before I fit it. Book your boiler service at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 142,
+   "slot": "2026-11-21 10:00",
+   "page": "cmg",
+   "title": "Job photo — Draining a system down properly",
+   "image": "cmg-heating-system-drain-down-hose-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-heating-system-drain-down-hose-bolton-4x5.jpg",
+   "caption": "When a radiator or a valve needs changing, the heating system often has to be drained first. The water inside is usually dark with sludge, so I run it through a hose to a drain rather than across a garden or a driveway. Afterwards the system is refilled, bled and topped up with inhibitor to protect it. Thinking about new radiators or valves? Ask for a quote at www.cmghp.co.uk/book/quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
    "style": "jobphoto",
    "blocked": ""
   }
