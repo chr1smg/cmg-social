@@ -14063,3 +14063,5 @@
 {"at":"2026-11-07T12:36:38.184Z","cmd":"publish-due","post":115,"platform":"instagram","result":"error","error":"Graph API error 190: Error validating access token: The session has been invalidated because the user changed their password or Facebook has changed the session for security reasons.\n  -> The access token has expired, been revoked, or is the wrong kind for this host."}
 {"at":"2026-11-07T13:06:48.004Z","cmd":"schedule-week","post":134,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1134317159347726","slot":"2026-11-12 10:00","verified":"seen in scheduled_posts"}
 {"at":"2026-11-07T13:06:50.102Z","cmd":"schedule-week","post":135,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1134317216014387","slot":"2026-11-13 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-08T10:11:22.860Z","cmd":"publish-due","post":116,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/Dfegu3EkWWb/"}
+{"at":"2026-11-08T10:11:23.362Z","cmd":"confirm-published","post":116,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1131101919669250&set=a.448112374634878&type=3"}
