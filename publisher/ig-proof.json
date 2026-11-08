@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-08 17:12 UTC",
+  "checkedAt": "2026-11-08 17:13 UTC",
   "tokenError": null,
-  "expected": 2,
+  "expected": 1,
   "ok": [
     {
       "id": 116,
@@ -11,13 +11,6 @@
       "permalink": "https://www.instagram.com/p/Dfegu3EkWWb/"
     }
   ],
-  "missing": [
-    {
-      "id": 115,
-      "slot": "2026-11-07 10:00",
-      "title": "Job photo \u2014 boiler pressure gauge",
-      "recordedIg": "skipped"
-    }
-  ],
-  "test": true
+  "missing": [],
+  "test": false
 }
