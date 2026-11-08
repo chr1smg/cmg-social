@@ -1,0 +1,87 @@
+name: ig-proof
+# READ-ONLY on Meta. Added 8 Nov 2026 (Yes Board idea 642, Chris "Do it").
+# Instagram missed every post from 21 Oct to 7 Nov while week.json and SCHEDULE.md
+# said "DONE", because nothing read the @cmg_hp account itself. This reads the
+# real Instagram feed (graph.instagram.com/me/media) after the posting slots and
+# compares it with every CMG row whose slot passed 60+ minutes ago (last 7 days)
+# and which is meant to go to Instagram (instagram.status not "skipped", not blocked).
+# Writes publisher/ig-proof.json. A cloud scheduled task reads that file and puts
+# a Yes Board card up ONLY when a post is missing. Run goes red when one is missing.
+# Never touches week.json.
+on:
+  schedule:
+    - cron: '20 12,16,20 * * *'
+  workflow_dispatch:
+    inputs:
+      force_ids:
+        description: 'TEST ONLY: space-separated row ids to treat as Instagram-expected even if skipped'
+        required: false
+        default: ''
+permissions:
+  contents: write
+concurrency:
+  group: ig-proof
+  cancel-in-progress: false
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read the Instagram feed and compare
+        env:
+          IG_TOKEN: ${{ secrets.IG_TOKEN }}
+          FORCE_IDS: ${{ inputs.force_ids }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, sys, urllib.request, urllib.parse, datetime as dt
+          from zoneinfo import ZoneInfo
+          uk = ZoneInfo('Europe/London')
+          now = dt.datetime.now(dt.timezone.utc)
+          force = set((os.environ.get('FORCE_IDS') or '').split())
+          week = json.load(open('publisher/week.json'))
+          def norm(s): return re.sub(r'[^a-z0-9]+', '', (s or '').lower())[:60]
+          expected = []
+          for p in week.get('posts', []) + week.get('reels', []):
+              page = p.get('page') or (p.get('facebook') or {}).get('page') or 'cmg'
+              if page != 'cmg' or p.get('blocked'): continue
+              try: slot = dt.datetime.strptime(p['slot'], '%Y-%m-%d %H:%M').replace(tzinfo=uk)
+              except Exception: continue
+              age = (now - slot).total_seconds() / 60
+              if age < 60 or age > 7 * 24 * 60: continue
+              ig = (p.get('instagram') or {}).get('status') or ''
+              if ig == 'skipped' and str(p.get('id')) not in force: continue
+              expected.append({'id': p.get('id'), 'slot': p['slot'], 'title': p.get('title', ''),
+                               'recordedIg': ig, 'key': norm(p.get('caption'))})
+          out = {'checkedAt': now.strftime('%Y-%m-%d %H:%M UTC'), 'tokenError': None,
+                 'expected': len(expected), 'ok': [], 'missing': [], 'test': bool(force)}
+          media = []
+          tok = os.environ.get('IG_TOKEN') or ''
+          if expected:
+              try:
+                  host = 'graph.instagram.com' if tok.startswith('IG') else 'graph.facebook.com'
+                  url = f'https://{host}/v23.0/me/media?' + urllib.parse.urlencode(
+                      {'fields': 'id,caption,timestamp,permalink', 'limit': 50, 'access_token': tok})
+                  d = json.load(urllib.request.urlopen(url, timeout=30))
+                  if 'error' in d: raise RuntimeError(str(d['error'].get('message', 'error'))[:200])
+                  media = d.get('data', [])
+              except Exception as e:
+                  out['tokenError'] = re.sub(r'(IG|EA)[A-Za-z0-9_-]{20,}', '[REDACTED]', str(e))[:300]
+          for e in expected:
+              hit = next((m for m in media if norm(m.get('caption')) == e['key'] and e['key']), None)
+              row = {k: e[k] for k in ('id', 'slot', 'title', 'recordedIg')}
+              if hit: row['permalink'] = hit.get('permalink'); out['ok'].append(row)
+              elif not out['tokenError']: out['missing'].append(row)
+          json.dump(out, open('publisher/ig-proof.json', 'w'), indent=2)
+          print(json.dumps(out, indent=2))
+          if out['missing'] or out['tokenError']:
+              print('INSTAGRAM PROOF FAILED: missing posts or feed unreadable', file=sys.stderr); sys.exit(1)
+          PY
+      - name: Commit the proof file only
+        if: always()
+        run: |
+          git config user.name "cmg-publisher"; git config user.email "publisher@users.noreply.github.com"
+          git add publisher/ig-proof.json 2>/dev/null || exit 0
+          if git diff --cached --quiet; then echo "no change"; exit 0; fi
+          git commit -m "ig-proof: $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3; do git pull --rebase origin main && git push && break; sleep 5; done
