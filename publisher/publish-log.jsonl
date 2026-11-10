@@ -14074,3 +14074,5 @@
 {"at":"2026-11-08T17:13:10.983Z","cmd":"schedule-week","post":142,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1135609835885125","slot":"2026-11-21 10:00","verified":"seen in scheduled_posts"}
 {"at":"2026-11-09T09:46:55.946Z","cmd":"publish-due","post":117,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/DfhCu6Olq0P/"}
 {"at":"2026-11-09T10:02:00.545Z","cmd":"confirm-published","post":117,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1131101966335912&set=a.448112374634878&type=3"}
+{"at":"2026-11-10T10:07:50.133Z","cmd":"publish-due","post":132,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/Dfjp6skkR4O/"}
+{"at":"2026-11-10T10:07:50.580Z","cmd":"confirm-published","post":132,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1134294522683323&set=a.448112374634878&type=3"}
