@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-09 22:27 UTC",
+  "checkedAt": "2026-11-10 19:49 UTC",
   "tokenError": null,
-  "expected": 2,
+  "expected": 3,
   "ok": [
     {
       "id": 116,
@@ -16,6 +16,13 @@
       "title": "Job photo \u2014 garage boiler pipework",
       "recordedIg": "published",
       "permalink": "https://www.instagram.com/p/DfhCu6Olq0P/"
+    },
+    {
+      "id": 132,
+      "slot": "2026-11-10 10:00",
+      "title": "Job photo \u2014 Worcester boiler in a utility room",
+      "recordedIg": "published",
+      "permalink": "https://www.instagram.com/p/Dfjp6skkR4O/"
     }
   ],
   "missing": [],
