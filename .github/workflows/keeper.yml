@@ -51,10 +51,18 @@ jobs:
           if [ -z "$IG_USER_ID" ]; then sed -i '/^IG_TOKEN=/d' .env; echo "Instagram not configured - skipped"; fi
 
       - name: Run the publisher cycle every 15 minutes for ~5.5 hours
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           chmod +x tools/cycle.sh
           for i in $(seq 1 21); do
             bash tools/cycle.sh || echo "cycle $i reported a problem"
+            # 11 Nov 2026 (Yes Board card 783, Chris "Workout solution"): GitHub skips ig-proof's own cron,
+            # so the keeper (which runs reliably) starts it between :15 and :40 past 12, 16 and 20 UTC instead (a repeat check is harmless).
+            H=$(date -u +%H); M=$(date -u +%M)
+            if { [ "$H" = "12" ] || [ "$H" = "16" ] || [ "$H" = "20" ]; } && [ "$M" -ge 15 ] && [ "$M" -lt 40 ]; then
+              gh workflow run ig-proof.yml --repo "$GITHUB_REPOSITORY" --ref main && echo "ig-proof dispatched" || echo "ig-proof dispatch failed"
+            fi
             if [ "$i" -lt 21 ]; then sleep 900; fi
           done
 
