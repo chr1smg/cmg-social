@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-11 00:41 UTC",
+  "checkedAt": "2026-11-11 19:40 UTC",
   "tokenError": null,
-  "expected": 3,
+  "expected": 4,
   "ok": [
     {
       "id": 116,
@@ -23,6 +23,13 @@
       "title": "Job photo \u2014 Worcester boiler in a utility room",
       "recordedIg": "published",
       "permalink": "https://www.instagram.com/p/Dfjp6skkR4O/"
+    },
+    {
+      "id": 133,
+      "slot": "2026-11-11 09:30",
+      "title": "Job photo \u2014 Ideal boiler in a kitchen cupboard",
+      "recordedIg": "published",
+      "permalink": "https://www.instagram.com/p/DfmL5DyoBPg/"
     }
   ],
   "missing": [],
