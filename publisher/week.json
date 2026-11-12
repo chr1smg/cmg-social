@@ -2202,11 +2202,13 @@
       "style": "jobphoto",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1134317159347726",
         "scheduledFor": "2026-11-12 10:00",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1134317159347726&set=a.448112374634878&type=3",
+        "publishedAt": "12 Nov 2026, 10:19"
       },
       "instagram": {
         "status": "published",
