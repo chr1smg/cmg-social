@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-14 00:54 UTC",
+  "checkedAt": "2026-11-14 12:15 UTC",
   "tokenError": null,
-  "expected": 6,
+  "expected": 7,
   "ok": [
     {
       "id": 116,
@@ -44,6 +44,13 @@
       "title": "Job photo \u2014 boiler fitted in a porch with magnetic filter",
       "recordedIg": "published",
       "permalink": "https://www.instagram.com/p/DfrYk_alpoW/"
+    },
+    {
+      "id": 136,
+      "slot": "2026-11-14 10:00",
+      "title": "Job photo \u2014 Checking an expansion vessel",
+      "recordedIg": "published",
+      "permalink": "https://www.instagram.com/p/Dft8RoBlQ7u/"
     }
   ],
   "missing": [],
