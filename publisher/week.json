@@ -2277,11 +2277,18 @@
       "style": "jobphoto",
       "blocked": "",
       "facebook": {
-        "status": "scheduled",
+        "status": "published",
         "scheduledPostId": "110510101534769_1135609555885153",
         "scheduledFor": "2026-11-16 09:45",
         "page": "cmg",
-        "verified": "seen in scheduled_posts"
+        "verified": "is_published read back off Meta after the slot",
+        "permalink": "https://www.facebook.com/photo.php?fbid=1135609555885153&set=a.448112374634878&type=3",
+        "publishedAt": "16 Nov 2026, 09:56"
+      },
+      "instagram": {
+        "status": "published",
+        "permalink": "https://www.instagram.com/p/DfzFX3NoJfr/",
+        "publishedAt": "16 Nov 2026, 09:56"
       }
     },
     {
