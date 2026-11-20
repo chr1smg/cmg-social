@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-20 12:18 UTC",
+  "checkedAt": "2026-11-20 12:34 UTC",
   "tokenError": null,
-  "expected": 5,
+  "expected": 6,
   "ok": [
     {
       "id": 136,
@@ -37,6 +37,13 @@
       "title": "Job photo \u2014 Overflow dripping? Check the loft tank",
       "recordedIg": "published",
       "permalink": "https://www.instagram.com/p/Df61p0klsS7/"
+    },
+    {
+      "id": 141,
+      "slot": "2026-11-20 11:30",
+      "title": "Job photo \u2014 A burner and its new seal",
+      "recordedIg": "published",
+      "permalink": "https://www.instagram.com/p/Df9jr0qkWnN/"
     }
   ],
   "missing": [],
