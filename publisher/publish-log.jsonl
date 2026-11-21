@@ -14094,3 +14094,5 @@
 {"at":"2026-11-19T10:12:53.522Z","cmd":"confirm-published","post":140,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1135609722551803&set=a.448112374634878&type=3"}
 {"at":"2026-11-20T11:33:39.140Z","cmd":"publish-due","post":141,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/Df9jr0qkWnN/"}
 {"at":"2026-11-20T11:48:43.041Z","cmd":"confirm-published","post":141,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1135609765885132&set=a.448112374634878&type=3"}
+{"at":"2026-11-21T10:08:17.618Z","cmd":"publish-due","post":142,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/Df_-t7fluPE/"}
+{"at":"2026-11-21T10:08:18.444Z","cmd":"confirm-published","post":142,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1135609835885125&set=a.448112374634878&type=3"}
