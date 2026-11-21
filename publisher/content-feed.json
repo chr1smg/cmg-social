@@ -1,5 +1,5 @@
 {
- "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling. | 7 Nov 2026: CMG rows 134 (Thu 12 Nov 10:00, D15 condensate trap) and 135 (Fri 13 Nov 10:00, D16 porch install, ADEY MagnaClean filter; photo cropped to remove pliers) added, approved by Chris 7 Nov 12:50 Yes Board 'Load both'. D16 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' and links www.cmghp.co.uk/boiler-prices/. Instagram normal (token works from 7 Nov). | 8 Nov 2026: CMG rows 136-142 (Sat 14 Nov - Sat 21 Nov, one a day, Sunday 15 Nov skipped; job photos, 4:5 crops from Yes Board card posts-9-22-nov attachments) added, approved by Chris 8 Nov 17:03 Yes Board 'Load all 7'. Captions word for word from the card. Ids 118-131 still left free for the BWD batch. Instagram normal.",
+ "note": "CMG content feed. Lives in the repo from 3 Oct 2026 (publisher/content-feed.json) so it can be edited by API; the Drive copy 1u5esyH_oz-xTYnnt9m5l8ttf71m2boa9 is retired. The publisher syncs this into week.json every run: open rows take the feed's slot/title/image/imageUrl/caption/page/blocked; published or scheduled rows are never touched; rows absent here are left alone. 66/71/73 stay blocked (old BWD list cards, design withdrawn 1 Oct). 67 and 72 rebuilt to the new styles 2 Oct and unblocked 3 Oct. Job photos run two a week, Wed and Sat, not daily. 8 Oct 2026: BWD rows 77-94 added, one a day 8-25 Oct, rotation Mon photo/Tue list/Wed light/Thu bignum/Fri photo/Sat myth/Sun list; built by tools/graphics/batches/bwd_2026-10-08_to_25.py using tools/graphics/bwd_templates.py. 9 Oct: row 77 re-slotted from 8 Oct to Thu 29 Oct 18:00 (the 8 Oct slot was missed while the push was blocked; publishDue has no lower bound so it would have fired a day late alongside 78). 9 Oct: CMG rows 95-105 added (13-27 Oct, around job photos 53-57), built by tools/graphics/batches/cmg_2026-10-13_to_27.py with tools/graphics/cmg_templates.py. 20 Oct 2026: CMG holiday batch rows 106-112 (29 Oct-4 Nov, job photos, approved by Chris 20 Oct) added; images in graphics/ served from raw.githubusercontent.com. 4 Nov 2026: CMG rows 113-117 (5-9 Nov, job photos, Chris approved 4 Nov 10:33 \"drop flush and yes posts\": row 114 flush sentence changed to \"A magnetic filter goes in with every boiler I fit.\") added; images in graphics/ served from raw.githubusercontent.com. | 7 Nov 2026: CMG rows 132 (Tue 10 Nov 10:00, D13 Worcester loft) and 133 (Wed 11 Nov 09:30, D14 Ideal cupboard) added, approved by Chris 7 Nov 11:49 ('yes d13 d14'). Ids 118-131 left free for the drafted BWD batch. D13 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' per the 4 Nov Worcester ruling. | 7 Nov 2026: CMG rows 134 (Thu 12 Nov 10:00, D15 condensate trap) and 135 (Fri 13 Nov 10:00, D16 porch install, ADEY MagnaClean filter; photo cropped to remove pliers) added, approved by Chris 7 Nov 12:50 Yes Board 'Load both'. D16 uses 'I fit Baxi, Worcester Bosch and Ideal boilers' and links www.cmghp.co.uk/boiler-prices/. Instagram normal (token works from 7 Nov). | 8 Nov 2026: CMG rows 136-142 (Sat 14 Nov - Sat 21 Nov, one a day, Sunday 15 Nov skipped; job photos, 4:5 crops from Yes Board card posts-9-22-nov attachments) added, approved by Chris 8 Nov 17:03 Yes Board 'Load all 7'. Captions word for word from the card. Ids 118-131 still left free for the BWD batch. Instagram normal. 21 Nov 2026: CMG rows 143-154 (Mon 23 Nov - Sat 5 Dec, Sun 29 skipped, real job photos) added on Chris's 'Load all 12' (Yes Board card 1011, 20:01); captions word for word from the card.",
  "posts": [
   {
    "id": 51,
@@ -733,6 +733,138 @@
    "image": "cmg-heating-system-drain-down-hose-bolton-4x5.jpg",
    "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-heating-system-drain-down-hose-bolton-4x5.jpg",
    "caption": "When a radiator or a valve needs changing, the heating system often has to be drained first. The water inside is usually dark with sludge, so I run it through a hose to a drain rather than across a garden or a driveway. Afterwards the system is refilled, bled and topped up with inhibitor to protect it. Thinking about new radiators or valves? Ask for a quote at www.cmghp.co.uk/book/quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 143,
+   "slot": "2026-11-23 09:45",
+   "page": "cmg",
+   "title": "Job photo — What the numbers on a service mean",
+   "image": "cmg-flue-gas-analyser-combustion-test-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-flue-gas-analyser-combustion-test-bolton-4x5.jpg",
+   "caption": "This is my flue gas analyser on a Main combi during a service. The probe sits in the flue test point and reads what the boiler is actually burning: carbon monoxide, carbon dioxide and the ratio between them. Those readings tell me whether the gas and air are mixing properly, which you cannot judge by looking at the flame. If the numbers are out, I find out why before the case goes back on, and the readings go on your service record. If you smell gas, ring the National Gas Emergency line on 0800 111 999. If your boiler is due its service, book it at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 144,
+   "slot": "2026-11-24 10:00",
+   "page": "cmg",
+   "title": "Job photo — An older storage combi with the covers off",
+   "image": "cmg-potterton-powermax-storage-combi-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-potterton-powermax-storage-combi-bolton-4x5.jpg",
+   "caption": "This is a Potterton Powermax HE with its covers off. It is a boiler and a hot water store in one tall unit, and there are still plenty of them heating homes around Bolton. They are getting on now, and when one starts to give trouble the real question is whether to repair it or replace it. I will look at it and tell you straight which I think it is, and why. If you smell gas, ring the National Gas Emergency line on 0800 111 999. If yours is playing up, book a repair at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 145,
+   "slot": "2026-11-25 09:30",
+   "page": "cmg",
+   "title": "Job photo — Green crust under the boiler is a slow leak",
+   "image": "cmg-green-crust-slow-leak-under-boiler-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-green-crust-slow-leak-under-boiler-bolton-4x5.jpg",
+   "caption": "See the green and blue crust on the brass fitting under this boiler? That is what a slow leak leaves behind. The water seeps out a drop at a time, dries, and the corrosion builds up. You may never see a puddle, but the boiler pressure keeps falling and you keep topping it up. If you can see crust like this on the pipes or valves under your boiler, or you are topping the pressure up every week, it is worth sorting before the cold really sets in. Book a repair at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 146,
+   "slot": "2026-11-26 10:00",
+   "page": "cmg",
+   "title": "Job photo — An underfloor heating manifold",
+   "image": "cmg-underfloor-heating-manifold-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-underfloor-heating-manifold-bolton-4x5.jpg",
+   "caption": "This is an underfloor heating manifold. Each white head on the bar is an actuator that opens and closes the water to one room's loop when that room's thermostat asks for heat. The orange staining down the pipes shows the fittings have been weeping slowly for a while, and that is worth looking at before it gets worse. If one room's floor never warms up, the cause is often at the manifold rather than under the floor. If your underfloor heating has a cold zone or a damp manifold cupboard, book a visit at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 147,
+   "slot": "2026-11-27 11:30",
+   "page": "cmg",
+   "title": "Job photo — A boiler service in a kitchen cupboard",
+   "image": "cmg-worcester-service-kitchen-cupboard-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-worcester-service-kitchen-cupboard-bolton-4x5.jpg",
+   "caption": "A Worcester combi in a kitchen wall cupboard, front cover off for its service. A boiler inside a kitchen unit keeps it out of sight, as long as there is room to get the cover off and work on it safely. On a service I check the burner, the fan, the seals and the condensate trap, then test the flue gases before it all goes back together. If you smell gas, ring the National Gas Emergency line on 0800 111 999. A boiler service with me is £105, a flat price with travel included within 12 miles of Bolton. Book yours at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 148,
+   "slot": "2026-11-28 10:00",
+   "page": "cmg",
+   "title": "Job photo — Mains pressure hot water from a small tank",
+   "image": "cmg-compact-unvented-water-heater-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-compact-unvented-water-heater-bolton-4x5.jpg",
+   "caption": "Not every home needs a big cylinder. This is a compact unvented water heater on a brick wall, with its own expansion vessel beside it and the pipework run neatly round the black pipe. It gives mains pressure hot water from a small tank, which can suit a flat, an extension or a tap a long way from the boiler. Because it is unvented, it needs fitting and checking by someone qualified for unvented systems. I hold the NICEIC Unvented Hot Water Storage Systems certificate. If you are thinking about one, ask for a quote at www.cmghp.co.uk/book/quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 149,
+   "slot": "2026-11-30 09:45",
+   "page": "cmg",
+   "title": "Job photo — Is there room to service your boiler?",
+   "image": "cmg-main-combi-tight-cupboard-clearances-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-main-combi-tight-cupboard-clearances-bolton-4x5.jpg",
+   "caption": "Boilers often end up in the smallest cupboard in the house. This Main combi fits, but only just, and that matters more than it looks. Every boiler needs set clearances around it so it can be serviced and repaired, and so the cover can come off without taking the cupboard apart. If you are planning a new kitchen or boxing a boiler in, check the clearances in the manual first, or ask me before the joiner starts. Thinking about a new boiler? My prices are at www.cmghp.co.uk/boiler-prices/ and the survey is free: www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 150,
+   "slot": "2026-12-01 10:00",
+   "page": "cmg",
+   "title": "Job photo — Garage boilers and frost",
+   "image": "cmg-garage-boiler-open-for-service-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-garage-boiler-open-for-service-bolton-4x5.jpg",
+   "caption": "A boiler in a garage, open for a service. Garage boilers are common round here and they work well, but a garage gets much colder than the house. In a hard frost the condensate pipe, the plastic pipe that carries water from the boiler to a drain, can freeze and stop the boiler, often with a gurgling noise and a fault code. To clear it, pour warm water (not boiling) slowly along the frozen section, or hold a hot water bottle on it, then reset the boiler as its manual says. Please do not take the casing off. If it will not restart, stop there and book a Gas Safe engineer. If you smell gas, ring the National Gas Emergency line on 0800 111 999. Book a repair at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 151,
+   "slot": "2026-12-02 09:30",
+   "page": "cmg",
+   "title": "Job photo — What comes with a new boiler",
+   "image": "cmg-ideal-combi-magnetic-filter-kitchen-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-ideal-combi-magnetic-filter-kitchen-bolton-4x5.jpg",
+   "caption": "An Ideal combi in a kitchen, with the magnetic filter on the pipework underneath. That filter catches the black sludge that builds up inside radiators before it can reach the new boiler. Every boiler package I fit includes the right magnetic filter, a chemical clean and inhibitor, the old boiler removed and taken away, and a carbon monoxide alarm fitted and tested. Each price is subject to a free survey. See my prices at www.cmghp.co.uk/boiler-prices/ and book the survey at www.cmghp.co.uk/book/boiler-quote\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 152,
+   "slot": "2026-12-03 10:00",
+   "page": "cmg",
+   "title": "Job photo — The red tank inside your boiler",
+   "image": "cmg-intergas-expansion-vessel-cupboard-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-intergas-expansion-vessel-cupboard-bolton-4x5.jpg",
+   "caption": "An Intergas combi in a built-in cupboard with the front off. The red tank on the left is the expansion vessel. As the heating warms up the water expands, and the vessel takes up the extra. If its air charge drops, the pressure gauge climbs high when the heating is on, falls back when it cools, and water can come out of the pressure relief pipe outside. If you smell gas, ring the National Gas Emergency line on 0800 111 999. If your boiler pressure keeps rising and falling like that, book a repair at www.cmghp.co.uk/book/repair\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 153,
+   "slot": "2026-12-04 11:30",
+   "page": "cmg",
+   "title": "Job photo — A magnetic filter on an existing boiler",
+   "image": "cmg-ideal-instinct-magnaclean-filter-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-ideal-instinct-magnaclean-filter-bolton-4x5.jpg",
+   "caption": "You do not need a new boiler to have a magnetic filter. The black and red cylinder beside this Ideal combi is one. It sits on the heating pipework and pulls out the black sludge that forms as radiators slowly rust inside, before it can reach the boiler and block it up. I empty it on each service. If your boiler does not have one, I can price fitting one when I am there for the service, and agree it with you before I fit it. Book your service at www.cmghp.co.uk/book/service\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
+   "style": "jobphoto",
+   "blocked": ""
+  },
+  {
+   "id": 154,
+   "slot": "2026-12-05 10:00",
+   "page": "cmg",
+   "title": "Job photo — A heat pump cylinder under the stairs",
+   "image": "cmg-heat-pump-cylinder-under-stairs-bolton-4x5.jpg",
+   "imageUrl": "https://raw.githubusercontent.com/chr1smg/cmg-social/main/graphics/cmg-heat-pump-cylinder-under-stairs-bolton-4x5.jpg",
+   "caption": "A heat pump cylinder fitted under the stairs during a renovation, with the controls, pumps and expansion vessels on the wall beside it. An air source heat pump needs a hot water cylinder like this, so finding the room for one is among the first things I look at. The Boiler Upgrade Scheme gives £7,500 off an air source heat pump for eligible homes. If you are wondering whether one would suit your house, book a free estimate at www.cmghp.co.uk/book/heat-pump\n\nGas Safe Reg 917962 · CIPHE Reg 129130 · 01204 961827",
    "style": "jobphoto",
    "blocked": ""
   }
