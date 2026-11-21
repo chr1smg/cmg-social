@@ -1,15 +1,8 @@
 {
-  "checkedAt": "2026-11-20 20:35 UTC",
+  "checkedAt": "2026-11-21 12:24 UTC",
   "tokenError": null,
   "expected": 6,
   "ok": [
-    {
-      "id": 136,
-      "slot": "2026-11-14 10:00",
-      "title": "Job photo \u2014 Checking an expansion vessel",
-      "recordedIg": "published",
-      "permalink": "https://www.instagram.com/p/Dft8RoBlQ7u/"
-    },
     {
       "id": 137,
       "slot": "2026-11-16 09:45",
@@ -44,6 +37,13 @@
       "title": "Job photo \u2014 A burner and its new seal",
       "recordedIg": "published",
       "permalink": "https://www.instagram.com/p/Df9jr0qkWnN/"
+    },
+    {
+      "id": 142,
+      "slot": "2026-11-21 10:00",
+      "title": "Job photo \u2014 Draining a system down properly",
+      "recordedIg": "published",
+      "permalink": "https://www.instagram.com/p/Df_-t7fluPE/"
     }
   ],
   "missing": [],
