@@ -14096,3 +14096,15 @@
 {"at":"2026-11-20T11:48:43.041Z","cmd":"confirm-published","post":141,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1135609765885132&set=a.448112374634878&type=3"}
 {"at":"2026-11-21T10:08:17.618Z","cmd":"publish-due","post":142,"platform":"instagram","result":"published","permalink":"https://www.instagram.com/p/Df_-t7fluPE/"}
 {"at":"2026-11-21T10:08:18.444Z","cmd":"confirm-published","post":142,"result":"published","permalink":"https://www.facebook.com/photo.php?fbid=1135609835885125&set=a.448112374634878&type=3"}
+{"at":"2026-11-21T20:10:34.047Z","cmd":"schedule-week","post":143,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115114534597","slot":"2026-11-23 09:45","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:36.337Z","cmd":"schedule-week","post":144,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115161201259","slot":"2026-11-24 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:38.715Z","cmd":"schedule-week","post":145,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115204534588","slot":"2026-11-25 09:30","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:40.733Z","cmd":"schedule-week","post":146,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115247867917","slot":"2026-11-26 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:42.870Z","cmd":"schedule-week","post":147,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115301201245","slot":"2026-11-27 11:30","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:45.053Z","cmd":"schedule-week","post":148,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115347867907","slot":"2026-11-28 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:48.692Z","cmd":"schedule-week","post":149,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115421201233","slot":"2026-11-30 09:45","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:50.686Z","cmd":"schedule-week","post":150,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115471201228","slot":"2026-12-01 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:52.891Z","cmd":"schedule-week","post":151,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115531201222","slot":"2026-12-02 09:30","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:54.864Z","cmd":"schedule-week","post":152,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115607867881","slot":"2026-12-03 10:00","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:56.943Z","cmd":"schedule-week","post":153,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115644534544","slot":"2026-12-04 11:30","verified":"seen in scheduled_posts"}
+{"at":"2026-11-21T20:10:59.413Z","cmd":"schedule-week","post":154,"page":"cmg","result":"scheduled","fbPostId":"110510101534769_1149115691201206","slot":"2026-12-05 10:00","verified":"seen in scheduled_posts"}

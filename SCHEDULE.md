@@ -6,7 +6,7 @@ QUEUED ON META means Facebook is holding the post and will put it out at that ti
 
 DONE means the publisher asked Meta after the slot and Meta confirmed the post is live - not that it was supposed to go out. DID NOT PUBLISH - CHECK means the slot passed and Meta says it is still unpublished; nothing is retried automatically, so that one needs a decision.
 
-Last updated: 2026-11-21 19:55 UTC
+Last updated: 2026-11-21 20:10 UTC
 
 | Day | Time | Post | State | Where |
 |---|---|---|---|---|
@@ -120,3 +120,15 @@ Last updated: 2026-11-21 19:55 UTC
 | Thu 19 Nov | 10:00 | Job photo — Overflow dripping? Check the loft tank | DONE | Facebook + Instagram |
 | Fri 20 Nov | 11:30 | Job photo — A burner and its new seal | DONE | Facebook + Instagram |
 | Sat 21 Nov | 10:00 | Job photo — Draining a system down properly | DONE | Facebook + Instagram |
+| Mon 23 Nov | 09:45 | Job photo — What the numbers on a service mean | QUEUED ON META | Facebook + Instagram |
+| Tue 24 Nov | 10:00 | Job photo — An older storage combi with the covers off | QUEUED ON META | Facebook + Instagram |
+| Wed 25 Nov | 09:30 | Job photo — Green crust under the boiler is a slow leak | QUEUED ON META | Facebook + Instagram |
+| Thu 26 Nov | 10:00 | Job photo — An underfloor heating manifold | QUEUED ON META | Facebook + Instagram |
+| Fri 27 Nov | 11:30 | Job photo — A boiler service in a kitchen cupboard | QUEUED ON META | Facebook + Instagram |
+| Sat 28 Nov | 10:00 | Job photo — Mains pressure hot water from a small tank | QUEUED ON META | Facebook + Instagram |
+| Mon 30 Nov | 09:45 | Job photo — Is there room to service your boiler? | QUEUED ON META | Facebook + Instagram |
+| Tue 1 Dec | 10:00 | Job photo — Garage boilers and frost | QUEUED ON META | Facebook + Instagram |
+| Wed 2 Dec | 09:30 | Job photo — What comes with a new boiler | QUEUED ON META | Facebook + Instagram |
+| Thu 3 Dec | 10:00 | Job photo — The red tank inside your boiler | QUEUED ON META | Facebook + Instagram |
+| Fri 4 Dec | 11:30 | Job photo — A magnetic filter on an existing boiler | QUEUED ON META | Facebook + Instagram |
+| Sat 5 Dec | 10:00 | Job photo — A heat pump cylinder under the stairs | QUEUED ON META | Facebook + Instagram |
