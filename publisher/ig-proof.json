@@ -1,15 +1,8 @@
 {
-  "checkedAt": "2026-11-26 21:39 UTC",
+  "checkedAt": "2026-11-27 12:27 UTC",
   "tokenError": null,
-  "expected": 6,
+  "expected": 5,
   "ok": [
-    {
-      "id": 141,
-      "slot": "2026-11-20 11:30",
-      "title": "Job photo \u2014 A burner and its new seal",
-      "recordedIg": "published",
-      "permalink": "https://www.instagram.com/p/Df9jr0qkWnN/"
-    },
     {
       "id": 142,
       "slot": "2026-11-21 10:00",
